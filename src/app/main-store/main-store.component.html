@@ -1,12 +1,14 @@
 <body>
     <app-search-tool-bar></app-search-tool-bar>
-    <mat-grid-list cols="3" rowHeight="550px" [gutterSize]="'9px'">
+    <mat-grid-list cols="3" rowHeight="580px" [gutterSize]="'9px'">
         <mat-grid-tile *ngFor="let book of books">
             <mat-card id="card1">
                 <section class="innergrid">
                     <span class="title">Title: {{ book.Title }}</span>
                     <span class="price">Price: {{ book.Price }} EGP</span>
                     <span class="author">Author: {{ book.Author }}</span>
+                    <span class="stock">Stock: {{ book.Stock }}</span>
+
                     <img src="{{ book.Cover }}" style="width: 100%" />
                     <a mat-raised-button routerLink="/" color="accent">Buy Now</a>
                     <a mat-raised-button routerLink="/" color="primary">Add To my Favorites</a

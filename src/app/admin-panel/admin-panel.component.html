@@ -2,8 +2,47 @@
 <html>
 
 <body>
-    <h1>My First Heading</h1>
-    <p>My first paragraph.</p>
+    <div>
+        <div class="container">
+            <mat-card>
+                <div class="panel">Administration Panel</div>
+
+                <div>
+                    <div class="words">Enter the Book's Title</div>
+                    <mat-form-field>
+                        <!-- <input matInput type="text" name="username" required [ngModel]="user?.username" placeholder="Username" minlength="3" #username="ngModel" /> -->
+                        <input matInput type="text" [(ngModel)]="Title" />
+                    </mat-form-field>
+                    <div class="words">Enter the Book's Author</div>
+
+                    <mat-form-field>
+                        <input matInput type="text" [(ngModel)]="Author" />
+                    </mat-form-field>
+
+                    <div class="words">Enter the Book's Price</div>
+
+                    <mat-form-field>
+                        <input matInput type="number" [(ngModel)]="price" />
+                    </mat-form-field>
+
+                    <div class="words">Enter the Book's Cover</div>
+
+                    <mat-form-field>
+                        <input matInput type="text" [(ngModel)]="Cover" />
+                    </mat-form-field>
+                    <div class="words">Enter the Book's number in Stock</div>
+                    <mat-form-field>
+                        <!-- <input matInput type="text" name="username" required [ngModel]="user?.username" placeholder="Username" minlength="3" #username="ngModel" /> -->
+                        <input matInput type="number" [(ngModel)]="Stock" />
+                    </mat-form-field>
+                    <br />
+                    <button (click)="AdminAdding()" mat-raised-button id="btn">
+              Add Book
+            </button>
+                </div>
+            </mat-card>
+        </div>
+    </div>
 </body>
 
 </html>

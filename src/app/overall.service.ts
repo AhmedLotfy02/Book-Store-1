@@ -51,12 +51,19 @@ export class OverallService {
     console.log('getting result');
     return this.book;
   }
-  sendData(title: string, price: number, cover: string, author: string) {
+  sendData(
+    title: string,
+    price: number,
+    cover: string,
+    author: string,
+    stock: number
+  ) {
     const book: BOOK = {
       Title: title,
       Author: author,
       Price: price,
       Cover: cover,
+      Stock: stock,
     };
     console.log(book);
     return this.http.post('http://localhost:3000/add', book).subscribe();

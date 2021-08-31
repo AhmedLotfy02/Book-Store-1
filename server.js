@@ -30,6 +30,7 @@ const BookSchema = new mongoose.Schema({
     Author: String,
     Cover: String,
     Price: Number,
+    Stock: Number,
 });
 const LoginSchema = new mongoose.Schema({
     username: String,
@@ -110,24 +111,24 @@ app.get("/api/books", function(req, res) {
         res.send(bos);
     });
 });
-app.get("/Admin", function(req, res) {
-    res.send(
-        `
-        <form method="POST" action="/add">
-        <h2>Enter Title</h2>
-            <input type="text" name="field1">
-            <h2>Enter Author's Name</h2>
-            <input type="text" name="field2">
-            <h2>Enter image url</h2>
-            <input type="text" name="field3">
-            <h2>Enter Book's Price</h2>
-            <input type="text" name="field4">
-            <button>ADD</button>
-        </form>
-        
-        `
-    );
-});
+// app.get("/Admin", function(req, res) {
+//     res.send(
+//         `
+//         <form method="POST" action="/add">
+//         <h2>Enter Title</h2>
+//             <input type="text" name="field1">
+//             <h2>Enter Author's Name</h2>
+//             <input type="text" name="field2">
+//             <h2>Enter image url</h2>
+//             <input type="text" name="field3">
+//             <h2>Enter Book's Price</h2>
+//             <input type="text" name="field4">
+//             <button>ADD</button>
+//         </form>
+
+//         `
+//     );
+// });
 
 app.post("/add", function(req, res) {
     console.log(req.body);
@@ -136,6 +137,7 @@ app.post("/add", function(req, res) {
         Author: req.body.Author,
         Cover: req.body.Cover,
         Price: req.body.Price,
+        Stock: req.body.Stock,
     });
     NewBook.save();
 });

@@ -1,6 +1,58 @@
+@import url("https://fonts.googleapis.com/css2?family=Architects+Daughter&family=ZCOOL+KuaiLe&display=swap");
 body {
     background: url("https://www.teahub.io/photos/full/55-551482_1999x1233-book-full-hd-wallpaper-and-background-book.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+}
+
+.mat-card {
+    width: 60%;
+    height: 100px;
+    background: transparent;
+}
+
+.container {
+    margin-left: 2em;
+    padding-top: 2em;
+    border-radius: 12;
+}
+
+.panel {
+    font-family: "ZCOOL KuaiLe", cursive;
+    font-size: 60px;
+    color: gold;
+}
+
+.words {
+    font-size: 30;
+    color: gold;
+    font-family: "Architects Daughter", cursive;
+}
+
+::ng-deep .mat-focused .mat-form-field-label {
+    /*change color of label*/
+    color: green !important;
+}
+
+::ng-deep.mat-form-field-underline {
+    /*change color of underline*/
+    background-color: white !important;
+}
+
+::ng-deep.mat-form-field-ripple {
+    /*change color of underline when focused*/
+    background-color: gold !important;
+}
+
+::ng-deep input.mat-input-element {
+    color: gold;
+}
+
+.mat-raised-button {
+    color: gold !important;
+}
+
+.mat-button.mat-primary .mat-button-focus-overlay {
+    background-color: transparent;
 }
