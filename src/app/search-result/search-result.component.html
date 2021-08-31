@@ -1,0 +1,16 @@
+<body>
+    <app-search-tool-bar></app-search-tool-bar>
+    <mat-grid-list cols="3" rowHeight="500px" [gutterSize]="'9px'" *ngIf="book !== undefined">
+        <mat-grid-tile>
+            <span class="title">Title: {{ book.Title }}</span>
+            <span class="price">Price: {{ book.Price }} EGP</span>
+            <span class="author">Author: {{ book.Author }}</span>
+            <img src="{{ book.Cover }}" />
+            <a mat-raised-button routerLink="/" color="accent">Buy Now</a>
+            <a mat-raised-button routerLink="/" color="primary">Add To my Favorites</a
+      >
+    </mat-grid-tile>
+  </mat-grid-list>
+  <p *ngIf="book == undefined">Not Found</p>
+  <br />
+</body>

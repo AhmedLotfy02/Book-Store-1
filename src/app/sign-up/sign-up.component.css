@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+mat-form-field,
+input {
+    width: 50%;
+    padding-left: 0%;
+}
+
+.mat-card {
+    margin-top: 1em;
+    width: 50%;
+    margin-left: 25%;
+    text-align: center;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+.head {
+    font-family: 'Lobster', cursive;
+    font-size: 30px;
+}
+
+.darktoolbar {
+    color: white;
+}

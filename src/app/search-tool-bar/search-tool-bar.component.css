@@ -1,0 +1,92 @@
+@import url("https://fonts.googleapis.com/css2?family=Lobster&family=Righteous&display=swap");
+.example-container {
+    width: 10px;
+    margin-left: 50%;
+    height: auto;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.example-sidenav-content {
+    height: 20%;
+    align-items: center;
+    justify-content: center;
+}
+
+.example-sidenav {
+    height: 100%;
+    padding: 20px;
+    margin-top: 4.5em;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+.head {
+    margin-left: 20%;
+}
+
+.sider {
+    display: grid;
+    flex-direction: row;
+}
+
+.innergrid {
+    display: grid;
+    flex-direction: row;
+    gap: 1em;
+}
+
+body {
+    background-image: url("https://bashooka.com/wp-content/uploads/2018/04/scg-canvas-background-animation-24.jpg");
+}
+
+.title {
+    font-size: 30px;
+    font-family: "Righteous", cursive;
+    color: white;
+}
+
+.author {
+    font-size: 20px;
+    font-family: "Righteous", cursive;
+    color: white;
+}
+
+.price {
+    font-size: 20px;
+    font-family: "Righteous", cursive;
+    color: white;
+}
+
+.search {
+    margin-left: 1em;
+}
+
+.searchbutton {
+    margin-left: 1em;
+}
+
+.b1 {
+    color: crimson;
+}
+
+.spacer1 {
+    margin-left: 1em;
+}
+
+p {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: small;
+}
