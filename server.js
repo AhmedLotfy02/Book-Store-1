@@ -34,7 +34,9 @@ const BookSchema = new mongoose.Schema({
 });
 const LoginSchema = new mongoose.Schema({
     username: String,
+    email: String,
     password: String,
+    confirmpassowrd: String,
 });
 const Book = mongoose.model("Book", BookSchema);
 const User = mongoose.model("User", LoginSchema);
@@ -51,26 +53,42 @@ app.use((req, res, next) => {
     next();
 });
 
+app.post("/api/addUsers", function(req, res) {
+    console.log(req.body);
+});
+
 app.post("/api/users", (req, res, next) => {
     const user = new User({
         username: req.body.username,
         password: req.body.password,
     });
-    console.log(user);
-    if (req.body.username == "ahmed") {
+    User.findOne({ username: req.body.username }, function(err, doc) {
         res.status(201).json({
-            message: "invalid",
-            postId: false,
+            message: "Done",
+            User: doc,
         });
-    } else {
-        user.save().then((createdPost) => {
-            res.status(201).json({
-                message: "Post added successfully",
-                postId: true,
-            });
-        });
-    }
+        console.log(doc);
+    });
+
+    // if (req.body.username == "ahmed") {
+    //     res.status(201).json({
+    //         message: "invalid",
+    //         postId: false,
+    //     });
+    // } else {
+    //     user.save().then((createdPost) => {
+    //         res.status(201).json({
+    //             message: "Post added successfully",
+    //             postId: true,
+    //         });
+    //     });
+    // }
 });
+
+app.post("/adDUsers", function(req, res) {
+    console.log(req.body);
+});
+
 app.get("/tes", (req, res, next) => {
     res.status(200);
 });

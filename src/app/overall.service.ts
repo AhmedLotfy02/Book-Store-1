@@ -10,37 +10,62 @@ import { Router } from '@angular/router';
 export class OverallService {
   login = false;
   book!: BOOK;
+  user!: User;
   constructor(private http: HttpClient, private router: Router) {}
-  LoginUser(username: string, password: string) {
+  LoginUser(
+    username: string,
+    password: string,
+    lorS: Boolean,
+    email: string = '',
+    confirmpassword: string = ''
+  ) {
     const user: User = { id: '', username: username, password: password };
     this.http
-      .post<{ message: string; postId: boolean }>(
+      .post<{ message: string; User: User }>(
         'http://localhost:3000/api/users',
         user
       )
       .subscribe((responseData) => {
-        const id = responseData.postId;
-        console.log(id);
-        this.login = id;
-        console.log(this.login);
+        console.log(responseData.User);
+        console.log(lorS);
+
+        if (!responseData.User && lorS) {
+          console.log('in');
+          this.router.navigate(['/signup']);
+        }
+        // } else {
+        // }
+        else if (!responseData.User && !lorS) {
+          console.log('inreturn');
+          this.AddUser(username, email, password, confirmpassword);
+        } else {
+        }
       });
-    console.log(this.login);
     return this.login;
   }
   getLogin() {
     return this.login;
   }
+  SendUser(user: User) {
+    this.http.post('http://localhost:3000/AdDUsers', user).subscribe();
+  }
   getBooks() {
     return this.http.get('http://localhost:3000/api/books');
   }
-  AddUser(username: string, password: string, confirmpass: string) {
+  AddUser(
+    username: string,
+    email: string,
+    password: string,
+    confirmpass: string
+  ) {
     const newUser = {
       username: username,
+      email: email,
       password: password,
       confirmpass: confirmpass,
     };
 
-    this.http.post('http://localhost:3000/api/users', newUser);
+    this.http.post('http://localhost:3000/api/addUsers', newUser).subscribe();
   }
   Search(title: string) {
     return this.http.get<{ message: string; book: BOOK }>(

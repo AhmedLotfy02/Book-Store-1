@@ -3,8 +3,12 @@
         <span class="head">Abbas' Book-Store</span>
 
         <span class="spacer"></span>
-        <button mat-raised-button color="black" (click)="ToggleDark()" *ngIf="!DarkState">Dark Mode</button>
-        <button mat-raised-button color="accent" (click)="ToggleDark()" *ngIf="DarkState">Normal Mode</button>
+        <button mat-raised-button color="black" (click)="ToggleDark()" *ngIf="!DarkState">
+      Dark Mode
+    </button>
+        <button mat-raised-button color="accent" (click)="ToggleDark()" *ngIf="DarkState">
+      Normal Mode
+    </button>
 
         <ul>
             <li>
@@ -13,88 +17,83 @@
         </ul>
     </mat-toolbar>
     <mat-card *ngIf="!DarkState">
-        <img src="https://thumbs.dreamstime.com/b/vector-light-bulb-white-file-eps-format-34983265.jpg" width="300" height="290" *ngIf="DarkState">
-        <img src="https://previews.123rf.com/images/ericmilos/ericmilos0912/ericmilos091200136/6109526-3d-render-of-light-bulb-on-white.jpg" width="300" height="300" *ngIf="!DarkState">
-        <br>
+        <img src="https://thumbs.dreamstime.com/b/vector-light-bulb-white-file-eps-format-34983265.jpg" width="300" height="290" *ngIf="DarkState" />
+        <img src="https://previews.123rf.com/images/ericmilos/ericmilos0912/ericmilos091200136/6109526-3d-render-of-light-bulb-on-white.jpg" width="300" height="300" *ngIf="!DarkState" />
+        <br />
 
-        <span class="mat-body-2">Please Enter Your Username and Password</span>
-        <form (submit)="onSignup(postForm)" #postForm="ngForm">
+        <span class="mat-body-2">You Must Sign Up First</span>
+        <form #postForm="ngForm">
             <mat-form-field>
-                <input matInput type="text" name="username" required placeholder="Username" minlength="3">
-
+                <input matInput type="text" name="username" required placeholder="Username" minlength="3" [(ngModel)]="username" />
             </mat-form-field>
-            <br>
+            <br />
             <mat-form-field>
-                <input matInput type="text" name="email" required placeholder="Email" minlength="3">
-
+                <input matInput type="text" name="email" required placeholder="Email" minlength="3" [(ngModel)]="email" />
             </mat-form-field>
-            <br>
+            <br />
             <mat-form-field>
-
-                <input matInput type="password" name="Password" required placeholder="password" minlength="3">
-
+                <input matInput type="password" name="Password" required placeholder="password" minlength="3" [(ngModel)]="password" />
             </mat-form-field>
-            <br>
+            <br />
             <mat-form-field>
-
-                <input matInput type="password" name="confirmpassword" required placeholder="Confirm Your Password" minlength="3">
-
+                <input matInput type="password" name="confirmpassword" required placeholder="Confirm Your Password" minlength="3" [(ngModel)]="confirmpassword" />
             </mat-form-field>
-            <br>
-            <button type="submit" mat-raised-button color="primary">Sign Up</button>
-
+            <br />
+            <div *ngIf="falsePass">Password Must be the Confirmed Password</div>
+            <button (click)="onSignup()" mat-raised-button color="primary">
+        Sign Up
+      </button>
         </form>
-        <br><br><br>
+        <br /><br /><br />
     </mat-card>
 </body>
 
-<body style="background-color: black;" class="all" *ngIf="DarkState">
+<body style="background-color: black" class="all" *ngIf="DarkState">
     <mat-toolbar color="accent">
         <span>Abbas' Book-Store</span>
 
         <span class="spacer"></span>
-        <button mat-raised-button color="black" (click)="ToggleDark()" *ngIf="!DarkState">Dark Mode</button>
-        <button mat-raised-button color="accent" (click)="ToggleDark()" *ngIf="DarkState">Normal Mode</button>
+        <button mat-raised-button color="black" (click)="ToggleDark()" *ngIf="!DarkState">
+      Dark Mode
+    </button>
+        <button mat-raised-button color="accent" (click)="ToggleDark()" *ngIf="DarkState">
+      Normal Mode
+    </button>
 
         <ul>
             <li>
                 <a mat-button routerLink="/">Login</a>
-
             </li>
         </ul>
     </mat-toolbar>
     <mat-card *ngIf="DarkState">
-        <img src="https://thumbs.dreamstime.com/b/vector-light-bulb-white-file-eps-format-34983265.jpg" width="300" height="290" *ngIf="DarkState">
-        <img src="https://previews.123rf.com/images/ericmilos/ericmilos0912/ericmilos091200136/6109526-3d-render-of-light-bulb-on-white.jpg" width="300" height="300" *ngIf="!DarkState">
-        <br>
+        <img src="https://thumbs.dreamstime.com/b/vector-light-bulb-white-file-eps-format-34983265.jpg" width="300" height="290" *ngIf="DarkState" />
+        <img src="https://previews.123rf.com/images/ericmilos/ericmilos0912/ericmilos091200136/6109526-3d-render-of-light-bulb-on-white.jpg" width="300" height="300" *ngIf="!DarkState" />
+        <br />
 
-        <span class="mat-body-2">Please Enter Your Username and Password</span>
-        <form (submit)="onSignup(postForm)" #postForm="ngForm">
+        <span class="mat-body-2">You Must Sign Up First</span>
+        <form #postForm="ngForm">
             <mat-form-field>
-                <input matInput type="text" name="username" required placeholder="Username" minlength="3">
-
+                <input matInput type="text" name="username" required placeholder="Username" minlength="3" [(ngModel)]="username" />
             </mat-form-field>
-            <br>
+            <br />
             <mat-form-field>
-                <input matInput type="text" name="email" required placeholder="Email" minlength="3">
-
+                <input matInput type="text" name="email" required placeholder="Email" minlength="3" [(ngModel)]="email" />
             </mat-form-field>
-            <br>
+            <br />
             <mat-form-field>
-
-                <input matInput type="password" name="password" required placeholder="password" minlength="3">
-
+                <input matInput type="password" name="Password" required placeholder="password" minlength="3" [(ngModel)]="password" />
             </mat-form-field>
-            <br>
+            <br />
             <mat-form-field>
-
-                <input matInput type="password" name="confirmpassword" required placeholder="Confirm Your Password" minlength="3">
-
+                <input matInput type="password" name="confirmpassword" required placeholder="Confirm Your Password" minlength="3" [(ngModel)]="confirmpassword" />
             </mat-form-field>
-            <br>
-            <button class="b1" type="submit" mat-raised-button color="accent">Sign Up</button>
-
+            <br />
+            <div *ngIf="falsePass">Password Must be the Confirmed Password</div>
+            <button (click)="onSignup()" mat-raised-button color="primary">
+        Sign Up
+      </button>
         </form>
-        <br><br><br>
+        <br /><br /><br />
     </mat-card>
 </body>
