@@ -7,6 +7,7 @@ import { PopUpFormComponent } from './pop-up-form/pop-up-form.component';
 import { SearchResultComponent } from './search-result/search-result.component';
 import { SearchToolBarComponent } from './search-tool-bar/search-tool-bar.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { SuccessSignUpComponent } from './success-sign-up/success-sign-up.component';
 
 const routes: Routes = [
   { path: '', component: LoginPageComponent },
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'searchresult', component: SearchResultComponent },
   { path: 'pop', component: PopUpFormComponent },
   { path: 'admin', component: AdminPanelComponent },
+  { path: 'signupSuc', component: SuccessSignUpComponent },
 ];
 
 @NgModule({

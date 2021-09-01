@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { User } from './User-Model';
 import { BOOK } from './Book-Model';
 import { Router } from '@angular/router';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -11,6 +12,9 @@ export class OverallService {
   login = false;
   book!: BOOK;
   user!: User;
+  currentUser!: User;
+  subject1 = new Subject();
+
   constructor(private http: HttpClient, private router: Router) {}
   LoginUser(
     username: string,
@@ -32,6 +36,9 @@ export class OverallService {
         if (!responseData.User && lorS) {
           console.log('in');
           this.router.navigate(['/signup']);
+        } else if (responseData.User && lorS) {
+          console.log('User Found in Login');
+          this.applyingLogin(responseData.User);
         }
         // } else {
         // }
@@ -66,6 +73,7 @@ export class OverallService {
     };
 
     this.http.post('http://localhost:3000/api/addUsers', newUser).subscribe();
+    this.router.navigate(['/signupSuc']);
   }
   Search(title: string) {
     return this.http.get<{ message: string; book: BOOK }>(
@@ -92,5 +100,13 @@ export class OverallService {
     };
     console.log(book);
     return this.http.post('http://localhost:3000/add', book).subscribe();
+  }
+
+  applyingLogin(newUSer: User) {
+    this.currentUser = newUSer;
+    this.subject1.next(this.currentUser.username);
+  }
+  getcurrentUser() {
+    return this.subject1.asObservable();
   }
 }

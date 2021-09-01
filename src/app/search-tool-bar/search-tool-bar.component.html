@@ -1,19 +1,16 @@
 <mat-toolbar color="primary">
-
     <button mat-mini-fab color="black" aria-label="Example icon button with a menu icon" (click)="drawer.toggle()">
     <mat-icon>menu</mat-icon>
   </button>
     <form (submit)="onSearch(postForm)" #postForm="ngForm">
-
         <span class="spacer1"></span>
 
         <mat-form-field floatLabel="never">
-            <input matInput type="search" name="search" required [ngModel]="book?.Title" placeholder="Search" minlength="3" #search="ngModel">
+            <input matInput type="search" name="search" required [ngModel]="book?.Title" placeholder="Search" minlength="3" #search="ngModel" />
         </mat-form-field>
         <span class="spacer1"></span>
 
         <button class="b1" type="submit" mat-raised-button>Search</button>
-
     </form>
     <span class="head">Abbas' Book-Store</span>
 
@@ -21,27 +18,21 @@
 
     <ul>
         <li>
-            <a mat-button routerLink="/" routerLinkActive="primary">Log Out</a> </li>
+            <mat-icon id="acc">account_circle</mat-icon>
+            <span class="spacer99"></span>
+            <span class="accname">{{ name }}</span>
+            <a mat-button routerLink="/" routerLinkActive="primary">Log Out</a>
+        </li>
     </ul>
 </mat-toolbar>
 
 <mat-drawer-container class="example-container" autosize>
-
-
-
-
 </mat-drawer-container>
-<div class="example-sidenav-content">
-
-</div>
+<div class="example-sidenav-content"></div>
 <mat-drawer #drawer class="example-sidenav" mode="side">
-
-
-
     <div class="sider">
         <a mat-button routerLink="/" routerLinkActive="mat-accent">DashBoard</a>
-        <br>
+        <br />
         <a mat-button routerLink="/" routerLinkActive="mat-accent">My Cart</a>
-
     </div>
 </mat-drawer>

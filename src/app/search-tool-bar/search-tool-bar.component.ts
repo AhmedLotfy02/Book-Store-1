@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BOOK } from '../Book-Model';
 import { OverallService } from '../overall.service';
+import { User } from '../User-Model';
 
 @Component({
   selector: 'app-search-tool-bar',
@@ -11,6 +12,7 @@ import { OverallService } from '../overall.service';
 })
 export class SearchToolBarComponent implements OnInit {
   book!: BOOK;
+  name = 'asd';
   onSearch(form: NgForm) {
     this.service.Search(form.value.search).subscribe((repsonseData) => {
       console.log(repsonseData);
@@ -21,5 +23,14 @@ export class SearchToolBarComponent implements OnInit {
   }
   constructor(private service: OverallService, private router: Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.service.getcurrentUser().subscribe((user: any) => {
+      console.log('inmainstore');
+      this.name = user;
+      console.log(this.name);
+      setTimeout(function () {
+        console.log('I am the third log after 5 seconds');
+      }, 3000);
+    });
+  }
 }

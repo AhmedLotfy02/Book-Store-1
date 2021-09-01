@@ -28,6 +28,7 @@ import { SearchResultComponent } from './search-result/search-result.component';
 import { PopUpFormComponent } from './pop-up-form/pop-up-form.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
+import { SuccessSignUpComponent } from './success-sign-up/success-sign-up.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { AdminPanelComponent } from './admin-panel/admin-panel.component';
     SearchResultComponent,
     PopUpFormComponent,
     AdminPanelComponent,
+    SuccessSignUpComponent,
   ],
   imports: [
     BrowserModule,

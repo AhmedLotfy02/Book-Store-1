@@ -90,3 +90,15 @@ p {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: small;
 }
+
+#acc {
+    font-size: 30px;
+}
+
+.spacer99 {
+    margin-right: 0.5em;
+}
+
+.accname {
+    font-size: 25px;
+}
