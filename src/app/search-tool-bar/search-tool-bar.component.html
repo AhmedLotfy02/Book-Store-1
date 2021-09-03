@@ -12,13 +12,15 @@
 
         <button class="b1" type="submit" mat-raised-button>Search</button>
     </form>
-    <span class="head">Abbas' Book-Store</span>
+    <span class="head">AL Book-Store</span>
 
     <span class="spacer"></span>
 
     <ul>
         <li>
-            <mat-icon id="acc">account_circle</mat-icon>
+            <button mat-stroked-button class="btnnn">
+        <mat-icon id="acc">account_circle</mat-icon>
+      </button>
             <span class="spacer99"></span>
             <span class="accname">{{ name }}</span>
             <a mat-button routerLink="/" routerLinkActive="primary">Log Out</a>
@@ -31,8 +33,8 @@
 <div class="example-sidenav-content"></div>
 <mat-drawer #drawer class="example-sidenav" mode="side">
     <div class="sider">
-        <a mat-button routerLink="/" routerLinkActive="mat-accent">DashBoard</a>
+        <button mat-button color="accent" (click)="godashboard()">DashBoard</button>
         <br />
-        <a mat-button routerLink="/" routerLinkActive="mat-accent">My Cart</a>
+        <a mat-button routerLink="/" routerLinkActive="mat-accent ">My Cart</a>
     </div>
 </mat-drawer>

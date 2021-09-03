@@ -29,6 +29,7 @@ import { PopUpFormComponent } from './pop-up-form/pop-up-form.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { SuccessSignUpComponent } from './success-sign-up/success-sign-up.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { SuccessSignUpComponent } from './success-sign-up/success-sign-up.compon
     PopUpFormComponent,
     AdminPanelComponent,
     SuccessSignUpComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,

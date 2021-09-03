@@ -18,9 +18,12 @@ export class SearchResultComponent implements OnInit {
       Title: data.get('Title'),
       Author: data.get('Author'),
       Cover: data.get('Cover'),
-      Price: data.get('Price')
+      Price: data.get('Price'),
     };
     console.log(book);
     this.book = book;
+  }
+  addToCart(book: BOOK) {
+    this.service.addBooksToUser(book);
   }
 }

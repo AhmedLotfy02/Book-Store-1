@@ -10,7 +10,7 @@ const cors = require("cors");
 app.use(cors());
 const mongoose = require("mongoose");
 const { title } = require("process");
-mongoose.connect("mongodb://localhost/DataBase2", {
+mongoose.connect("mongodb://localhost/DataBase3", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });
@@ -37,6 +37,7 @@ const LoginSchema = new mongoose.Schema({
     email: String,
     password: String,
     confirmpassowrd: String,
+    books: [],
 });
 const Book = mongoose.model("Book", BookSchema);
 const User = mongoose.model("User", LoginSchema);
@@ -55,6 +56,11 @@ app.use((req, res, next) => {
 
 app.post("/api/addUsers", function(req, res) {
     console.log(req.body);
+    const user = new User({
+        username: req.body.username,
+        password: req.body.password,
+    });
+    user.save();
 });
 
 app.post("/api/users", (req, res, next) => {
@@ -198,5 +204,61 @@ app.get("/api/search/:title", (req, res, next) => {
             message: "fetched",
             book: doc,
         });
+    });
+});
+
+app.post("/api/addingbooks", (req, res, next) => {
+    const book1 = req.body[0];
+    const user1 = req.body[1];
+
+    stockupdated = book1.Stock - 1;
+    console.log(stockupdated);
+
+    Book.findOneAndUpdate({ _id: book1._id }, { $set: { Stock: book1.Stock - 1 } }, { new: true },
+        (err, doc) => {
+            if (err) {
+                console.log("error happened while updating");
+            } else {
+                // console.log(doc);
+            }
+        }
+    );
+    var x = false;
+    for (var i = 0; i < user1.books.length; i++) {
+        if (user1.books[i].Title === book1.Title) {
+            x = true;
+            console.log("found");
+        }
+    }
+    if (x === true) {
+        for (var i = 0; i < user1.books.length; i++) {
+            if (user1.books[i].Title === book1.Title) {
+                console.log(user1.books[i].Stock);
+                user1.books[i].Stock = user1.books[i].Stock + 1;
+                console.log(user1.books[i].Stock);
+            }
+        }
+    } else {
+        book1.Stock = 1;
+        user1.books.push(book1);
+        console.log("Not Found");
+    }
+    User.findOneAndUpdate({ _id: user1._id }, { $set: { books: user1.books } }, { new: true },
+        (err, doc) => {
+            if (err) {
+                console.log("error happened in adding book");
+            } else {
+                // console.log(doc);
+            }
+        }
+    );
+});
+app.post("/api/getuser", (req, res, next) => {
+    User.findOne({ username: req.body.username }, function(err, doc) {
+        res.status(201).json({
+            message: "Done",
+            User: doc,
+        });
+        console.log(doc);
     });
 });

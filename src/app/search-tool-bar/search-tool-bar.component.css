@@ -15,7 +15,7 @@
 .example-sidenav {
     height: 100%;
     padding: 20px;
-    margin-top: 4.5em;
+    margin-top: 4em;
 }
 
 ul {
@@ -100,5 +100,9 @@ p {
 }
 
 .accname {
-    font-size: 25px;
+    font-size: 15px;
+}
+
+.btnnn {
+    background: transparent;
 }

@@ -18,5 +18,15 @@ export class MainStoreComponent implements OnInit {
     });
   }
   book!: BOOK;
+  addToCart(book: BOOK) {
+    console.log(book);
+
+    this.service.addBooksToUser(book);
+    for (var i = 0; i < this.books.length; i++) {
+      if (this.books[i] == book) {
+        this.books[i].Stock = this.books[i].Stock - 1;
+      }
+    }
+  }
   ngOnInit(): void {}
 }

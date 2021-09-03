@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Righteous&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Lobster&family=Righteous&display=swap");
 .example-container {
     width: 10px;
     height: auto;
@@ -47,25 +47,21 @@ a {
     gap: 1em;
 }
 
-body {
-    background-image: url('https://bashooka.com/wp-content/uploads/2018/04/scg-canvas-background-animation-24.jpg');
-}
-
 .title {
     font-size: 30px;
-    font-family: 'Righteous', cursive;
+    font-family: "Righteous", cursive;
     color: white;
 }
 
 .author {
     font-size: 20px;
-    font-family: 'Righteous', cursive;
+    font-family: "Righteous", cursive;
     color: white;
 }
 
 .price {
     font-size: 20px;
-    font-family: 'Righteous', cursive;
+    font-family: "Righteous", cursive;
     color: white;
 }
 
@@ -88,4 +84,52 @@ body {
 p {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: small;
+}
+
+
+/* new */
+
+.title1 {
+    font-size: 30px;
+    font-family: "Righteous", cursive;
+    color: royalblue;
+}
+
+.author {
+    font-size: 20px;
+    font-family: "Righteous", cursive;
+    color: rgb(204, 85, 85);
+    font-weight: 500;
+}
+
+.price {
+    font-size: 20px;
+    font-family: "Righteous", cursive;
+    color: #25283d;
+}
+
+#card1 {
+    background-color: rgb(161, 170, 175);
+    padding-top: 1em;
+    padding-bottom: 0.5em;
+}
+
+.stock {
+    color: white;
+    font-size: 15px;
+}
+
+#imgpost {
+    align-items: center;
+}
+
+.innergrid {
+    display: grid;
+    flex-direction: row;
+    gap: 1em;
+}
+
+.container {
+    width: 400px;
+    align-items: center;
 }

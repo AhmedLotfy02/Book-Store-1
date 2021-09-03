@@ -78,3 +78,7 @@ body {}
     color: white;
     font-size: 15px;
 }
+
+#imgpost {
+    align-items: center;
+}

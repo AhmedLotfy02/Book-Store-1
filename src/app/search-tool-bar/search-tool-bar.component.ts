@@ -21,7 +21,9 @@ export class SearchToolBarComponent implements OnInit {
       this.router.navigate(['/searchresult', { ...this.book }]);
     });
   }
-  constructor(private service: OverallService, private router: Router) {}
+  constructor(private service: OverallService, private router: Router) {
+    this.name = this.service.getUser2();
+  }
 
   ngOnInit(): void {
     this.service.getcurrentUser().subscribe((user: any) => {
@@ -32,5 +34,9 @@ export class SearchToolBarComponent implements OnInit {
         console.log('I am the third log after 5 seconds');
       }, 3000);
     });
+  }
+
+  godashboard() {
+    this.router.navigate(['/dashboard']);
   }
 }

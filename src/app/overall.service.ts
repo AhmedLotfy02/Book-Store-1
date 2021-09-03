@@ -11,11 +11,16 @@ import { Subject } from 'rxjs';
 export class OverallService {
   login = false;
   book!: BOOK;
+  currentLibrary!: BOOK[];
   user!: User;
   currentUser!: User;
   subject1 = new Subject();
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router) {
+    this.http.get('http://localhost:3000/api/books').subscribe((bos: any) => {
+      this.currentLibrary = bos;
+    });
+  }
   LoginUser(
     username: string,
     password: string,
@@ -23,7 +28,12 @@ export class OverallService {
     email: string = '',
     confirmpassword: string = ''
   ) {
-    const user: User = { id: '', username: username, password: password };
+    const user: User = {
+      id: '',
+      username: username,
+      password: password,
+      books: [],
+    };
     this.http
       .post<{ message: string; User: User }>(
         'http://localhost:3000/api/users',
@@ -38,6 +48,10 @@ export class OverallService {
           this.router.navigate(['/signup']);
         } else if (responseData.User && lorS) {
           console.log('User Found in Login');
+          setTimeout(() => {
+            this.currentUser = responseData.User;
+            this.router.navigate(['/mainstore']);
+          }, 2000);
           this.applyingLogin(responseData.User);
         }
         // } else {
@@ -108,5 +122,26 @@ export class OverallService {
   }
   getcurrentUser() {
     return this.subject1.asObservable();
+  }
+  getUser2() {
+    return this.currentUser.username;
+  }
+  addBooksToUser(book: BOOK) {
+    console.log(this.currentUser);
+    this.http
+      .post('http://localhost:3000/api/addingbooks', [book, this.currentUser])
+      .subscribe();
+    this.http
+      .post<{ message: string; User: User }>(
+        'http://localhost:3000/api/users',
+        this.currentUser
+      )
+      .subscribe((responsedata: any) => {
+        this.currentUser = responsedata.User;
+        console.log(this.currentUser);
+      });
+  }
+  getUser3() {
+    return this.currentUser;
   }
 }
