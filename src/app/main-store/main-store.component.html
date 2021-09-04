@@ -2,7 +2,7 @@
     <app-search-tool-bar></app-search-tool-bar>
     <mat-grid-list cols="3" rowHeight="580px" [gutterSize]="'9px'">
         <mat-grid-tile *ngFor="let book of books">
-            <mat-card id="card1">
+            <mat-card id="card1" *ngIf="book.Stock !== 0">
                 <section class="innergrid">
                     <span class="title">Title: {{ book.Title }}</span>
                     <span class="price">Price: {{ book.Price }} EGP</span>

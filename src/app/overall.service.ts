@@ -14,6 +14,7 @@ export class OverallService {
   currentLibrary!: BOOK[];
   user!: User;
   currentUser!: User;
+  name = ' ';
   subject1 = new Subject();
 
   constructor(private http: HttpClient, private router: Router) {
@@ -48,9 +49,11 @@ export class OverallService {
           this.router.navigate(['/signup']);
         } else if (responseData.User && lorS) {
           console.log('User Found in Login');
+
           setTimeout(() => {
             this.currentUser = responseData.User;
-            this.router.navigate(['/mainstore']);
+            this.name = this.currentUser.username;
+            this.router.navigate(['/loading']);
           }, 2000);
           this.applyingLogin(responseData.User);
         }
@@ -124,7 +127,8 @@ export class OverallService {
     return this.subject1.asObservable();
   }
   getUser2() {
-    return this.currentUser.username;
+    // return this.currentUser.username;
+    return this.name;
   }
   addBooksToUser(book: BOOK) {
     console.log(this.currentUser);

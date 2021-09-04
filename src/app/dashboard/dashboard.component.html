@@ -1,5 +1,8 @@
 <app-search-tool-bar></app-search-tool-bar>
-<mat-card>Your Cost: {{ price }}</mat-card>
+
+<mat-card class="griding"><span>Your Cost: {{ price }}</span>
+    <button mat-raised-button color="accent">CheckOut</button>
+</mat-card>
 <mat-grid-list cols="3" rowHeight="580px" [gutterSize]="'9px'">
     <mat-grid-tile *ngFor="let book of books">
         <mat-card id="card1">

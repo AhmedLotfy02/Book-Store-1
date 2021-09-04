@@ -14,6 +14,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSliderModule } from '@angular/material/slider';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -30,6 +32,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { SuccessSignUpComponent } from './success-sign-up/success-sign-up.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { LoadingScreenComponent } from './loading-screen/loading-screen.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +47,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     AdminPanelComponent,
     SuccessSignUpComponent,
     DashboardComponent,
+    LoadingScreenComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,6 +65,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     MatGridListModule,
     ReactiveFormsModule,
     NgbModule,
+    MatProgressSpinnerModule,
+    MatSnackBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

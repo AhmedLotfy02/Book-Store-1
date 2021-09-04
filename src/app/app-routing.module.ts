@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { LoadingScreenComponent } from './loading-screen/loading-screen.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { MainStoreComponent } from './main-store/main-store.component';
 import { PopUpFormComponent } from './pop-up-form/pop-up-form.component';
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'admin', component: AdminPanelComponent },
   { path: 'signupSuc', component: SuccessSignUpComponent },
   { path: 'dashboard', component: DashboardComponent },
+  { path: 'loading', component: LoadingScreenComponent },
 ];
 
 @NgModule({

@@ -17,7 +17,7 @@ export class DashboardComponent implements OnInit {
       console.log('I am the third log after 2 seconds');
       console.log(this.books);
       for (var i = 0; i < this.books.length; i++) {
-        this.price += this.books[i].Price;
+        this.price += this.books[i].Price * this.books[i].Stock;
       }
     }, 500);
   }
