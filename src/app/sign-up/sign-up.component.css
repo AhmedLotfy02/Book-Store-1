@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
 mat-form-field,
 input {
     width: 50%;
@@ -8,7 +8,7 @@ input {
 .mat-card {
     margin-top: 1em;
     width: 50%;
-    margin-left: 25%;
+    /* margin-left: 25%; */
     text-align: center;
 }
 
@@ -28,10 +28,35 @@ a {
 }
 
 .head {
-    font-family: 'Lobster', cursive;
+    font-family: "Lobster", cursive;
     font-size: 30px;
 }
 
 .darktoolbar {
     color: white;
+}
+
+.grider {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.signupStyle {
+    font-family: "Lobster", cursive;
+    font-size: 40px;
+    color: indianred;
+}
+
+.confused {
+    font-family: "Lobster", cursive;
+    font-size: 30px;
+    color: indianred;
+}
+
+.mat-card1 {
+    margin-top: 1em;
+    width: 50%;
+    margin-left: 25%;
+    text-align: center;
 }

@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { AuthService } from '../auth/auth.service';
 import { BOOK } from '../Book-Model';
 import { OverallService } from '../overall.service';
-import { User } from '../User-Model';
 
 @Component({
   selector: 'app-search-tool-bar',
@@ -12,8 +13,13 @@ import { User } from '../User-Model';
 })
 export class SearchToolBarComponent implements OnInit {
   book!: BOOK;
-  name = 'asd';
+  isAuthenticated = false;
+  private authListenerSubs!: Subscription;
+
   onSearch(form: NgForm) {
+    if (form.invalid) {
+      return;
+    }
     this.service.Search(form.value.search).subscribe((repsonseData) => {
       console.log(repsonseData);
       this.book = repsonseData.book;
@@ -21,22 +27,31 @@ export class SearchToolBarComponent implements OnInit {
       this.router.navigate(['/searchresult', { ...this.book }]);
     });
   }
-  constructor(private service: OverallService, private router: Router) {
-    this.name = this.service.getUser2();
+  logout() {
+    this.authService.logout();
   }
+  constructor(
+    private service: OverallService,
+    private router: Router,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
-    this.service.getcurrentUser().subscribe((user: any) => {
-      console.log('inmainstore');
-      this.name = user;
-      console.log(this.name);
-      setTimeout(function () {
-        console.log('I am the third log after 5 seconds');
-      }, 3000);
-    });
+    this.isAuthenticated = this.authService.getisAuth();
+    this.authListenerSubs = this.authService
+      .getAuthStatusListener()
+      .subscribe((isauthenticated) => {
+        this.isAuthenticated = isauthenticated;
+      });
   }
 
   godashboard() {
     this.router.navigate(['/dashboard']);
+  }
+  gohome() {
+    this.router.navigate(['/mainstore']);
+  }
+  gotoFav() {
+    this.router.navigate(['/fav']);
   }
 }

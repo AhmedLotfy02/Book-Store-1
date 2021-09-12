@@ -1,4 +1,4 @@
-<body class="all" *ngIf="!DarkState">
+<body class="all" *ngIf="!DarkState && !isAuthenticated">
     <mat-toolbar color="primary">
         <span class="head">AL Book-Store</span>
 
@@ -16,39 +16,68 @@
             </li>
         </ul>
     </mat-toolbar>
-    <mat-card *ngIf="!DarkState">
-        <img src="https://thumbs.dreamstime.com/b/vector-light-bulb-white-file-eps-format-34983265.jpg" width="300" height="290" *ngIf="DarkState" />
-        <img src="https://previews.123rf.com/images/ericmilos/ericmilos0912/ericmilos091200136/6109526-3d-render-of-light-bulb-on-white.jpg" width="300" height="300" *ngIf="!DarkState" />
-        <br />
+    <div class="grider">
+        <img src="https://images.twinkl.co.uk/tr/image/upload/t_illustration/illustation/Boy-Reading-a-Book-Reflection-of-Light.png" width="500" height="400" *ngIf="!DarkState" />
 
-        <span class="mat-body-2">You Must Sign Up First</span>
-        <form #postForm="ngForm">
+        <mat-card *ngIf="!DarkState">
+            <!-- <img src="https://previews.123rf.com/images/ericmilos/ericmilos0912/ericmilos091200136/6109526-3d-render-of-light-bulb-on-white.jpg" width="300" height="300" *ngIf="!DarkState" /> -->
+            <div class="signupStyle">SignUp</div>
+            <br />
+
+            <span class="mat-body-2">You Must Sign Up First</span>
+            <div>
+                <br />
+
+                <span class="mat-body-2">Please Enter Your Username and Password</span>
+                <form (submit)="onSignup(postForm)" #postForm="ngForm">
+                    <mat-form-field>
+                        <input matInput type="text" name="email" ngModel #emailInput="ngModel" email required placeholder="Email" />
+                        <mat-error *ngIf="emailInput.invalid">Please enter a vaild email</mat-error>
+                    </mat-form-field>
+                    <br />
+                    <mat-form-field>
+                        <input matInput type="password" name="password" ngModel #password #passwordInput="ngModel" required placeholder="Password" />
+                        <mat-error *ngIf="passwordInput.invalid">Please enter password</mat-error>
+                    </mat-form-field>
+
+                    <br />
+                    <button type="submit" mat-raised-button color="primary">
+            SignUp
+          </button>
+                </form>
+                <br /><br /><br />
+            </div>
+            <!-- <form (submit)="onSignUp(postForm)" #postForm="ngForm">
             <mat-form-field>
-                <input matInput type="text" name="username" required placeholder="Username" minlength="3" [(ngModel)]="username" />
+                <input matInput type="text" name="username" required ngModel placeholder="Username" minlength="3" #usernameInput="ngModel" />
+                <mat-error ngIf="usernameInput.invalid">Please Enter Your Username</mat-error>
             </mat-form-field>
             <br />
             <mat-form-field>
-                <input matInput type="text" name="email" required placeholder="Email" minlength="3" [(ngModel)]="email" />
+                <input matInput type="text" name="email" ngModel required placeholder="Email" minlength="3" #emailInput="ngModel" email />
+                <mat-error ngIf="emailInput.invalid">Please Enter Your Email</mat-error>
             </mat-form-field>
             <br />
             <mat-form-field>
-                <input matInput type="password" name="Password" required placeholder="password" minlength="3" [(ngModel)]="password" />
+                <input matInput type="password" name="password" required placeholder="password" minlength="3" ngModel #Pass="ngModel" />
+                <mat-error ngIf="Pass.invalid">Please Enter Your Password</mat-error>
             </mat-form-field>
             <br />
             <mat-form-field>
-                <input matInput type="password" name="confirmpassword" required placeholder="Confirm Your Password" minlength="3" [(ngModel)]="confirmpassword" />
+                <input matInput type="password" name="confirmpassword" required placeholder="Confirm Your Password" minlength="3" ngModel #confirm="ngModel" />
+                <mat-error ngIf="confirm.invalid">Please Enter Your Password</mat-error>
             </mat-form-field>
             <br />
             <div *ngIf="falsePass">Password Must be the Confirmed Password</div>
-            <button (click)="onSignup()" mat-raised-button color="primary">
-        Sign Up
-      </button>
-        </form>
-        <br /><br /><br />
-    </mat-card>
+            <button type="submit" mat-raised-button color="primary">Sign Up</button>
+        </form> -->
+
+            <br /><br /><br />
+        </mat-card>
+    </div>
 </body>
 
-<body style="background-color: black" class="all" *ngIf="DarkState">
+<body style="background-color: black" class="all" *ngIf="DarkState && !isAuthenticated">
     <mat-toolbar color="accent">
         <span>AL Book-Store</span>
 
@@ -66,34 +95,79 @@
             </li>
         </ul>
     </mat-toolbar>
-    <mat-card *ngIf="DarkState">
-        <img src="https://thumbs.dreamstime.com/b/vector-light-bulb-white-file-eps-format-34983265.jpg" width="300" height="290" *ngIf="DarkState" />
-        <img src="https://previews.123rf.com/images/ericmilos/ericmilos0912/ericmilos091200136/6109526-3d-render-of-light-bulb-on-white.jpg" width="300" height="300" *ngIf="!DarkState" />
-        <br />
+    <div class="grider">
+        <img src="https://www.savepng.com/file/thumb/2020-06/78295-light-sun-glory-golden-png-free-photo-thumb.png" width="430" height="430" *ngIf="DarkState" />
 
-        <span class="mat-body-2">You Must Sign Up First</span>
-        <form #postForm="ngForm">
+        <mat-card *ngIf="DarkState">
+            <div class="signupStyle">SignUp</div>
+
+            <br />
+
+            <span class="mat-body-2">You Must Sign Up First</span>
+            <div>
+                <br />
+
+                <span class="mat-body-2">Please Enter Your Username and Password</span>
+                <form (submit)="onSignup(postForm)" #postForm="ngForm">
+                    <mat-form-field>
+                        <input matInput type="text" name="email" ngModel #emailInput="ngModel" email required placeholder="Email" />
+                        <mat-error *ngIf="emailInput.invalid">Please enter a vaild email</mat-error>
+                    </mat-form-field>
+                    <br />
+                    <mat-form-field>
+                        <input matInput type="password" name="password" ngModel #password #passwordInput="ngModel" required placeholder="Password" />
+                        <mat-error *ngIf="passwordInput.invalid">Please enter password</mat-error>
+                    </mat-form-field>
+
+                    <br />
+                    <button type="submit" mat-raised-button color="primary">
+            SignUp
+          </button>
+                </form>
+                <br /><br /><br />
+            </div>
+            <!-- <form (submit)="onSignUp(postForm)" #postForm="ngForm">
             <mat-form-field>
-                <input matInput type="text" name="username" required placeholder="Username" minlength="3" [(ngModel)]="username" />
+                <input matInput type="text" name="username" required ngModel placeholder="Username" minlength="3" #usernameInput="ngModel" />
+                <mat-error ngIf="usernameInput.invalid">Please Enter Your Username</mat-error>
             </mat-form-field>
             <br />
             <mat-form-field>
-                <input matInput type="text" name="email" required placeholder="Email" minlength="3" [(ngModel)]="email" />
+                <input matInput type="text" name="email" ngModel required placeholder="Email" minlength="3" #emailInput="ngModel" email />
+                <mat-error ngIf="emailInput.invalid">Please Enter Your Email</mat-error>
             </mat-form-field>
             <br />
             <mat-form-field>
-                <input matInput type="password" name="Password" required placeholder="password" minlength="3" [(ngModel)]="password" />
+                <input matInput type="password" name="password" required placeholder="password" minlength="3" ngModel #Pass="ngModel" />
+                <mat-error ngIf="Pass.invalid">Please Enter Your Password</mat-error>
             </mat-form-field>
             <br />
             <mat-form-field>
-                <input matInput type="password" name="confirmpassword" required placeholder="Confirm Your Password" minlength="3" [(ngModel)]="confirmpassword" />
+                <input matInput type="password" name="confirmpassword" required placeholder="Confirm Your Password" minlength="3" ngModel #confirm="ngModel" />
+                <mat-error ngIf="confirm.invalid">Please Enter Your Password</mat-error>
             </mat-form-field>
             <br />
             <div *ngIf="falsePass">Password Must be the Confirmed Password</div>
-            <button (click)="onSignup()" mat-raised-button color="primary">
-        Sign Up
-      </button>
-        </form>
-        <br /><br /><br />
+            <button type="submit" mat-raised-button color="primary">Sign Up</button>
+        </form> -->
+
+            <br /><br /><br />
+        </mat-card>
+    </div>
+</body>
+
+<body *ngIf="isAuthenticated">
+    <mat-card class="mat-card1">
+        <div class="confused">You Are Already Logged In!!</div>
+        <img src="https://thumbs.dreamstime.com/z/geek-boy-confused-cartoon-illustration-geeky-little-44146685.jpg" width="300" height="400" />
+        <br />
+        <button class="b1" mat-raised-button color="accent" (click)="gotoStore()">
+      Go to Store
+    </button>
+        <br />
+        <br />
+        <button class="b1" mat-raised-button color="accent" (click)="logout()">
+      LogOut
+    </button>
     </mat-card>
 </body>

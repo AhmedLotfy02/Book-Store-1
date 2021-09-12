@@ -1,0 +1,170 @@
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { Subject } from 'rxjs';
+import { BOOK } from '../Book-Model';
+import { AuthData } from './auth-data-model';
+@Injectable({ providedIn: 'root' })
+export class AuthService {
+  private token!: string;
+  private userEmail!: string;
+  private user!: AuthData;
+  private authStatusListener = new Subject<boolean>();
+  isAuthenticated = false;
+  private tokenTimer: any;
+  constructor(private http: HttpClient, private router: Router) {}
+  getToken() {
+    return this.token;
+  }
+  getisAuth() {
+    return this.isAuthenticated;
+  }
+  getUser() {
+    return this.user;
+  }
+  getAuthStatusListener() {
+    return this.authStatusListener.asObservable();
+  }
+  autoAuthUser() {
+    const authInformation = this.getAuthData();
+
+    if (!authInformation) {
+      return;
+    }
+    this.http
+      .post<{ message: string; user: AuthData }>(
+        'http://localhost:3000/api/users',
+        { email: authInformation.email }
+      )
+      .subscribe((responsedata: any) => {
+        this.user = responsedata.user;
+      });
+    const now = new Date();
+    const expiresIn = authInformation!.expirationDate.getTime() - now.getTime();
+    if (expiresIn > 0) {
+      this.token = authInformation.token;
+      if (authInformation.email) {
+        this.userEmail = authInformation.email;
+      }
+      this.isAuthenticated = true;
+      this.setAuthTimer(expiresIn / 1000);
+      this.authStatusListener.next(true);
+    }
+  }
+  createUser(email: string, password: string) {
+    const authData: AuthData = {
+      email: email,
+      password: password,
+      books: [],
+      favorites_list: [],
+    };
+    this.http
+      .post('http://localhost:3000/signuptest', authData)
+      .subscribe((response) => {
+        console.log(response);
+      });
+  }
+  login(email: string, password: string) {
+    const authData: AuthData = {
+      email: email,
+      password: password,
+      books: [],
+      favorites_list: [],
+    };
+    this.http
+      .post<{ token: string; expiresIn: number; user: AuthData }>(
+        'http://localhost:3000/logintest',
+        authData
+      )
+      .subscribe((response) => {
+        const token = response.token;
+        this.token = token;
+        console.log(response);
+        if (token) {
+          this.authStatusListener.next(true);
+          this.isAuthenticated = true;
+          const expiresInDuration = response.expiresIn;
+          console.log(expiresInDuration);
+          const user = response.user;
+          this.user = user;
+          // this.userEmail = email;
+          console.log(user.email);
+          console.log(this.user);
+          this.setAuthTimer(expiresInDuration);
+          const now = new Date();
+          const expirationDate = new Date(
+            now.getTime() + expiresInDuration * 1000
+          );
+          console.log(expirationDate);
+          this.saveAuthData(token, expirationDate, user.email);
+          this.router.navigate(['/mainstore']);
+        }
+      });
+  }
+  test() {
+    this.http.get('http://localhost:3000/testtoken').subscribe((response) => {
+      console.log(response);
+    });
+  }
+
+  addBooksToUser(book: BOOK) {
+    this.http
+      .post<{ user: AuthData }>('http://localhost:3000/api/addingbooks', [
+        book,
+        this.user,
+      ])
+      .subscribe((response) => {
+        this.user = response.user;
+      });
+  }
+
+  addFavBooksToUser(book: BOOK) {
+    this.http
+      .post<{ user: AuthData }>('http://localhost:3000/api/addingFavbooks', [
+        book,
+        this.user,
+      ])
+      .subscribe((response) => {
+        this.user = response.user;
+      });
+  }
+  logout() {
+    this.token = '';
+    this.authStatusListener.next(false);
+    this.isAuthenticated = false;
+    clearTimeout(this.tokenTimer);
+    this.clearAuthData();
+    this.router.navigate(['/']);
+  }
+  private setAuthTimer(duraion: number) {
+    this.tokenTimer = setTimeout(() => {
+      this.logout();
+    }, duraion * 1000);
+  }
+  private saveAuthData(token: string, expirtationDate: Date, email: string) {
+    localStorage.setItem('token', token);
+    localStorage.setItem('expirationDate', expirtationDate.toISOString());
+    localStorage.setItem('email', email);
+  }
+  private clearAuthData() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('expirationDate');
+    localStorage.removeItem('email');
+  }
+  private getAuthData() {
+    const token = localStorage.getItem('token');
+    const expirationDate = localStorage.getItem('expirationDate');
+    const email = localStorage.getItem('email');
+    console.log(token);
+    console.log(expirationDate);
+    if (!token || !expirationDate) {
+      return;
+    } else {
+      return {
+        token: token,
+        expirationDate: new Date(expirationDate),
+        email: email,
+      };
+    }
+  }
+}

@@ -1,19 +1,17 @@
 <app-search-tool-bar></app-search-tool-bar>
-
-<mat-card class="griding animate__animated animate__fadeInDown"><span class="confused">Your Cost: {{ price }} L.E</span>
-    <br />
-    <button mat-raised-button color="accent" (click)="checkout()" class="animate__animated animate__slideInLeft">
-    CheckOut
-  </button>
+<mat-card id="mat-card2" class="animate__animated animate__rollIn">
+    <img src="https://static.thenounproject.com/png/1083104-200.png" width="100" height="80" />
+    <span class="confused">Your Favorite List</span>
 </mat-card>
+<br />
+
 <mat-grid-list cols="3" rowHeight="580px" [gutterSize]="'9px'">
-    <mat-grid-tile *ngFor="let book of books">
+    <mat-grid-tile *ngFor="let book of favBooks">
         <mat-card id="card1" class="animate__animated animate__pulse">
             <section class="innergrid">
                 <span class="title">Title: {{ book.Title }}</span>
                 <span class="price">Price: {{ book.Price }} EGP</span>
                 <span class="author">Author: {{ book.Author }}</span>
-                <span class="stock">Stock: {{ book.Stock }}</span>
 
                 <img id="imgpost" src="{{ book.Cover }}" width="200" height="250" />
             </section>

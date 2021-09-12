@@ -48,6 +48,14 @@ body {}
 
 .confused {
     font-family: "Lobster", cursive;
-    font-size: 30px;
-    color: indianred;
+    font-size: 50px;
+    color: gold;
+    margin-top: 2em;
+}
+
+#mat-card2 {
+    width: 500px;
+    height: 100px;
+    margin-left: 2em;
+    background-color: royalblue;
 }

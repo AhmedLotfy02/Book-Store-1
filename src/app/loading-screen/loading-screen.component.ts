@@ -11,7 +11,7 @@ export class LoadingScreenComponent implements OnInit {
 
   ngOnInit(): void {
     setTimeout(() => {
-      this.router.navigate(['/mainstore']);
-    }, 3000);
+      this.router.navigate(['/checkout']);
+    }, 2000);
   }
 }

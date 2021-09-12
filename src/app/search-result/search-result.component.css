@@ -133,3 +133,15 @@ p {
     width: 400px;
     align-items: center;
 }
+
+.notfound {
+    font-size: 30px;
+    color: royalblue;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+}
+
+.div2 {
+    margin-left: 30em;
+    width: 380px;
+}

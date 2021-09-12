@@ -10,7 +10,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatGridListModule } from '@angular/material/grid-list';
-
+import { MatSpinner } from '@angular/material/progress-spinner';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSliderModule } from '@angular/material/slider';
@@ -20,34 +20,31 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { HttpClientModule } from '@angular/common/http';
-import { HeaderComponent } from './header/header.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { MainStoreComponent } from './main-store/main-store.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { SearchToolBarComponent } from './search-tool-bar/search-tool-bar.component';
 import { SearchResultComponent } from './search-result/search-result.component';
-import { PopUpFormComponent } from './pop-up-form/pop-up-form.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
-import { SuccessSignUpComponent } from './success-sign-up/success-sign-up.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { LoadingScreenComponent } from './loading-screen/loading-screen.component';
-
+import { AuthInterceptor } from './auth/auth-interceptor';
+import { FavoriteListComponent } from './favorite-list/favorite-list.component';
+import { CheckOutComponent } from './check-out/check-out.component';
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
     LoginPageComponent,
     MainStoreComponent,
     SignUpComponent,
     SearchToolBarComponent,
     SearchResultComponent,
-    PopUpFormComponent,
     AdminPanelComponent,
-    SuccessSignUpComponent,
+
     DashboardComponent,
-    LoadingScreenComponent,
+    FavoriteListComponent,
+    CheckOutComponent,
   ],
   imports: [
     BrowserModule,
@@ -67,8 +64,11 @@ import { LoadingScreenComponent } from './loading-screen/loading-screen.componen
     NgbModule,
     MatProgressSpinnerModule,
     MatSnackBarModule,
+    MatSpinner,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

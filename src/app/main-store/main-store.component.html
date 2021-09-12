@@ -2,7 +2,7 @@
     <app-search-tool-bar></app-search-tool-bar>
     <mat-grid-list cols="3" rowHeight="580px" [gutterSize]="'9px'">
         <mat-grid-tile *ngFor="let book of books">
-            <mat-card id="card1" *ngIf="book.Stock !== 0">
+            <mat-card id="card1" class="animate__animated animate__pulse" *ngIf="book.Stock !== 0">
                 <section class="innergrid">
                     <span class="title">Title: {{ book.Title }}</span>
                     <span class="price">Price: {{ book.Price }} EGP</span>
@@ -10,10 +10,12 @@
                     <span class="stock">Stock: {{ book.Stock }}</span>
 
                     <img id="imgpost" src="{{ book.Cover }}" width="200" height="250" />
-                    <button mat-raised-button color="accent" (click)="addToCart(book)">
+                    <button mat-raised-button color="accent" (click)="addToCart(book)" *ngIf="isAuthenticated">
             Add To Cart
           </button>
-                    <button mat-raised-button color="primary">Add To my Favorites</button>
+                    <button mat-raised-button color="primary" *ngIf="isAuthenticated" (click)="addToFavList(book)">
+            Add To my Favorites
+          </button>
                 </section>
             </mat-card>
         </mat-grid-tile>

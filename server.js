@@ -15,6 +15,10 @@ mongoose.connect("mongodb://localhost/DataBase3", {
     useUnifiedTopology: true,
 });
 const db = mongoose.connection;
+const uniqueValidator = require("mongoose-unique-validator");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+const AuthCheck = require("../Book-Store-1/middleware/auth-check");
 db.on("error", function(err) {
     console.log(err);
 });
@@ -32,20 +36,13 @@ const BookSchema = new mongoose.Schema({
     Price: Number,
     Stock: Number,
 });
-const LoginSchema = new mongoose.Schema({
-    username: String,
-    email: String,
-    password: String,
-    confirmpassowrd: String,
-    books: [],
-});
+
 const Book = mongoose.model("Book", BookSchema);
-const User = mongoose.model("User", LoginSchema);
 app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader(
         "Access-Control-Allow-Headers",
-        "Origin, X-Requested-With, Content-Type, Accept"
+        "Origin, X-Requested-With, Content-Type, Accept, Authorization"
     );
     res.setHeader(
         "Access-Control-Allow-Methods",
@@ -54,105 +51,28 @@ app.use((req, res, next) => {
     next();
 });
 
-app.post("/api/addUsers", function(req, res) {
-    console.log(req.body);
-    const user = new User({
-        username: req.body.username,
-        password: req.body.password,
-    });
-    user.save();
-});
-
 app.post("/api/users", (req, res, next) => {
-    const user = new User({
-        username: req.body.username,
-        password: req.body.password,
-    });
-    User.findOne({ username: req.body.username }, function(err, doc) {
+    console.log(req.body);
+    console.log(req.body.email);
+
+    UserTest.findOne({ email: req.body.email }, function(err, doc) {
         res.status(201).json({
             message: "Done",
-            User: doc,
+            user: doc,
         });
         console.log(doc);
     });
-
-    // if (req.body.username == "ahmed") {
-    //     res.status(201).json({
-    //         message: "invalid",
-    //         postId: false,
-    //     });
-    // } else {
-    //     user.save().then((createdPost) => {
-    //         res.status(201).json({
-    //             message: "Post added successfully",
-    //             postId: true,
-    //         });
-    //     });
-    // }
 });
 
 app.post("/adDUsers", function(req, res) {
     console.log(req.body);
 });
 
-app.get("/tes", (req, res, next) => {
-    res.status(200);
-});
-app.get("/redirect", (req, res, next) => {
-    res.redirect("/signup");
-});
-
-// app.get('/', (req, res, next) => {
-//         res.send(`
-//     <h2>asdas</h2>
-//     `)
-//     })
-// app.post('/api/users',
-//     body('username').isAlphanumeric().escape(),
-//     body('password').isAlphanumeric().escape().isStrongPassword(),
-//     (req, res, next) => {
-//         const errors = validationResult(req);
-//         if (!errors.isEmpty()) {
-//             return res.send(errors.array());
-//         } else {
-//             const NewUser = new User({
-//                 username: req.body.username,
-//                 password: req.body.password
-//             })
-//             NewUser.save(function(err, result) {
-//                 if (err) {
-//                     console.log(err)
-//                 }
-
-//                 res.redirect('/Admin')
-//             })
-//         }
-
-//     })
-
 app.get("/api/books", function(req, res) {
     Book.find(function(err, bos) {
         res.send(bos);
     });
 });
-// app.get("/Admin", function(req, res) {
-//     res.send(
-//         `
-//         <form method="POST" action="/add">
-//         <h2>Enter Title</h2>
-//             <input type="text" name="field1">
-//             <h2>Enter Author's Name</h2>
-//             <input type="text" name="field2">
-//             <h2>Enter image url</h2>
-//             <input type="text" name="field3">
-//             <h2>Enter Book's Price</h2>
-//             <input type="text" name="field4">
-//             <button>ADD</button>
-//         </form>
-
-//         `
-//     );
-// });
 
 app.post("/add", function(req, res) {
     console.log(req.body);
@@ -166,39 +86,7 @@ app.post("/add", function(req, res) {
     NewBook.save();
 });
 
-// app.post('/add',
-//     body('field1').isAlphanumeric().escape(),
-//     body('field2').isAlphanumeric().escape(),
-
-//     body('field4').isFloat().escape()
-
-//     ,
-//     function(req, res) {
-//         const errors = validationResult(req);
-//         if (!errors.isEmpty()) {
-//             return res.send(errors.array());
-//         }
-//         const Title1 = req.body.field1;
-//         const Author1 = req.body.field2;
-//         const Image1 = req.body.field3;
-//         const Price1 = req.body.field4;
-//         const NewBook = new Book({
-//             Title: Title1,
-//             Author: Author1,
-//             Cover: Image1,
-//             Price: Price1
-//         })
-
-//         NewBook.save(function(err, result) {
-//             if (err) {
-//                 console.log(err)
-//             }
-
-//             res.redirect('/Admin')
-//         })
-
-//     })
-app.get("/api/search/:title", (req, res, next) => {
+app.get("/api/search/:title", AuthCheck, (req, res, next) => {
     Book.findOne({ Title: req.params.title }, function(err, doc) {
         res.status(201).json({
             message: "fetched",
@@ -207,10 +95,11 @@ app.get("/api/search/:title", (req, res, next) => {
     });
 });
 
-app.post("/api/addingbooks", (req, res, next) => {
+app.post("/api/addingbooks", AuthCheck, (req, res, next) => {
     const book1 = req.body[0];
     const user1 = req.body[1];
-
+    console.log(user1);
+    console.log(book1);
     stockupdated = book1.Stock - 1;
     console.log(stockupdated);
 
@@ -243,15 +132,50 @@ app.post("/api/addingbooks", (req, res, next) => {
         user1.books.push(book1);
         console.log("Not Found");
     }
-    User.findOneAndUpdate({ _id: user1._id }, { $set: { books: user1.books } }, { new: true },
+    UserTest.findOneAndUpdate({ _id: user1._id }, { $set: { books: user1.books } }, { new: true },
         (err, doc) => {
             if (err) {
                 console.log("error happened in adding book");
             } else {
-                // console.log(doc);
+                console.log("book added to user");
             }
         }
     );
+    return res.status(200).json({
+        user: user1,
+    });
+});
+
+app.post("/api/addingFavbooks", AuthCheck, (req, res, next) => {
+    const book1 = req.body[0];
+    const user1 = req.body[1];
+    console.log(user1);
+    console.log(book1);
+
+    var x = false;
+    for (var i = 0; i < user1.books.length; i++) {
+        if (user1.favorites_list[i].Title === book1.Title) {
+            x = true;
+            console.log("found");
+        }
+    }
+    if (x === false) {
+        book1.Stock = 1;
+        user1.favorites_list.push(book1);
+        console.log("Not Found");
+    }
+    UserTest.findOneAndUpdate({ _id: user1._id }, { $set: { favorites_list: user1.favorites_list } }, { new: true },
+        (err, doc) => {
+            if (err) {
+                console.log("error happened in adding book");
+            } else {
+                console.log("Favbook added to user");
+            }
+        }
+    );
+    return res.status(200).json({
+        user: user1,
+    });
 });
 app.post("/api/getuser", (req, res, next) => {
     User.findOne({ username: req.body.username }, function(err, doc) {
@@ -260,5 +184,80 @@ app.post("/api/getuser", (req, res, next) => {
             User: doc,
         });
         console.log(doc);
+    });
+});
+
+// app.post("/api/getcurrentUser", (req, res, next) => {});
+
+const userSchema = new mongoose.Schema({
+    email: { type: String, required: true, unique: true },
+    password: { type: String, required: true },
+    books: [],
+    favorites_list: [],
+});
+userSchema.plugin(uniqueValidator);
+const UserTest = mongoose.model("UserTest", userSchema);
+
+app.post("/signuptest", (req, res, next) => {
+    bcrypt.hash(req.body.password, 10).then(function(hash) {
+        const user = new UserTest({
+            email: req.body.email,
+            password: hash,
+            books: [],
+        });
+        user
+            .save()
+            .then((result) => {
+                res.status(201).json({
+                    message: "user created",
+                    result: result,
+                });
+            })
+            .catch((err) => {
+                res.status(500).json({
+                    error: err,
+                });
+            });
+    });
+});
+
+app.post("/logintest", (req, res, next) => {
+    let fetchedUser;
+    UserTest.findOne({ email: req.body.email })
+        .then((user) => {
+            if (!user) {
+                return res.status(401).json({
+                    message: "Auth Failed",
+                });
+            }
+            fetchedUser = user;
+            return bcrypt.compare(req.body.password, user.password);
+        })
+        .then((result) => {
+            if (!result) {
+                return res.status(401).json({
+                    message: "Auth Failed",
+                });
+            }
+            const token = jwt.sign({ email: fetchedUser.email, UserId: fetchedUser._id },
+                "this_should_be_very_long", { expiresIn: "1h" }
+            );
+            res.status(200).json({
+                token: token,
+                expiresIn: 3600,
+                user: fetchedUser,
+            });
+        })
+        .catch((err) => {
+            return res.status(401).json({
+                message: "Auth Failed",
+            });
+        });
+});
+
+app.get("/testtoken", AuthCheck, (req, res, next) => {
+    console.log("intokentest");
+    res.status(200).json({
+        message: "Auth Done",
     });
 });

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { OverallService } from '../overall.service';
-import { User } from '../User-Model';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth/auth.service';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
@@ -12,26 +13,42 @@ export class LoginPageComponent implements OnInit {
   DarkState = false;
   Login = false;
   KeepLogin = false;
+  isAuthenticated = false;
+  private authListenerSubs!: Subscription;
   ToggleDark() {
     this.DarkState = !this.DarkState;
   }
-  user!: User;
   onlogging(form: NgForm) {
-    console.log(form.value.username);
-    this.Login = this.service.LoginUser(
-      form.value.username,
-      form.value.password,
-      true
-    );
-    // if(!this.Login){
-    //     this.router.navigate(['/signup']);
-    // }
-    // else{
-    //   this.router.navigate(['/mainstore']);
-
-    // }
+    if (form.invalid) {
+      return;
+    }
+    if (
+      form.value.email === 'admin@gmail.com' &&
+      form.value.password === 'admin'
+    ) {
+      this.router.navigate(['/admin']);
+    } else {
+      this.authService.login(form.value.email, form.value.password);
+    }
   }
-  constructor(public service: OverallService, private router: Router) {}
+  gotoStore() {
+    this.router.navigate(['/mainstore']);
+  }
+  logout() {
+    this.authService.logout();
+  }
+  constructor(
+    public service: OverallService,
+    private router: Router,
+    private authService: AuthService
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.isAuthenticated = this.authService.getisAuth();
+    this.authListenerSubs = this.authService
+      .getAuthStatusListener()
+      .subscribe((isauthenticated) => {
+        this.isAuthenticated = isauthenticated;
+      });
+  }
 }
