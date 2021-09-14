@@ -128,6 +128,32 @@ export class AuthService {
         this.user = response.user;
       });
   }
+
+  testmail() {
+    this.http
+      .post('http://localhost:3000/testemail', 'hi')
+      .subscribe((response) => {
+        console.log(response);
+      });
+  }
+
+  changePassword(password: string) {
+    console.log(password);
+    console.log(this.user);
+    const data = {
+      newpassword: password,
+      user: this.user,
+    };
+    this.http
+      .post<{ message: string; user: AuthData }>(
+        'http://localhost:3000/changepassword',
+        data
+      )
+      .subscribe((response) => {
+        console.log(response);
+        this.user = response.user;
+      });
+  }
   logout() {
     this.token = '';
     this.authStatusListener.next(false);
@@ -155,8 +181,6 @@ export class AuthService {
     const token = localStorage.getItem('token');
     const expirationDate = localStorage.getItem('expirationDate');
     const email = localStorage.getItem('email');
-    console.log(token);
-    console.log(expirationDate);
     if (!token || !expirationDate) {
       return;
     } else {

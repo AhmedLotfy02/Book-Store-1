@@ -1,0 +1,75 @@
+@import url("https://fonts.googleapis.com/css2?family=Archivo+Narrow&family=Barlow+Semi+Condensed:wght@100&display=swap");
+body,
+html {
+    background: url("https://images.unsplash.com/photo-1475274047050-1d0c0975c63e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8&w=1000&q=80");
+    height: 100%;
+    width: 100%;
+}
+
+* {
+    margin: 0;
+}
+
+.maincontainer {
+    height: 100vh;
+}
+
+.welcomedcard mat-card {
+    width: 400px;
+    height: 300px;
+    border-radius: 15%;
+    position: absolute;
+    top: 100px;
+    left: 300px;
+    background: transparent;
+}
+
+.welcomedcard p {
+    font-family: "Barlow Semi Condensed", sans-serif;
+    font-size: xx-large;
+    text-align: center;
+    color: cornsilk;
+    margin-right: 30px;
+}
+
+.welcomedcard img {
+    width: 300px;
+    height: 300px;
+    cursor: pointer;
+    align-items: center;
+}
+
+.welcomedcard img:hover {
+    transform: scale(1.07);
+}
+
+.optioncard mat-card {
+    width: 600px;
+    height: 100px;
+    background: transparent;
+    position: absolute;
+    bottom: 200px;
+    right: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.optioncard button {
+    border-radius: 20px;
+    background: #66cfc1;
+    color: rgb(239, 248, 247);
+}
+
+.optioncard button:hover {
+    background: white;
+    color: #66cfc1;
+}
+
+.animate__animated.animate__slideInLeft {
+    --animate-duration: 2s;
+}
+
+.animate__animated.animate__slideInDown {
+    --animate-duration: 2s;
+}

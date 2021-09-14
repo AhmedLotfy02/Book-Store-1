@@ -24,7 +24,10 @@ export class SearchToolBarComponent implements OnInit {
       console.log(repsonseData);
       this.book = repsonseData.book;
       console.log(this.book);
-      this.router.navigate(['/searchresult', { ...this.book }]);
+      this.router.navigate(['/redirecting']);
+      setTimeout(() => {
+        this.router.navigate(['/searchresult', { ...this.book }]);
+      }, 1000);
     });
   }
   logout() {
@@ -53,5 +56,8 @@ export class SearchToolBarComponent implements OnInit {
   }
   gotoFav() {
     this.router.navigate(['/fav']);
+  }
+  profile() {
+    this.router.navigate(['/profile']);
   }
 }

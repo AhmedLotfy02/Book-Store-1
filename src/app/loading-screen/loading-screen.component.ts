@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-loading-screen',
@@ -7,11 +7,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./loading-screen.component.css'],
 })
 export class LoadingScreenComponent implements OnInit {
-  constructor(private router: Router) {}
+  constructor(private authService: AuthService) {}
 
-  ngOnInit(): void {
-    setTimeout(() => {
-      this.router.navigate(['/checkout']);
-    }, 2000);
+  ngOnInit(): void {}
+  sent() {
+    this.authService.testmail();
   }
 }

@@ -12,7 +12,7 @@
 
         <button class="b1" type="submit" mat-raised-button>Search</button>
     </form>
-    <span class="head animate__animated animate__zoomInDown" (click)="gohome()">AL Book-Store</span
+    <span class="head animate__animated animate__fadeInDown" (click)="gohome()">AL Book-Store</span
   >
 
   <span class="spacer"></span>
@@ -20,7 +20,7 @@
     <ul>
         <li>
             <div *ngIf="isAuthenticated">
-                <button mat-stroked-button class="btnnn">
+                <button mat-stroked-button class="btnnn" (click)="profile()">
           <mat-icon id="acc">account_circle</mat-icon>
         </button>
                 <span class="spacer99"></span>

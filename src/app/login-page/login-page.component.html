@@ -1,5 +1,5 @@
 <body class="all" *ngIf="!DarkState && !Login && !KeepLogin && !isAuthenticated">
-    <mat-toolbar color="primary">
+    <mat-toolbar color="primary" class="animate__animated animate__fadeInDown">
         <span class="head">AL Book-Store</span>
 
         <span class="spacer"></span>
@@ -17,9 +17,9 @@
         </ul>
     </mat-toolbar>
     <div class="grider">
-        <img src="https://contentgrid.thdstatic.com/hdus/en_US/DTCCOMNEW/fetch/NexGen/ContentPage/standard-light-bulb.png" width="300" height="290" *ngIf="!DarkState" />
+        <img src="https://contentgrid.thdstatic.com/hdus/en_US/DTCCOMNEW/fetch/NexGen/ContentPage/standard-light-bulb.png" class="animate__animated animate__fadeIn" width="300" height="290" *ngIf="!DarkState" />
 
-        <mat-card *ngIf="!DarkState">
+        <mat-card class="animate__animated animate__fadeInRight" *ngIf="!DarkState">
             <!-- <img src="https://contentgrid.thdstatic.com/hdus/en_US/DTCCOMNEW/fetch/NexGen/ContentPage/standard-light-bulb.png" width="300" height="290" *ngIf="!DarkState" /> -->
 
             <!-- <img src="https://thumbs.dreamstime.com/b/vector-light-bulb-white-file-eps-format-34983265.jpg" width="300" height="290" *ngIf="DarkState" /> -->
@@ -51,8 +51,8 @@
 </body>
 
 <body style="background-color: black" class="all" *ngIf="DarkState && !isAuthenticated">
-    <mat-toolbar color="accent">
-        <span>AL Book-Store</span>
+    <mat-toolbar color="accent" class="animate__animated animate__fadeInDown">
+        <span class="head">AL Book-Store</span>
 
         <span class="spacer"></span>
         <button mat-raised-button color="black" (click)="ToggleDark()" *ngIf="!DarkState">
@@ -71,9 +71,10 @@
     <div class="grider">
         <!-- <img src="https://thumbs.dreamstime.com/b/vector-light-bulb-white-file-eps-format-34983265.jpg" width="300" height="290" *ngIf="DarkState" /> -->
         <!-- <img src="https://pngimg.com/uploads/bulb/small/bulb_PNG1244.png" width="250" height="260" *ngIf="DarkState" /> -->
-        <img src="https://lh3.googleusercontent.com/proxy/QksAINdQR1Vy8o0rSt9qHxTIy3FkVbPyQUGZZ5vf28R8rYE-PuO08pV69dSvco4GRd0juccwVPyS4CQAlDRrXnJg5W3Qj_5IWlarCLoSE9lmhbq62P7-EEZ81HFHXXgnJ5IvJBQIiUokyE-R5wPx" width="300" height="290" *ngIf="DarkState" />
+        <img src="https://lh3.googleusercontent.com/proxy/QksAINdQR1Vy8o0rSt9qHxTIy3FkVbPyQUGZZ5vf28R8rYE-PuO08pV69dSvco4GRd0juccwVPyS4CQAlDRrXnJg5W3Qj_5IWlarCLoSE9lmhbq62P7-EEZ81HFHXXgnJ5IvJBQIiUokyE-R5wPx" class="animate__animated animate__fadeIn" width="300"
+            height="290" *ngIf="DarkState" />
 
-        <mat-card *ngIf="DarkState">
+        <mat-card class="animate__animated animate__fadeInRight" *ngIf="DarkState">
             <div class="loginStyle">Login</div>
 
             <br />

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { BOOK } from '../Book-Model';
-import { OverallService } from '../overall.service';
+import { BOOK } from '../../../../Book-Model';
+import { OverallService } from '../../../../overall.service';
 
 @Component({
   selector: 'app-admin-panel',

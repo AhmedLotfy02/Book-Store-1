@@ -1,0 +1,109 @@
+@import url("https://fonts.googleapis.com/css2?family=Archivo+Narrow&family=Barlow+Semi+Condensed:wght@100&display=swap");
+.leftcontainer {
+    width: 500px;
+    background: linear-gradient(rgb(207, 61, 61), rgb(37, 37, 231));
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+html,
+body {
+    height: 100%;
+    /* background: rgb(243, 222, 222); */
+    background: white;
+}
+
+img {
+    border-radius: 50%;
+}
+
+.imgcontainer {
+    padding: 5em;
+    margin-left: 3em;
+}
+
+.hi {
+    font-size: 30px;
+    font-family: "Barlow Semi Condensed", sans-serif;
+    margin-left: 5em;
+    color: white;
+}
+
+.maincontainer {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+
+.spacer {
+    margin-left: 1em;
+}
+
+mat-card {
+    width: 100%;
+}
+
+.title {
+    font-size: 30px;
+    /* font-family: "Archivo Narrow", sans-serif; */
+    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    padding-left: 1em;
+    padding-top: 1em;
+}
+
+.cardContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.inlinecontainer {
+    display: flex;
+    flex-direction: row;
+}
+
+.font {
+    padding-left: 1em;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.pass {
+    padding-left: 15em;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.rowcontainers {
+    display: flex;
+    flex-direction: column;
+}
+
+#inform {
+    font-weight: 100;
+    font-size: 15px;
+}
+
+.pass1 {
+    margin-left: 5.5em;
+}
+
+.mat-form-field+.mat-form-field {
+    margin-left: 8px;
+}
+
+.expansion {
+    margin-left: 16.5em;
+    margin-top: 2px;
+}
+
+#btn {
+    background: purple;
+    color: white;
+}
+
+.alert1 {
+    color: red;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}

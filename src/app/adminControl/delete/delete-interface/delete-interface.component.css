@@ -1,0 +1,44 @@
+body,
+html {
+    background: url("https://images.unsplash.com/photo-1475274047050-1d0c0975c63e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8&w=1000&q=80");
+    height: 100%;
+    width: 100%;
+}
+
+.roboimg img {
+    position: absolute;
+    top: 200px;
+    left: 500px;
+}
+
+.deletebook button {
+    position: absolute;
+    top: 240px;
+    left: 450px;
+    background: #66cfc1;
+    color: rgb(239, 248, 247);
+    border-radius: 14px;
+}
+
+.deletebook button:hover {
+    background: white;
+    color: #66cfc1;
+}
+
+.deleteuser button {
+    position: absolute;
+    top: 240px;
+    left: 700px;
+    background: #66cfc1;
+    color: rgb(239, 248, 247);
+    border-radius: 14px;
+}
+
+.deleteuser button:hover {
+    background: white;
+    color: #66cfc1;
+}
+
+.animate__animated.animate__fadeIn {
+    --animate-duration: 1.5s;
+}

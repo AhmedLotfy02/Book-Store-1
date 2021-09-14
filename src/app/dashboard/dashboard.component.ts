@@ -27,7 +27,7 @@ export class DashboardComponent implements OnInit {
     }, 500);
   }
   checkout() {
-    this.router.navigate(['/redirecting']);
+    this.router.navigate(['/checkout']);
   }
   ngOnInit(): void {}
 }

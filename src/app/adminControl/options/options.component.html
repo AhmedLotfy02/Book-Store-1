@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head> </head>
+
+<body>
+    <div class="maincontainer">
+        <div class="welcomedcard">
+            <mat-card>
+                <p class="animate__animated animate__slideInDown">Hi ,ADMIN</p>
+                <p class="animate__animated animate__slideInDown">
+                    Choose your desired option
+                </p>
+                <img src="https://quantimo.do/wp-content/uploads/2017/05/robot-waving-700-700.png" class="animate__animated animate__slideInLeft" />
+            </mat-card>
+        </div>
+        <div class="optioncard">
+            <mat-card class="animate__animated animate__slideInDown">
+                <button mat-raised-button (click)="create()">Create</button>
+                <button mat-raised-button (click)="update()">Update</button>
+                <button mat-raised-button (click)="delete()">Delete</button>
+            </mat-card>
+        </div>
+    </div>
+</body>
+
+</html>

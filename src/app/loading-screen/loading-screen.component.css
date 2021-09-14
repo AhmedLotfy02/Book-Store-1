@@ -1,6 +1,4 @@
-#spinner {
-    color: yellow;
-    margin-left: 20em;
-    margin-top: 10em;
-    font-size: 30px;
+.spinner {
+    margin-top: 25%;
+    margin-left: 40em;
 }
