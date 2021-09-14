@@ -32,10 +32,10 @@
             <button type="submit" mat-raised-button>Create</button>
         </form>
 
-        <div class="created" *ngIf="created">
+        <div class="created" *ngIf="created && !creationerror">
             <p>User Created Succesfully..</p>
         </div>
-        <div class="created" *ngIf="creationerror">
+        <div class="created" *ngIf="creationerror && !created">
             <p>Error Happened while creation..</p>
         </div>
     </div>

@@ -15,6 +15,8 @@ mongoose.connect("mongodb://localhost/DataBase3", {
     useUnifiedTopology: true,
 });
 const db = mongoose.connection;
+mongoose.set("useFindAndModify", false);
+
 const uniqueValidator = require("mongoose-unique-validator");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
@@ -250,16 +252,16 @@ app.post("/updateUserByAdmin", (req, res, next) => {
     bcrypt.hash(req.body.password, 10).then(function(hash) {
         UserTest.findOneAndUpdate({ email: req.body.email }, { $set: { password: hash } }, { new: true },
             (err, doc) => {
-                if (err) {
-                    res.status(501).json({
-                        error: err,
-                    });
-                    console.log("error happened in adding book");
-                } else {
+                if (doc) {
                     res.status(200).json({
                         message: "User Updated",
                         newUser: doc,
                     });
+                } else {
+                    res.status(501).json({
+                        error: err,
+                    });
+                    console.log("error happened in adding book");
                 }
             }
         );

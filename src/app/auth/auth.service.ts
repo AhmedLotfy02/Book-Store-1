@@ -102,14 +102,19 @@ export class AuthService {
       )
       .subscribe(
         (response) => {
-          this.creationListener.next(true);
           this.isCreated = true;
+          this.creationerror = false;
+          this.creationListener.next(true);
 
+          this.creationError.next(false);
           console.log(response);
         },
         (error) => {
-          this.creationError.next(true);
           this.creationerror = true;
+          this.isCreated = false;
+          this.creationError.next(true);
+
+          this.creationListener.next(false);
           console.log(error);
         }
       );
@@ -126,11 +131,18 @@ export class AuthService {
       .subscribe(
         (response) => {
           this.isUpdated = true;
+          this.updationerror = false;
+
           this.updationListener.next(true);
+          this.updationError.next(false);
           console.log(response);
         },
         (error) => {
+          this.isUpdated = false;
+
           this.updationerror = true;
+          this.updationListener.next(false);
+
           this.updationError.next(true);
           console.log(error);
         }

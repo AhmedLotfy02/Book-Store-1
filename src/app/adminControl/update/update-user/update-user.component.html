@@ -32,10 +32,10 @@
             <button type="submit" mat-raised-button>Update</button>
         </form>
 
-        <div class="updated" *ngIf="updated">
+        <div class="updated" *ngIf="updated && !error">
             <p>User Updated Succesfully..</p>
         </div>
-        <div class="updated" *ngIf="error">
+        <div class="updated" *ngIf="error && !updated">
             <p>Error Happened while Updating..</p>
         </div>
     </div>
