@@ -12,7 +12,7 @@
             <p>User Informations</p>
             <hr />
         </div>
-        <form (submit)="create(createform)" #createform="ngForm">
+        <form (submit)="update(updateform)" #updateform="ngForm">
             <div class="userinfo">
                 <div class="email">
                     <p>Email</p>
@@ -29,14 +29,14 @@
                     </mat-form-field>
                 </div>
             </div>
-            <button type="submit" mat-raised-button>Create</button>
+            <button type="submit" mat-raised-button>Update</button>
         </form>
 
-        <div class="created" *ngIf="created">
-            <p>User Created Succesfully..</p>
+        <div class="updated" *ngIf="updated">
+            <p>User Updated Succesfully..</p>
         </div>
-        <div class="created" *ngIf="creationerror">
-            <p>Error Happened while creation..</p>
+        <div class="updated" *ngIf="error">
+            <p>Error Happened while Updating..</p>
         </div>
     </div>
 </body>

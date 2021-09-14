@@ -18,6 +18,7 @@ import { UpdateInterfaceComponent } from './adminControl/update/update-interface
 import { DeleteInterfaceComponent } from './adminControl/delete/delete-interface/delete-interface.component';
 import { CreateUserComponent } from './adminControl/create/create-user/create-user.component';
 import { HeaderComponent } from './adminControl/header/header.component';
+import { UpdateUserComponent } from './adminControl/update/update-user/update-user.component';
 
 const routes: Routes = [
   { path: '', component: LoginPageComponent },
@@ -34,7 +35,7 @@ const routes: Routes = [
   { path: 'admin/options/update', component: UpdateInterfaceComponent },
   { path: 'admin/options/delete', component: DeleteInterfaceComponent },
   { path: 'admin/options/create/createuser', component: CreateUserComponent },
-  { path: 'testheader', component: HeaderComponent },
+  { path: 'admin/options/update/updateuser', component: UpdateUserComponent },
   {
     path: 'searchresult',
     component: SearchResultComponent,

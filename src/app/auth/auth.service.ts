@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
+import { createNoSubstitutionTemplateLiteral } from 'typescript';
 import { BOOK } from '../Book-Model';
 import { AuthData } from './auth-data-model';
 @Injectable({ providedIn: 'root' })
@@ -11,6 +12,15 @@ export class AuthService {
   private user!: AuthData;
   private authStatusListener = new Subject<boolean>();
   isAuthenticated = false;
+  private creationListener = new Subject<boolean>();
+  isCreated = false;
+  private creationError = new Subject<boolean>();
+  creationerror = false;
+  private updationListener = new Subject<boolean>();
+  isUpdated = false;
+  private updationError = new Subject<boolean>();
+  updationerror = false;
+
   private tokenTimer: any;
   constructor(private http: HttpClient, private router: Router) {}
   getToken() {
@@ -24,6 +34,20 @@ export class AuthService {
   }
   getAuthStatusListener() {
     return this.authStatusListener.asObservable();
+  }
+
+  getCreationListener() {
+    return this.creationListener.asObservable();
+  }
+  getCreationErrorListener() {
+    return this.creationError.asObservable();
+  }
+
+  getUpdationListener() {
+    return this.updationListener.asObservable();
+  }
+  getUpdationErrorListener() {
+    return this.updationError.asObservable();
   }
   autoAuthUser() {
     const authInformation = this.getAuthData();
@@ -63,6 +87,54 @@ export class AuthService {
       .subscribe((response) => {
         console.log(response);
       });
+  }
+  createUserByAdmin(email: string, password: string) {
+    const authData: AuthData = {
+      email: email,
+      password: password,
+      books: [],
+      favorites_list: [],
+    };
+    this.http
+      .post<{ message: string }>(
+        'http://localhost:3000/createuserByAdmin',
+        authData
+      )
+      .subscribe(
+        (response) => {
+          this.creationListener.next(true);
+          this.isCreated = true;
+
+          console.log(response);
+        },
+        (error) => {
+          this.creationError.next(true);
+          this.creationerror = true;
+          console.log(error);
+        }
+      );
+  }
+  updateUserbyAdmin(email: string, newpassword: string) {
+    const authData: AuthData = {
+      email: email,
+      password: newpassword,
+      books: [],
+      favorites_list: [],
+    };
+    this.http
+      .post('http://localhost:3000/updateUserByAdmin', authData)
+      .subscribe(
+        (response) => {
+          this.isUpdated = true;
+          this.updationListener.next(true);
+          console.log(response);
+        },
+        (error) => {
+          this.updationerror = true;
+          this.updationError.next(true);
+          console.log(error);
+        }
+      );
   }
   login(email: string, password: string) {
     const authData: AuthData = {

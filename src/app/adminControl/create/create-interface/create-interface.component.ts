@@ -13,5 +13,7 @@ export class CreateInterfaceComponent implements OnInit {
   createbook() {
     this.router.navigate(['/admin/options/create/createbook']);
   }
-  createuser() {}
+  createuser() {
+    this.router.navigate(['/admin/options/create/createuser']);
+  }
 }

@@ -2,16 +2,11 @@
 .header {
     width: 100%;
     height: 70px;
-    background: #f13c20;
+    background: hsl(290, 68%, 48%);
     position: fixed;
     top: 0;
     display: flex;
     justify-content: space-between;
-}
-
-body,
-html {
-    background: white;
 }
 
 .left p {
@@ -29,6 +24,6 @@ html {
 }
 
 .right button:hover {
-    background: #edc7b7;
-    color: #ac3b61;
+    background: hsl(290, 71%, 60%);
+    color: whitesmoke;
 }

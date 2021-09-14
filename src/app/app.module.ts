@@ -38,6 +38,7 @@ import { UpdateInterfaceComponent } from './adminControl/update/update-interface
 import { DeleteInterfaceComponent } from './adminControl/delete/delete-interface/delete-interface.component';
 import { CreateUserComponent } from './adminControl/create/create-user/create-user.component';
 import { HeaderComponent } from './adminControl/header/header.component';
+import { UpdateUserComponent } from './adminControl/update/update-user/update-user.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,6 +60,7 @@ import { HeaderComponent } from './adminControl/header/header.component';
     DeleteInterfaceComponent,
     CreateUserComponent,
     HeaderComponent,
+    UpdateUserComponent,
   ],
   imports: [
     BrowserModule,
