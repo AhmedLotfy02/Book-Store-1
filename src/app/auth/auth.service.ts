@@ -20,7 +20,10 @@ export class AuthService {
   isUpdated = false;
   private updationError = new Subject<boolean>();
   updationerror = false;
-
+  private deletionListener = new Subject<boolean>();
+  isdeleted = false;
+  private deletionError = new Subject<boolean>();
+  deletionerror = false;
   private tokenTimer: any;
   constructor(private http: HttpClient, private router: Router) {}
   getToken() {
@@ -48,6 +51,13 @@ export class AuthService {
   }
   getUpdationErrorListener() {
     return this.updationError.asObservable();
+  }
+
+  getDeletionListener() {
+    return this.deletionListener.asObservable();
+  }
+  getDeletionErrorListener() {
+    return this.deletionError.asObservable();
   }
   autoAuthUser() {
     const authInformation = this.getAuthData();
@@ -144,6 +154,37 @@ export class AuthService {
           this.updationListener.next(false);
 
           this.updationError.next(true);
+          console.log(error);
+        }
+      );
+  }
+  deleteUserByAdmin(email: string, password: string) {
+    const authData: AuthData = {
+      email: email,
+      password: password,
+      books: [],
+      favorites_list: [],
+    };
+    this.http
+      .post<{ message: string }>(
+        'http://localhost:3000/deleteuserByAdmin',
+        authData
+      )
+      .subscribe(
+        (response) => {
+          this.isdeleted = true;
+          this.deletionerror = false;
+          this.deletionListener.next(true);
+
+          this.deletionError.next(false);
+          console.log(response);
+        },
+        (error) => {
+          this.deletionerror = true;
+          this.isdeleted = false;
+          this.deletionError.next(true);
+
+          this.deletionListener.next(false);
           console.log(error);
         }
       );

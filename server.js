@@ -267,6 +267,21 @@ app.post("/updateUserByAdmin", (req, res, next) => {
         );
     });
 });
+app.post("/deleteuserByAdmin", (req, res, next) => {
+    UserTest.findOneAndDelete({ email: req.body.email }, (err, doc) => {
+        if (doc) {
+            res.status(201).json({
+                message: "Account Deleted Successfully",
+                deletedUser: doc,
+            });
+        } else {
+            res.status(500).json({
+                message: "Error Happened",
+                error: err,
+            });
+        }
+    });
+});
 app.post("/logintest", (req, res, next) => {
     let fetchedUser;
     UserTest.findOne({ email: req.body.email })

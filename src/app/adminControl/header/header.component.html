@@ -9,11 +9,23 @@
             <p>Admin Panel</p>
         </div>
         <div class="right">
-            <button mat-raised-button (click)="create()">Create</button>
-            <button mat-raised-button (click)="update()">Update</button>
-            <button mat-raised-button (click)="delete()">Delete</button>
-        </div>
+            <a routerLink="/admin/options/create/createuser" [routerLinkActive]="['classbtn']" mat-raised-button (click)="create()">Create</a
+        >
+        <a
+          routerLink="/admin/options/update/updateuser"
+          [routerLinkActive]="['classbtn']"
+          mat-raised-button
+          (click)="update()"
+          >Update</a
+        >
+        <a
+          routerLink="/admin/options/delete/deleteuser"
+          [routerLinkActive]="['classbtn']"
+          mat-raised-button
+          (click)="delete()"
+          >Delete</a
+        >
+      </div>
     </div>
-</body>
-
+  </body>
 </html>

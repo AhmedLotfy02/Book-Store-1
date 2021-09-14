@@ -18,12 +18,17 @@
     color: white;
 }
 
-.right button {
+.right a {
     margin-right: 10px;
     margin-top: 14px;
 }
 
-.right button:hover {
+.right a:hover {
+    background: hsl(290, 71%, 60%);
+    color: whitesmoke;
+}
+
+.classbtn {
     background: hsl(290, 71%, 60%);
     color: whitesmoke;
 }
