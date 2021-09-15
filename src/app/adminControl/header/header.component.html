@@ -12,7 +12,7 @@
             <a routerLink="/admin/options/create/createuser" [routerLinkActive]="['classbtn']" mat-raised-button (click)="create()">Create</a
         >
         <a
-          routerLink="/admin/options/update/updateuser"
+          [routerLink]="'/admin/options/update/updateuser'"
           [routerLinkActive]="['classbtn']"
           mat-raised-button
           (click)="update()"

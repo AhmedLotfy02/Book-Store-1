@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
-import { createNoSubstitutionTemplateLiteral } from 'typescript';
 import { BOOK } from '../Book-Model';
 import { AuthData } from './auth-data-model';
 @Injectable({ providedIn: 'root' })
@@ -157,6 +156,41 @@ export class AuthService {
           console.log(error);
         }
       );
+  }
+  updateBookByAdmin(
+    author: string,
+    title: string,
+    image: string,
+    price: number,
+    stock: number
+  ) {
+    const book: BOOK = {
+      Title: title,
+      Author: author,
+      Cover: image,
+      Price: price,
+      Stock: stock,
+    };
+    console.log(book);
+    this.http.post('http://localhost:3000/updateBookByAdmin', book).subscribe(
+      (response) => {
+        this.isUpdated = true;
+        this.updationerror = false;
+
+        this.updationListener.next(true);
+        this.updationError.next(false);
+        console.log(response);
+      },
+      (error) => {
+        this.isUpdated = false;
+
+        this.updationerror = true;
+        this.updationListener.next(false);
+
+        this.updationError.next(true);
+        console.log(error);
+      }
+    );
   }
   deleteUserByAdmin(email: string, password: string) {
     const authData: AuthData = {

@@ -40,6 +40,7 @@ import { CreateUserComponent } from './adminControl/create/create-user/create-us
 import { HeaderComponent } from './adminControl/header/header.component';
 import { UpdateUserComponent } from './adminControl/update/update-user/update-user.component';
 import { DeleteUserComponent } from './adminControl/delete/delete-user/delete-user.component';
+import { UpdateBookComponent } from './adminControl/update/update-book/update-book.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -63,6 +64,7 @@ import { DeleteUserComponent } from './adminControl/delete/delete-user/delete-us
     HeaderComponent,
     UpdateUserComponent,
     DeleteUserComponent,
+    UpdateBookComponent,
   ],
   imports: [
     BrowserModule,

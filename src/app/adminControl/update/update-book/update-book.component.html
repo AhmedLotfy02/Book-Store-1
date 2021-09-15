@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head> </head>
+
+<body>
+    <div>
+        <app-header></app-header>
+    </div>
+    <div class="updateContainer animate__animated animate__fadeIn">
+        <div class="headerinfo">
+            <p>User Informations</p>
+            <hr />
+        </div>
+        <p id="warn">
+            Enter the book's title and other informations will be changed
+        </p>
+        <form (submit)="update(updateform)" #updateform="ngForm">
+            <div class="userinfo">
+                <div class="pass">
+                    <p>Title</p>
+                    <mat-form-field>
+                        <input matInput required type="text" name="title" ngModel #title="ngModel" />
+                        <mat-error *ngIf="title.invalid">Please enter a title</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="email">
+                    <p>Author</p>
+                    <mat-form-field>
+                        <input matInput required type="text" name="author" ngModel #author="ngModel" />
+                        <mat-error *ngIf="author.invalid">Please enter an author</mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="userinfo">
+                <div>
+                    <p>Image</p>
+                    <mat-form-field>
+                        <input matInput required type="text" name="image" ngModel #image="ngModel" />
+                        <mat-error *ngIf="image.invalid">Please enter an image</mat-error>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <p>Price</p>
+                    <mat-form-field>
+                        <input matInput required type="number" name="price" ngModel #price="ngModel" />
+                        <mat-error *ngIf="price.invalid">Please enter a price</mat-error>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <p>Stock</p>
+                    <mat-form-field>
+                        <input matInput required type="number" name="stock" ngModel #stock="ngModel" />
+                        <mat-error *ngIf="stock.invalid">Please enter a stock</mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <button type="submit" mat-raised-button>Update</button>
+        </form>
+
+        <div class="updated" *ngIf="updated && !error">
+            <p>Book Updated Succesfully..</p>
+        </div>
+        <div class="updated" *ngIf="error && !updated">
+            <p>Error Happened while Updating..</p>
+        </div>
+    </div>
+</body>
+
+</html>

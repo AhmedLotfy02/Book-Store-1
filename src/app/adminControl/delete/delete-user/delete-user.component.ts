@@ -35,5 +35,6 @@ export class DeleteUserComponent implements OnInit {
     }
     console.log(form.value);
     this.authService.deleteUserByAdmin(form.value.email, form.value.pass);
+    form.resetForm();
   }
 }

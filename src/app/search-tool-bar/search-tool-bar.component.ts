@@ -14,6 +14,7 @@ import { OverallService } from '../overall.service';
 export class SearchToolBarComponent implements OnInit {
   book!: BOOK;
   isAuthenticated = false;
+  name = '';
   private authListenerSubs!: Subscription;
 
   onSearch(form: NgForm) {
@@ -40,12 +41,16 @@ export class SearchToolBarComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.isAuthenticated = this.authService.getisAuth();
-    this.authListenerSubs = this.authService
-      .getAuthStatusListener()
-      .subscribe((isauthenticated) => {
-        this.isAuthenticated = isauthenticated;
-      });
+    setTimeout(() => {
+      this.isAuthenticated = this.authService.getisAuth();
+      this.name = this.authService.getUser().email;
+      console.log(this.name);
+      this.authListenerSubs = this.authService
+        .getAuthStatusListener()
+        .subscribe((isauthenticated) => {
+          this.isAuthenticated = isauthenticated;
+        });
+    }, 200);
   }
 
   godashboard() {

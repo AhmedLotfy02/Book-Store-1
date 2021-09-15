@@ -10,6 +10,10 @@ export class UpdateInterfaceComponent implements OnInit {
   constructor(private router: Router) {}
 
   ngOnInit(): void {}
-  updatebook() {}
-  updateuser() {}
+  updatebook() {
+    this.router.navigate(['/admin/options/update/updatebook']);
+  }
+  updateuser() {
+    this.router.navigate(['/admin/options/update/updateuser']);
+  }
 }

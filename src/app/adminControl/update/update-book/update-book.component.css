@@ -1,0 +1,64 @@
+@import url("https://fonts.googleapis.com/css2?family=Archivo+Narrow&family=Barlow+Semi+Condensed:wght@100&display=swap");
+body,
+html {
+    background: url("https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/rm21-background-tong-058.jpg?w=800&dpr=1&fit=default&crop=default&q=65&vib=3&con=3&usm=15&bg=F4F4F3&ixlib=js-2.2.1&s=710a6fed5b1923da8d5f95191839ef8a");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.updateContainer {
+    position: absolute;
+    top: 100px;
+    left: 350px;
+    width: 700px;
+    height: 500px;
+    border-radius: 20px;
+    background: #eae7dc;
+}
+
+.updateContainer p {
+    font-family: "Barlow Semi Condensed", sans-serif;
+    font-size: xx-large;
+    font-weight: bold;
+}
+
+.headerinfo p {
+    margin: 20px 20px;
+}
+
+.userinfo {
+    display: flex;
+    justify-content: space-evenly;
+    margin-left: 20px;
+}
+
+.userinfo p {
+    font-size: 20px;
+    position: relative;
+    margin-bottom: -2px;
+}
+
+mat-form-field {
+    position: relative;
+    margin-top: -40px;
+}
+
+form button {
+    position: absolute;
+    right: 300px;
+    background: hsl(290, 68%, 48%);
+    color: whitesmoke;
+    margin-top: 1em;
+}
+
+.updated {
+    position: relative;
+    top: 100px;
+    left: 200px;
+}
+
+#warn {
+    margin-left: 10px;
+    font-size: 20px;
+    color: red;
+}

@@ -261,11 +261,35 @@ app.post("/updateUserByAdmin", (req, res, next) => {
                     res.status(501).json({
                         error: err,
                     });
-                    console.log("error happened in adding book");
+                    console.log("error happened in updating user");
                 }
             }
         );
     });
+});
+app.post("/updateBookByAdmin", (req, res, next) => {
+    Book.findOneAndUpdate({ Title: req.body.Title }, {
+            $set: {
+                Author: req.body.Author,
+                Price: req.body.Price,
+                Cover: req.body.Cover,
+                Stock: req.body.Stock,
+            },
+        }, { new: true },
+        (err, doc) => {
+            if (doc) {
+                res.status(200).json({
+                    message: "Book Updated",
+                    updatedBook: doc,
+                });
+            } else {
+                res.status(501).json({
+                    error: err,
+                });
+                console.log("error happened in updating book");
+            }
+        }
+    );
 });
 app.post("/deleteuserByAdmin", (req, res, next) => {
     UserTest.findOneAndDelete({ email: req.body.email }, (err, doc) => {
