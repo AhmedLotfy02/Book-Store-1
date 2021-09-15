@@ -41,6 +41,7 @@ import { HeaderComponent } from './adminControl/header/header.component';
 import { UpdateUserComponent } from './adminControl/update/update-user/update-user.component';
 import { DeleteUserComponent } from './adminControl/delete/delete-user/delete-user.component';
 import { UpdateBookComponent } from './adminControl/update/update-book/update-book.component';
+import { DeleteBookComponent } from './adminControl/delete/delete-book/delete-book.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -65,6 +66,7 @@ import { UpdateBookComponent } from './adminControl/update/update-book/update-bo
     UpdateUserComponent,
     DeleteUserComponent,
     UpdateBookComponent,
+    DeleteBookComponent,
   ],
   imports: [
     BrowserModule,

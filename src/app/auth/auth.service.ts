@@ -199,10 +199,40 @@ export class AuthService {
       books: [],
       favorites_list: [],
     };
+
     this.http
       .post<{ message: string }>(
         'http://localhost:3000/deleteuserByAdmin',
         authData
+      )
+      .subscribe(
+        (response) => {
+          this.isdeleted = true;
+          this.deletionerror = false;
+          this.deletionListener.next(true);
+
+          this.deletionError.next(false);
+          console.log(response);
+        },
+        (error) => {
+          this.deletionerror = true;
+          this.isdeleted = false;
+          this.deletionError.next(true);
+
+          this.deletionListener.next(false);
+          console.log(error);
+        }
+      );
+  }
+  deleteBookByAdmin(title: string) {
+    const book = {
+      Title: title,
+    };
+
+    this.http
+      .post<{ message: string }>(
+        'http://localhost:3000/deleteBookByAdmin',
+        book
       )
       .subscribe(
         (response) => {

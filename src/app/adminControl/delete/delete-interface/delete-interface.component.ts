@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-delete-interface',
@@ -6,9 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./delete-interface.component.css'],
 })
 export class DeleteInterfaceComponent implements OnInit {
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {}
-  deletebook() {}
-  deleteuser() {}
+  deletebook() {
+    this.router.navigate(['/admin/options/delete/deletebook']);
+  }
+  deleteuser() {
+    this.router.navigate(['/admin/options/delete/deleteuser']);
+  }
 }

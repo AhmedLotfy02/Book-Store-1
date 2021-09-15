@@ -306,6 +306,21 @@ app.post("/deleteuserByAdmin", (req, res, next) => {
         }
     });
 });
+app.post("/deleteBookByAdmin", (req, res, next) => {
+    Book.findOneAndDelete({ Title: req.body.Title }, (err, doc) => {
+        if (doc) {
+            res.status(201).json({
+                message: "Book Deleted Successfully",
+                deletedBook: doc,
+            });
+        } else {
+            res.status(500).json({
+                message: "Error Happened",
+                error: err,
+            });
+        }
+    });
+});
 app.post("/logintest", (req, res, next) => {
     let fetchedUser;
     UserTest.findOne({ email: req.body.email })

@@ -21,6 +21,7 @@ import { HeaderComponent } from './adminControl/header/header.component';
 import { UpdateUserComponent } from './adminControl/update/update-user/update-user.component';
 import { DeleteUserComponent } from './adminControl/delete/delete-user/delete-user.component';
 import { UpdateBookComponent } from './adminControl/update/update-book/update-book.component';
+import { DeleteBookComponent } from './adminControl/delete/delete-book/delete-book.component';
 
 const routes: Routes = [
   { path: '', component: LoginPageComponent },
@@ -40,6 +41,7 @@ const routes: Routes = [
   { path: 'admin/options/update/updateuser', component: UpdateUserComponent },
   { path: 'admin/options/delete/deleteuser', component: DeleteUserComponent },
   { path: 'admin/options/update/updatebook', component: UpdateBookComponent },
+  { path: 'admin/options/delete/deletebook', component: DeleteBookComponent },
   {
     path: 'searchresult',
     component: SearchResultComponent,
