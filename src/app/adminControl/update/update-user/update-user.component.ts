@@ -34,6 +34,6 @@ export class UpdateUserComponent implements OnInit {
       return;
     }
     console.log(form.value);
-    this.authService.updateUserbyAdmin(form.value.email, form.value.pass);
+    // this.authService.updateUserbyAdmin(form.value.email, form.value.pass);
   }
 }

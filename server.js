@@ -196,6 +196,9 @@ app.post("/api/getuser", (req, res, next) => {
 const userSchema = new mongoose.Schema({
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
+    username: { type: String, required: true },
+    image: { type: String, required: true },
+
     books: [],
     favorites_list: [],
 });
@@ -230,6 +233,8 @@ app.post("/signuptest", (req, res, next) => {
         const user = new UserTest({
             email: req.body.email,
             password: hash,
+            username: req.body.username,
+            image: req.body.image,
             books: [],
             favorites_list: [],
         });

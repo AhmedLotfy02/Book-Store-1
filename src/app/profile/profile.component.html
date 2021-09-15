@@ -8,10 +8,10 @@
         <div class="leftcontainer">
             <div>
                 <div class="imgcontainer">
-                    <img src="https://avatars.githubusercontent.com/u/76037906?s=400&u=a467506bcd8eb1903d8537f35168294daba3fd57&v=4" class="imgformat animate__animated animate__fadeInDown" width="250" height="250" />
+                    <img src="{{ user.image }}" class="imgformat animate__animated animate__fadeInDown" width="250" height="250" />
                 </div>
                 <div class="hi animate__animated animate__fadeInDown">
-                    Hi,Ahmed Lotfy
+                    Hi,{{ user.username }}
                 </div>
             </div>
         </div>
@@ -73,6 +73,12 @@
                             </mat-expansion-panel>
                         </mat-accordion>
                     </div>
+                </div>
+            </div>
+            <div>
+                <div class="rowcontainers animate__animated animate__fadeInDown">
+                    <div class="font">Username</div>
+                    <div class="font" id="inform">{{ user.username }}</div>
                 </div>
             </div>
         </mat-card>

@@ -10,6 +10,7 @@ input {
     width: 50%;
     /* margin-left: 25%; */
     text-align: center;
+    height: 500px;
 }
 
 ul {

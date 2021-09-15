@@ -23,8 +23,8 @@
                 <!-- <button mat-stroked-button class="btnnn" (click)="profile()">
           <mat-icon id="acc">account_circle</mat-icon>
         </button> -->
-                <img src="https://avatars.githubusercontent.com/u/76037906?s=400&u=a467506bcd8eb1903d8537f35168294daba3fd57&v=4" (click)="profile()" class="imgformat animate__animated animate__fadeInDown" width="50" height="50" />
-                <span class="animate__animated animate__fadeInDown" (click)="profile()">{{ name }}</span
+                <img src="{{ user.image }}" (click)="profile()" class="imgformat animate__animated animate__fadeInDown" width="50" height="50" />
+                <span class="animate__animated animate__fadeInDown" (click)="profile()">{{ user.username }}</span
         >
         <span class="spacer99"></span>
                 <button mat-button (click)="logout()">Log Out</button>

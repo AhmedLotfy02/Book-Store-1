@@ -33,6 +33,11 @@ export class CreateUserComponent implements OnInit {
       return;
     }
     console.log(form.value);
-    this.authService.createUserByAdmin(form.value.email, form.value.pass);
+    this.authService.createUserByAdmin(
+      form.value.email,
+      form.value.pass,
+      form.value.username,
+      form.value.image
+    );
   }
 }

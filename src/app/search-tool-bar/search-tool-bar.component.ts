@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { AuthData } from '../auth/auth-data-model';
 import { AuthService } from '../auth/auth.service';
 import { BOOK } from '../Book-Model';
 import { OverallService } from '../overall.service';
@@ -14,7 +15,7 @@ import { OverallService } from '../overall.service';
 export class SearchToolBarComponent implements OnInit {
   book!: BOOK;
   isAuthenticated = false;
-  name = '';
+  user!: AuthData;
   private authListenerSubs!: Subscription;
 
   onSearch(form: NgForm) {
@@ -43,8 +44,8 @@ export class SearchToolBarComponent implements OnInit {
   ngOnInit(): void {
     setTimeout(() => {
       this.isAuthenticated = this.authService.getisAuth();
-      this.name = this.authService.getUser().email;
-      console.log(this.name);
+      this.user = this.authService.getUser();
+      console.log(this.user);
       this.authListenerSubs = this.authService
         .getAuthStatusListener()
         .subscribe((isauthenticated) => {

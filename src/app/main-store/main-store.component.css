@@ -69,9 +69,11 @@ body {}
 }
 
 #card1 {
-    background-color: rgb(161, 170, 175);
+    /* background-color: rgb(161, 170, 175); */
+    background-color: rgb(18, 70, 224);
     padding-top: 1em;
     padding-bottom: 0.5em;
+    border-radius: 12px;
 }
 
 .stock {

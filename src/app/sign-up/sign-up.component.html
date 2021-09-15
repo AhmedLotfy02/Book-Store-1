@@ -27,11 +27,21 @@
             <div>
                 <br />
 
-                <span class="mat-body-2">Please Enter Your Username and Password</span>
+                <span class="mat-body-2">Please Enter Your Informations</span>
                 <form (submit)="onSignup(postForm)" #postForm="ngForm">
+                    <mat-form-field>
+                        <input matInput type="text" name="username" ngModel #username="ngModel" required placeholder="Username" />
+                        <mat-error *ngIf="username.invalid">Please enter a vaild username</mat-error>
+                    </mat-form-field>
+                    <br />
                     <mat-form-field>
                         <input matInput type="text" name="email" ngModel #emailInput="ngModel" email required placeholder="Email" />
                         <mat-error *ngIf="emailInput.invalid">Please enter a vaild email</mat-error>
+                    </mat-form-field>
+                    <br />
+                    <mat-form-field>
+                        <input matInput type="text" name="image" ngModel #image="ngModel" required placeholder="Image" />
+                        <mat-error *ngIf="image.invalid">Please enter a vaild image</mat-error>
                     </mat-form-field>
                     <br />
                     <mat-form-field>

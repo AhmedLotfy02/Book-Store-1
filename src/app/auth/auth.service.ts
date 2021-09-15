@@ -84,10 +84,12 @@ export class AuthService {
       this.authStatusListener.next(true);
     }
   }
-  createUser(email: string, password: string) {
+  createUser(email: string, password: string, username: string, image: string) {
     const authData: AuthData = {
       email: email,
       password: password,
+      username: username,
+      image: image,
       books: [],
       favorites_list: [],
     };
@@ -97,10 +99,17 @@ export class AuthService {
         console.log(response);
       });
   }
-  createUserByAdmin(email: string, password: string) {
+  createUserByAdmin(
+    email: string,
+    password: string,
+    username: string,
+    image: string
+  ) {
     const authData: AuthData = {
       email: email,
       password: password,
+      username: username,
+      image: image,
       books: [],
       favorites_list: [],
     };
@@ -128,10 +137,17 @@ export class AuthService {
         }
       );
   }
-  updateUserbyAdmin(email: string, newpassword: string) {
+  updateUserbyAdmin(
+    email: string,
+    newpassword: string,
+    username: string,
+    image: string
+  ) {
     const authData: AuthData = {
       email: email,
       password: newpassword,
+      username: username,
+      image: image,
       books: [],
       favorites_list: [],
     };
@@ -196,6 +212,8 @@ export class AuthService {
     const authData: AuthData = {
       email: email,
       password: password,
+      username: '',
+      image: '',
       books: [],
       favorites_list: [],
     };
@@ -257,6 +275,8 @@ export class AuthService {
     const authData: AuthData = {
       email: email,
       password: password,
+      username: '',
+      image: '',
       books: [],
       favorites_list: [],
     };
