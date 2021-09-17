@@ -1,0 +1,38 @@
+@import url("https://fonts.googleapis.com/css2?family=Abel&family=Lobster&display=swap");
+mat-card {
+    margin-top: 5%;
+    margin-left: 40%;
+    width: max-content;
+}
+
+mat-card p {
+    margin-top: 5px;
+    animation: flash 2s infinite;
+    font-family: "Abel", sans-serif;
+}
+
+@keyframes flash {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+mat-card div {
+    margin: 10px;
+    font-size: 30px;
+}
+
+mat-card img {
+    margin-left: 70px;
+}
+
+.pn {
+    display: flex;
+    flex-direction: column;
+}

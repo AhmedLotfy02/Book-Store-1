@@ -83,6 +83,7 @@ mat-card {
 #inform {
     font-weight: 100;
     font-size: 15px;
+    margin-left: 0.5em;
 }
 
 .pass1 {
@@ -106,4 +107,29 @@ mat-card {
 .alert1 {
     color: red;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.margintop {
+    margin-top: 30px;
+}
+
+.pass2 {
+    margin-left: 7.5em;
+}
+
+.warning {
+    color: red;
+    animation: flash 2s infinite;
+}
+
+@keyframes flash {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
 }

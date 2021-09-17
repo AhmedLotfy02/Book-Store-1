@@ -3,7 +3,8 @@
     margin-left: 40em;
 }
 
-mat-card {
+
+/* mat-card {
     width: 600px;
     height: 300px;
     animation: flash 2s infinite;
@@ -16,4 +17,4 @@ mat-card {
     100% {
         display: none;
     }
-}
+} */

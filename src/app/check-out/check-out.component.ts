@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { render } from 'creditcardpayments/creditCardPayments';
+import { Subscription } from 'rxjs';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-check-out',
@@ -7,14 +9,23 @@ import { render } from 'creditcardpayments/creditCardPayments';
   styleUrls: ['./check-out.component.css'],
 })
 export class CheckOutComponent implements OnInit {
-  constructor() {}
+  checkoutListener!: Subscription;
+  price = '0';
+  constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
+    this.price = this.authService.price;
+    this.checkoutListener = this.authService
+      .getCheckoutListener()
+      .subscribe((price) => {
+        this.price = price;
+      });
+    console.log(this.price);
     setTimeout(() => {
       render({
         id: '#myPaypalButton',
-        currency: 'USD',
-        value: '300.0',
+        currency: 'EGP',
+        value: this.price,
         onApprove: (details) => {
           alert('Transaction Successfull');
         },

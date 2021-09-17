@@ -2,7 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Lobster&family=Staatliches&display=swap");
 mat-form-field,
 input {
-    width: 50%;
+    width: 60%;
     padding-left: 0%;
 }
 
@@ -74,4 +74,43 @@ a {
 #img2 {
     display: block;
     cursor: pointer;
+    animation: flash 2s infinite;
+}
+
+.click {
+    color: white;
+    margin-left: 90px;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.warn {
+    color: red;
+    animation: flash 3s infinite;
+}
+
+@keyframes flash {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    75% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
 }

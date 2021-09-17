@@ -196,11 +196,12 @@ app.post("/api/getuser", (req, res, next) => {
 // app.post("/api/getcurrentUser", (req, res, next) => {});
 
 const userSchema = new mongoose.Schema({
-    email: { type: String, required: true, unique: true },
+    email: { type: String, required: true },
     password: { type: String, required: true },
-    username: { type: String, required: true },
+    username: { type: String, required: true, unique: true },
     image: { type: String, required: true },
-
+    mobile: { type: Number, required: true },
+    gover: { type: String, required: true },
     books: [],
     favorites_list: [],
 });
@@ -237,6 +238,8 @@ app.post("/signuptest", (req, res, next) => {
             password: hash,
             username: req.body.username,
             image: req.body.image,
+            mobile: req.body.mobile,
+            gover: req.body.gover,
             books: [],
             favorites_list: [],
         });
@@ -371,22 +374,38 @@ app.get("/testtoken", AuthCheck, (req, res, next) => {
 app.post("/changepassword", (req, res, next) => {
     console.log(req.body);
     console.log(req.body.user._id);
-    bcrypt.hash(req.body.newpassword, 10).then(function(hash) {
-        UserTest.findOneAndUpdate({ _id: req.body.user._id }, { $set: { password: hash } }, { new: true },
-            (err, doc) => {
-                if (err) {
-                    return res.status(401).json({
-                        message: "Failed to change password",
-                    });
-                } else {
-                    res.status(200).json({
-                        message: "Changed Sucessfully",
-                        user: doc,
-                    });
-                }
+    UserTest.findOne({ username: req.body.user.username })
+        .then((user) => {
+            if (!user) {
+                return res.status(500).json({
+                    message: "error happened",
+                });
             }
-        );
-    });
+            return bcrypt.compare(req.body.currentpass, user.password);
+        })
+        .then((result) => {
+            if (!result) {
+                return res.status(500).json({
+                    message: "Wrong Password or an error occured",
+                });
+            }
+            bcrypt.hash(req.body.newpassword, 10).then(function(hash) {
+                UserTest.findOneAndUpdate({ _id: req.body.user._id }, { $set: { password: hash } }, { new: true },
+                    (err, doc) => {
+                        if (err) {
+                            return res.status(401).json({
+                                message: "Failed to change password",
+                            });
+                        } else {
+                            res.status(200).json({
+                                message: "Changed Sucessfully",
+                                user: doc,
+                            });
+                        }
+                    }
+                );
+            });
+        });
 });
 app.post("/testemail", (req, res, next) => {
     let transporter = nodemailer.createTransport({

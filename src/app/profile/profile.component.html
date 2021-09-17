@@ -31,18 +31,6 @@
                 <div class="rowcontainers animate__animated animate__fadeInDown">
                     <div class="pass">Password</div>
 
-                    <div class="pass pass1" id="inform" *ngIf="!showpass">
-                        **********
-                        <button mat-icon-button (click)="toggleShowing()">
-                <mat-icon>remove_red_eye</mat-icon>
-              </button>
-                    </div>
-                    <div class="pass pass1" id="inform" *ngIf="showpass">
-                        {{ user.password }}
-                        <button mat-icon-button (click)="toggleShowing()">
-                <mat-icon>remove_red_eye</mat-icon>
-              </button>
-                    </div>
                     <div class="expansion">
                         <mat-accordion>
                             <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
@@ -51,6 +39,11 @@
                                 </mat-expansion-panel-header>
 
                                 <form (submit)="changePassword(passform)" #passform="ngForm">
+                                    <mat-form-field>
+                                        <input matInput type="text" required name="password3" ngModel placeholder="Current Password" #password3="ngModel" />
+                                        <mat-error *ngIf="password3.invalid">Please enter your current password</mat-error>
+                                    </mat-form-field>
+                                    <br />
                                     <mat-form-field>
                                         <input matInput type="text" required name="password1" ngModel placeholder="New Password" #password="ngModel" />
                                         <mat-error *ngIf="password.invalid">Please enter your password</mat-error>
@@ -73,12 +66,27 @@
                             </mat-expansion-panel>
                         </mat-accordion>
                     </div>
+                    <p class="warning" *ngIf="passchanged && !passchangingfailed">
+                        Password changed successfully
+                    </p>
+                    <p class="warning" *ngIf="passchangingfailed && !passchanged">
+                        You entered a wrong password
+                    </p>
                 </div>
             </div>
-            <div>
+            <div class="margintop inlinecontainer">
                 <div class="rowcontainers animate__animated animate__fadeInDown">
                     <div class="font">Username</div>
                     <div class="font" id="inform">{{ user.username }}</div>
+                </div>
+
+                <div class="pass2 rowcontainers animate__animated animate__fadeInDown">
+                    <div class="font">Mobile</div>
+                    <div class="font" id="inform">{{ user.mobile }}</div>
+                </div>
+                <div class="pass2 rowcontainers animate__animated animate__fadeInDown">
+                    <div class="font">Government</div>
+                    <div class="font" id="inform">{{ user.gover }}</div>
                 </div>
             </div>
         </mat-card>

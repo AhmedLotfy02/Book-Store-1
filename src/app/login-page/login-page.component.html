@@ -4,10 +4,10 @@
 
         <span class="spacer"></span>
         <button mat-raised-button color="black" (click)="ToggleDark()" *ngIf="!DarkState">
-      Dark Mode
+      Theme 2
     </button>
         <button mat-raised-button color="accent" (click)="ToggleDark()" *ngIf="DarkState">
-      Normal Theme
+      Theme 1
     </button>
 
         <ul>
@@ -17,10 +17,12 @@
         </ul>
     </mat-toolbar>
     <div class="grider">
-        <img src="https://static.wixstatic.com/media/2cd43b_31844ce00cf04315a0e69681e3f97740~mv2.png/v1/fill/w_256,h_256,q_90/2cd43b_31844ce00cf04315a0e69681e3f97740~mv2.png" id="img1" class="animate__animated animate__fadeIn" width="300" height="290" *ngIf="!DarkState"
-            (click)="toggleLight(true)" />
-        <img src="https://contentgrid.thdstatic.com/hdus/en_US/DTCCOMNEW/fetch/NexGen/ContentPage/standard-light-bulb.png" id="img2" class="animate__animated animate__fadeIn" width="300" height="290" *ngIf="!DarkState" (click)="toggleLight(false)" />
-
+        <div>
+            <img src="https://static.wixstatic.com/media/2cd43b_31844ce00cf04315a0e69681e3f97740~mv2.png/v1/fill/w_256,h_256,q_90/2cd43b_31844ce00cf04315a0e69681e3f97740~mv2.png" id="img1" class="animate__animated animate__fadeIn" width="300" height="290" *ngIf="!DarkState"
+                (click)="toggleLight(true)" />
+            <img src="https://contentgrid.thdstatic.com/hdus/en_US/DTCCOMNEW/fetch/NexGen/ContentPage/standard-light-bulb.png" id="img2" class="animate__animated animate__fadeIn" width="300" height="290" *ngIf="!DarkState" (click)="toggleLight(false)" />
+            <p class="click">Click on the Bulb</p>
+        </div>
         <mat-card class="animate__animated animate__fadeInRight" *ngIf="!DarkState">
             <!-- <img src="https://contentgrid.thdstatic.com/hdus/en_US/DTCCOMNEW/fetch/NexGen/ContentPage/standard-light-bulb.png" width="300" height="290" *ngIf="!DarkState" /> -->
 
@@ -46,7 +48,10 @@
                     <br />
                     <button type="submit" mat-raised-button color="primary">Login</button>
                 </form>
-                <br /><br /><br />
+                <br /><br />
+                <p class="warn" *ngIf="wronginput">
+                    Wrong email or password.. Try Again
+                </p>
             </div>
         </mat-card>
     </div>
@@ -60,10 +65,10 @@
 
         <span class="spacer"></span>
         <button mat-raised-button color="black" (click)="ToggleDark()" *ngIf="!DarkState">
-      Dark Mode
+      Theme 2
     </button>
         <button mat-raised-button color="accent" (click)="ToggleDark()" *ngIf="DarkState">
-      Normal Mode
+      Theme 1
     </button>
 
         <ul>
@@ -75,6 +80,7 @@
     <div class="grider">
         <!-- <img src="https://thumbs.dreamstime.com/b/vector-light-bulb-white-file-eps-format-34983265.jpg" width="300" height="290" *ngIf="DarkState" /> -->
         <!-- <img src="https://pngimg.com/uploads/bulb/small/bulb_PNG1244.png" width="250" height="260" *ngIf="DarkState" /> -->
+
         <img src="https://officialpsds.com/imageview/76/6v/766vn2_large.png?1529034446" id="img1" class="animate__animated animate__fadeIn" width="300" height="290" *ngIf="DarkState" (click)="toggleLight(true)" />
         <img src="https://pngimg.com/uploads/moon/small/moon_PNG52.png" id="img2" class="animate__animated animate__fadeIn" width="300" height="290" *ngIf="DarkState" (click)="toggleLight(false)" />
 
@@ -99,7 +105,8 @@
           Login
         </button>
             </form>
-            <br /><br /><br />
+            <br /><br />
+            <p class="warn" *ngIf="wronginput">Wrong email or password.. Try Again</p>
         </mat-card>
     </div>
 </body>

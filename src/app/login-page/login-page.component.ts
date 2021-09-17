@@ -15,7 +15,9 @@ export class LoginPageComponent implements OnInit {
   KeepLogin = false;
   on = false;
   isAuthenticated = false;
+  wronginput = false;
   private authListenerSubs!: Subscription;
+  private loginListener!: Subscription;
   ToggleDark() {
     this.DarkState = !this.DarkState;
   }
@@ -59,6 +61,11 @@ export class LoginPageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.loginListener = this.authService
+      .getloginListener()
+      .subscribe((result) => {
+        this.wronginput = result;
+      });
     this.isAuthenticated = this.authService.getisAuth();
     this.authListenerSubs = this.authService
       .getAuthStatusListener()

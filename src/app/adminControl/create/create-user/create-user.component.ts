@@ -32,12 +32,14 @@ export class CreateUserComponent implements OnInit {
     if (form.invalid) {
       return;
     }
-    console.log(form.value);
-    this.authService.createUserByAdmin(
-      form.value.email,
-      form.value.pass,
-      form.value.username,
-      form.value.image
-    );
+    // }
+    // console.log(form.value);
+    // this.authService.createUserByAdmin(
+    //   form.value.email,
+    //   form.value.pass,
+    //   form.value.username,
+    //   form.value.image,
+
+    // );
   }
 }

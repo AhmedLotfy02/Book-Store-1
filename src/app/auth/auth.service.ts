@@ -1,8 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { check } from 'express-validator';
 import { Subject } from 'rxjs';
 import { BOOK } from '../Book-Model';
+import { signData } from '../signUp-data-model';
 import { AuthData } from './auth-data-model';
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -25,6 +27,14 @@ export class AuthService {
   deletionerror = false;
   private tokenTimer: any;
   constructor(private http: HttpClient, private router: Router) {}
+  private testData = new Subject<signData>();
+  private changepassListener = new Subject<{
+    changed: boolean;
+    failed: boolean;
+  }>();
+  private checkoutListener = new Subject<string>();
+  private loginListener = new Subject<boolean>();
+  price = '0';
   getToken() {
     return this.token;
   }
@@ -34,10 +44,21 @@ export class AuthService {
   getUser() {
     return this.user;
   }
+  getloginListener() {
+    return this.loginListener.asObservable();
+  }
+  getChangePassListener() {
+    return this.changepassListener.asObservable();
+  }
   getAuthStatusListener() {
     return this.authStatusListener.asObservable();
   }
-
+  getTestData() {
+    return this.testData.asObservable();
+  }
+  getCheckoutListener() {
+    return this.checkoutListener.asObservable();
+  }
   getCreationListener() {
     return this.creationListener.asObservable();
   }
@@ -84,32 +105,59 @@ export class AuthService {
       this.authStatusListener.next(true);
     }
   }
-  createUser(email: string, password: string, username: string, image: string) {
-    const authData: AuthData = {
-      email: email,
-      password: password,
-      username: username,
-      image: image,
-      books: [],
-      favorites_list: [],
-    };
-    this.http
-      .post('http://localhost:3000/signuptest', authData)
-      .subscribe((response) => {
-        console.log(response);
-      });
-  }
-  createUserByAdmin(
+  createUser(
     email: string,
     password: string,
     username: string,
-    image: string
+    image: string,
+    mobile: number,
+    gover: string
   ) {
     const authData: AuthData = {
       email: email,
       password: password,
       username: username,
       image: image,
+      mobile: mobile,
+      gover: gover,
+      books: [],
+      favorites_list: [],
+    };
+    this.http.post('http://localhost:3000/signuptest', authData).subscribe(
+      (response) => {
+        const data: signData = {
+          isauthenticated: true,
+          failed: false,
+          success: true,
+        };
+        this.testData.next(data);
+        this.router.navigate(['/signup/signupSuccessfully']);
+      },
+      (error) => {
+        const data: signData = {
+          isauthenticated: false,
+          failed: true,
+          success: false,
+        };
+        this.testData.next(data);
+      }
+    );
+  }
+  createUserByAdmin(
+    email: string,
+    password: string,
+    username: string,
+    image: string,
+    mobile: number,
+    gover: string
+  ) {
+    const authData: AuthData = {
+      email: email,
+      password: password,
+      username: username,
+      image: image,
+      mobile: mobile,
+      gover: gover,
       books: [],
       favorites_list: [],
     };
@@ -137,17 +185,22 @@ export class AuthService {
         }
       );
   }
+
   updateUserbyAdmin(
     email: string,
     newpassword: string,
     username: string,
-    image: string
+    image: string,
+    mobile: number,
+    gover: string
   ) {
     const authData: AuthData = {
       email: email,
       password: newpassword,
       username: username,
       image: image,
+      mobile: mobile,
+      gover: gover,
       books: [],
       favorites_list: [],
     };
@@ -214,6 +267,8 @@ export class AuthService {
       password: password,
       username: '',
       image: '',
+      mobile: 0,
+      gover: ' ',
       books: [],
       favorites_list: [],
     };
@@ -277,6 +332,8 @@ export class AuthService {
       password: password,
       username: '',
       image: '',
+      mobile: 0,
+      gover: ' ',
       books: [],
       favorites_list: [],
     };
@@ -285,30 +342,35 @@ export class AuthService {
         'http://localhost:3000/logintest',
         authData
       )
-      .subscribe((response) => {
-        const token = response.token;
-        this.token = token;
-        console.log(response);
-        if (token) {
-          this.authStatusListener.next(true);
-          this.isAuthenticated = true;
-          const expiresInDuration = response.expiresIn;
-          console.log(expiresInDuration);
-          const user = response.user;
-          this.user = user;
-          // this.userEmail = email;
-          console.log(user.email);
-          console.log(this.user);
-          this.setAuthTimer(expiresInDuration);
-          const now = new Date();
-          const expirationDate = new Date(
-            now.getTime() + expiresInDuration * 1000
-          );
-          console.log(expirationDate);
-          this.saveAuthData(token, expirationDate, user.email);
-          this.router.navigate(['/mainstore']);
+      .subscribe(
+        (response) => {
+          const token = response.token;
+          this.token = token;
+          console.log(response);
+          if (token) {
+            this.authStatusListener.next(true);
+            this.isAuthenticated = true;
+            const expiresInDuration = response.expiresIn;
+            console.log(expiresInDuration);
+            const user = response.user;
+            this.user = user;
+            // this.userEmail = email;
+            console.log(user.email);
+            console.log(this.user);
+            this.setAuthTimer(expiresInDuration);
+            const now = new Date();
+            const expirationDate = new Date(
+              now.getTime() + expiresInDuration * 1000
+            );
+            console.log(expirationDate);
+            this.saveAuthData(token, expirationDate, user.email);
+            this.router.navigate(['/mainstore']);
+          }
+        },
+        (error) => {
+          this.loginListener.next(true);
         }
-      });
+      );
   }
   test() {
     this.http.get('http://localhost:3000/testtoken').subscribe((response) => {
@@ -346,11 +408,12 @@ export class AuthService {
       });
   }
 
-  changePassword(password: string) {
+  changePassword(password: string, currentpass: string) {
     console.log(password);
     console.log(this.user);
     const data = {
       newpassword: password,
+      currentpass: currentpass,
       user: this.user,
     };
     this.http
@@ -358,10 +421,18 @@ export class AuthService {
         'http://localhost:3000/changepassword',
         data
       )
-      .subscribe((response) => {
-        console.log(response);
-        this.user = response.user;
-      });
+      .subscribe(
+        (response) => {
+          console.log(response);
+          this.changepassListener.next({ changed: true, failed: false });
+          this.user = response.user;
+        },
+        (error) => {
+          this.changepassListener.next({ changed: false, failed: true });
+
+          console.log(error);
+        }
+      );
   }
   logout() {
     this.token = '';
@@ -370,6 +441,15 @@ export class AuthService {
     clearTimeout(this.tokenTimer);
     this.clearAuthData();
     this.router.navigate(['/']);
+  }
+  checkout(price: number) {
+    this.price = price.toString();
+    this.checkoutListener.next(price.toString());
+    this.check2(price);
+  }
+  async check2(price: number) {
+    await this.checkout(price);
+    await this.router.navigate(['/checkout']);
   }
   private setAuthTimer(duraion: number) {
     this.tokenTimer = setTimeout(() => {

@@ -15,6 +15,8 @@ import { MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSelectModule } from '@angular/material/select';
+
 import { CreateInterfaceComponent } from './adminControl/create/create-interface/create-interface.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -43,6 +45,9 @@ import { DeleteUserComponent } from './adminControl/delete/delete-user/delete-us
 import { UpdateBookComponent } from './adminControl/update/update-book/update-book.component';
 import { DeleteBookComponent } from './adminControl/delete/delete-book/delete-book.component';
 import { FooterComponent } from './footer/footer.component';
+import { CartSnackbarComponent } from './snack-bars/cart-snackbar/cart-snackbar.component';
+import { FavSnackbarComponent } from './snack-bars/fav-snackbar/fav-snackbar.component';
+import { SignUpSuccessfullyComponent } from './sign-up-successfully/sign-up-successfully.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -69,6 +74,9 @@ import { FooterComponent } from './footer/footer.component';
     UpdateBookComponent,
     DeleteBookComponent,
     FooterComponent,
+    CartSnackbarComponent,
+    FavSnackbarComponent,
+    SignUpSuccessfullyComponent,
   ],
   imports: [
     BrowserModule,
@@ -88,6 +96,7 @@ import { FooterComponent } from './footer/footer.component';
     NgbModule,
     MatProgressSpinnerModule,
     MatSnackBarModule,
+    MatSelectModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

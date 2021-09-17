@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
 mat-form-field,
 input {
-    width: 50%;
+    width: 100%;
     padding-left: 0%;
 }
 
@@ -60,4 +60,27 @@ a {
     width: 50%;
     margin-left: 25%;
     text-align: center;
+    height: max-content;
+}
+
+form {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding: 30px;
+}
+
+.right mat-form-field {
+    width: 200px;
+}
+
+.right {
+    display: flex;
+    flex-direction: column;
+    padding: 3px;
+}
+
+.alert {
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    color: red;
 }

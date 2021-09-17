@@ -3,23 +3,11 @@
 <mat-card class="griding animate__animated animate__fadeInDown"><span class="confused">Your Cost: {{ price }} L.E</span>
     <br />
     <button mat-raised-button color="accent" (click)="checkout()" class="animate__animated animate__slideInLeft">
+    <mat-icon>payment</mat-icon>
+
     CheckOut
   </button>
 </mat-card>
-<!-- <mat-grid-list cols="3" rowHeight="580px" [gutterSize]="'9px'">
-    <mat-grid-tile *ngFor="let book of books">
-        <mat-card id="card1" class="animate__animated animate__pulse">
-            <section class="innergrid">
-                <span class="title">Title: {{ book.Title }}</span>
-                <span class="price">Price: {{ book.Price }} EGP</span>
-                <span class="author">Author: {{ book.Author }}</span>
-                <span class="stock">Stock: {{ book.Stock }}</span>
-
-                <img id="imgpost" src="{{ book.Cover }}" width="200" height="250" />
-            </section>
-        </mat-card>
-    </mat-grid-tile>
-</mat-grid-list> -->
 <div class="maincontainer">
     <div *ngFor="let book of books">
         <mat-card class="animate__animated animate__pulse" *ngIf="book.Stock !== 0">

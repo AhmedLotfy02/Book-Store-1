@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { AuthData } from '../auth/auth-data-model';
 import { AuthService } from '../auth/auth.service';
 
@@ -13,6 +14,9 @@ export class ProfileComponent implements OnInit {
   matching = true;
   showpass = false;
   user!: AuthData;
+  changingListener!: Subscription;
+  passchanged = false;
+  passchangingfailed = false;
   changePassword(form: NgForm) {
     if (form.invalid) {
       return;
@@ -20,7 +24,8 @@ export class ProfileComponent implements OnInit {
       this.matching = false;
       return;
     }
-    this.authService.changePassword(form.value.password1);
+    console.log(form.value);
+    this.authService.changePassword(form.value.password1, form.value.password3);
   }
   toggleShowing() {
     this.showpass = !this.showpass;
@@ -31,5 +36,12 @@ export class ProfileComponent implements OnInit {
     }, 100);
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.changingListener = this.authService
+      .getChangePassListener()
+      .subscribe((data) => {
+        this.passchanged = data.changed;
+        this.passchangingfailed = data.failed;
+      });
+  }
 }

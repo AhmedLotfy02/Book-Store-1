@@ -23,36 +23,68 @@
             <div class="signupStyle">SignUp</div>
             <br />
 
-            <span class="mat-body-2">You Must Sign Up First</span>
+            <!-- <span class="mat-body-2">You Must Sign Up First</span> -->
+
             <div>
                 <br />
 
                 <span class="mat-body-2">Please Enter Your Informations</span>
                 <form (submit)="onSignup(postForm)" #postForm="ngForm">
-                    <mat-form-field>
-                        <input matInput type="text" name="username" ngModel #username="ngModel" required placeholder="Username" />
-                        <mat-error *ngIf="username.invalid">Please enter a vaild username</mat-error>
-                    </mat-form-field>
-                    <br />
-                    <mat-form-field>
-                        <input matInput type="text" name="email" ngModel #emailInput="ngModel" email required placeholder="Email" />
-                        <mat-error *ngIf="emailInput.invalid">Please enter a vaild email</mat-error>
-                    </mat-form-field>
-                    <br />
-                    <mat-form-field>
-                        <input matInput type="text" name="image" ngModel #image="ngModel" required placeholder="Image" />
-                        <mat-error *ngIf="image.invalid">Please enter a vaild image</mat-error>
-                    </mat-form-field>
-                    <br />
-                    <mat-form-field>
-                        <input matInput type="password" name="password" ngModel #password #passwordInput="ngModel" required placeholder="Password" />
-                        <mat-error *ngIf="passwordInput.invalid">Please enter password</mat-error>
-                    </mat-form-field>
+                    <div>
+                        <mat-form-field>
+                            <input matInput type="text" name="username" ngModel #username="ngModel" required placeholder="Username" />
+                            <mat-error *ngIf="username.invalid">Please enter a vaild username</mat-error>
+                        </mat-form-field>
+                        <br />
+                        <mat-form-field>
+                            <input matInput type="text" name="email" ngModel #emailInput="ngModel" email required placeholder="Email" />
+                            <mat-error *ngIf="emailInput.invalid">Please enter a vaild email</mat-error>
+                        </mat-form-field>
+                        <br />
+                        <mat-form-field>
+                            <input matInput type="text" name="image" ngModel #image="ngModel" required placeholder="Image" />
+                            <mat-error *ngIf="image.invalid">Please enter a vaild image</mat-error>
+                        </mat-form-field>
+                        <br />
+                        <mat-form-field>
+                            <input matInput type="password" name="password" ngModel #password #passwordInput="ngModel" required placeholder="Password" />
+                            <mat-error *ngIf="passwordInput.invalid">Please enter password</mat-error>
+                        </mat-form-field>
 
-                    <br />
-                    <button type="submit" mat-raised-button color="primary">
-            SignUp
-          </button>
+                        <br />
+                        <button type="submit" mat-raised-button color="primary">
+              SignUp
+            </button>
+                    </div>
+                    <div class="right">
+                        <mat-form-field>
+                            <input matInput type="number" name="mobile" ngModel #mobile="ngModel" required placeholder="Mobile Phone" />
+                            <mat-error *ngIf="mobile.invalid">Please enter a vaild mobile phone</mat-error>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>Select your government</mat-label>
+                            <mat-select [(value)]="selected">
+                                <mat-option value="Alexandria">Alexandria</mat-option>
+                                <mat-option value="Aswan ">Aswan</mat-option>
+                                <mat-option value="Asyut">Asyut</mat-option>
+                                <mat-option value="Beni Suef">Beni Suef</mat-option>
+                                <mat-option value="Cairo">Cairo</mat-option>
+                                <mat-option value="Dakahlia">Dakahlia</mat-option>
+                                <mat-option value="Damietta">Damietta</mat-option>
+                                <mat-option value="Faiyum">Faiyum</mat-option>
+                                <mat-option value="Giza">Giza</mat-option>
+                                <mat-option value="Ismailia">Ismailia</mat-option>
+                                <mat-option value="Kafr El Sheikh">Kafr El Sheikh</mat-option>
+                                <mat-option value="Luxor">Luxor</mat-option>
+                                <mat-option value="Matruh">Matruh</mat-option>
+                                <mat-option value="Monufia">Monufia</mat-option>
+                                <mat-option value="Port Said">Port Said</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <p class="alert" *ngIf="selectionAlert">
+                            Please enter a government
+                        </p>
+                    </div>
                 </form>
                 <br /><br /><br />
             </div>
@@ -88,53 +120,69 @@
 
             <br />
 
-            <span class="mat-body-2">You Must Sign Up First</span>
             <div>
                 <br />
 
-                <span class="mat-body-2">Please Enter Your Username and Password</span>
+                <span class="mat-body-2">Please Enter Your Informations</span>
                 <form (submit)="onSignup(postForm)" #postForm="ngForm">
-                    <mat-form-field>
-                        <input matInput type="text" name="email" ngModel #emailInput="ngModel" email required placeholder="Email" />
-                        <mat-error *ngIf="emailInput.invalid">Please enter a vaild email</mat-error>
-                    </mat-form-field>
-                    <br />
-                    <mat-form-field>
-                        <input matInput type="password" name="password" ngModel #password #passwordInput="ngModel" required placeholder="Password" />
-                        <mat-error *ngIf="passwordInput.invalid">Please enter password</mat-error>
-                    </mat-form-field>
+                    <div>
+                        <mat-form-field>
+                            <input matInput type="text" name="username" ngModel #username="ngModel" required placeholder="Username" />
+                            <mat-error *ngIf="username.invalid">Please enter a vaild username</mat-error>
+                        </mat-form-field>
+                        <br />
+                        <mat-form-field>
+                            <input matInput type="text" name="email" ngModel #emailInput="ngModel" email required placeholder="Email" />
+                            <mat-error *ngIf="emailInput.invalid">Please enter a vaild email</mat-error>
+                        </mat-form-field>
+                        <br />
+                        <mat-form-field>
+                            <input matInput type="text" name="image" ngModel #image="ngModel" required placeholder="Image" />
+                            <mat-error *ngIf="image.invalid">Please enter a vaild image</mat-error>
+                        </mat-form-field>
+                        <br />
+                        <mat-form-field>
+                            <input matInput type="password" name="password" ngModel #password #passwordInput="ngModel" required placeholder="Password" />
+                            <mat-error *ngIf="passwordInput.invalid">Please enter password</mat-error>
+                        </mat-form-field>
 
-                    <br />
-                    <button type="submit" mat-raised-button color="primary">
-            SignUp
-          </button>
+                        <br />
+                        <button type="submit" mat-raised-button color="primary">
+              SignUp
+            </button>
+                    </div>
+                    <div class="right">
+                        <mat-form-field>
+                            <input matInput type="number" name="mobile" ngModel #mobile="ngModel" required placeholder="Mobile Phone" />
+                            <mat-error *ngIf="mobile.invalid">Please enter a vaild mobile phone</mat-error>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>Select your government</mat-label>
+                            <mat-select [(value)]="selected">
+                                <mat-option value="Alexandria">Alexandria</mat-option>
+                                <mat-option value="Aswan ">Aswan</mat-option>
+                                <mat-option value="Asyut">Asyut</mat-option>
+                                <mat-option value="Beni Suef">Beni Suef</mat-option>
+                                <mat-option value="Cairo">Cairo</mat-option>
+                                <mat-option value="Dakahlia">Dakahlia</mat-option>
+                                <mat-option value="Damietta">Damietta</mat-option>
+                                <mat-option value="Faiyum">Faiyum</mat-option>
+                                <mat-option value="Giza">Giza</mat-option>
+                                <mat-option value="Ismailia">Ismailia</mat-option>
+                                <mat-option value="Kafr El Sheikh">Kafr El Sheikh</mat-option>
+                                <mat-option value="Luxor">Luxor</mat-option>
+                                <mat-option value="Matruh">Matruh</mat-option>
+                                <mat-option value="Monufia">Monufia</mat-option>
+                                <mat-option value="Port Said">Port Said</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <p class="alert" *ngIf="selectionAlert">
+                            Please enter a government
+                        </p>
+                    </div>
                 </form>
                 <br /><br /><br />
             </div>
-            <!-- <form (submit)="onSignUp(postForm)" #postForm="ngForm">
-            <mat-form-field>
-                <input matInput type="text" name="username" required ngModel placeholder="Username" minlength="3" #usernameInput="ngModel" />
-                <mat-error ngIf="usernameInput.invalid">Please Enter Your Username</mat-error>
-            </mat-form-field>
-            <br />
-            <mat-form-field>
-                <input matInput type="text" name="email" ngModel required placeholder="Email" minlength="3" #emailInput="ngModel" email />
-                <mat-error ngIf="emailInput.invalid">Please Enter Your Email</mat-error>
-            </mat-form-field>
-            <br />
-            <mat-form-field>
-                <input matInput type="password" name="password" required placeholder="password" minlength="3" ngModel #Pass="ngModel" />
-                <mat-error ngIf="Pass.invalid">Please Enter Your Password</mat-error>
-            </mat-form-field>
-            <br />
-            <mat-form-field>
-                <input matInput type="password" name="confirmpassword" required placeholder="Confirm Your Password" minlength="3" ngModel #confirm="ngModel" />
-                <mat-error ngIf="confirm.invalid">Please Enter Your Password</mat-error>
-            </mat-form-field>
-            <br />
-            <div *ngIf="falsePass">Password Must be the Confirmed Password</div>
-            <button type="submit" mat-raised-button color="primary">Sign Up</button>
-        </form> -->
 
             <br /><br /><br />
         </mat-card>
