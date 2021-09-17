@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Lobster&family=Righteous&display=swap");
 .example-container {
-    width: 10px;
+    /* width: 10px; */
     margin-left: 50%;
     height: auto;
     border: 1px solid rgba(0, 0, 0, 0.5);
@@ -36,6 +36,54 @@ a {
 .head {
     margin-left: 20%;
     cursor: pointer;
+    font-family: "Lobster", cursive;
+    color: #25395c;
+    font-size: 30px;
+}
+
+.kclass {
+    animation: rotate 3s infinite;
+}
+
+@keyframes rotate {
+    /* 0% {
+        transform: rotateX(180deg);
+    }
+    100% {
+        transform: rotateX(200deg);
+    } */
+    /* 0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.7;
+    }
+    100% {
+        opacity: 1;
+    } */
+    /* from {
+        -webkit-transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+    } */
+    0% {
+        color: #304a77;
+    }
+    50% {
+        color: #ea7166;
+    }
+    100% {
+        color: #304a77;
+    }
+}
+
+.nameofweb {
+    cursor: pointer;
+    font-family: "Lobster", cursive;
+    color: #25395c;
+    font-size: 30px;
+    margin-left: 20%;
 }
 
 .sider {
@@ -56,7 +104,7 @@ body {
 .title {
     font-size: 30px;
     font-family: "Righteous", cursive;
-    color: white;
+    color: #25395c;
 }
 
 .author {
@@ -79,12 +127,8 @@ body {
     margin-left: 1em;
 }
 
-.b1 {
-    color: crimson;
-}
-
 .spacer1 {
-    margin-left: 1em;
+    margin-left: 0.5em;
 }
 
 p {
@@ -116,4 +160,107 @@ p {
 
 ul span {
     cursor: pointer;
+    color: #25395c;
+}
+
+mat-toolbar {
+    /* background: #f76c6c; */
+    background: #ea7166;
+}
+
+mat-icon {
+    background: #25395c;
+    color: #ea7166;
+}
+
+#btn1 {
+    background: #25395c;
+}
+
+.searching {
+    height: 40px;
+    align-items: center;
+    display: flex;
+    background: #eff2f5;
+    padding: 10px;
+    margin-left: 10px;
+    border-radius: 999px;
+}
+
+.searching mat-icon {
+    width: max-content;
+    height: max-content;
+    font-size: 30px;
+}
+
+.searching mat-icon:hover {
+    transform: scale(1.07);
+}
+
+.searching input {
+    outline: none;
+    width: 250px;
+    height: 30px;
+    padding: 10px;
+    margin: 0;
+    border-radius: 0;
+    border: none;
+    background: #eff2f5;
+}
+
+.b1 {
+    background: transparent;
+    border: none;
+}
+
+.btn2 {
+    background: #25395c;
+    color: #ea7166;
+}
+
+.btn2:hover {
+    background: #ea7166;
+    color: #304a77;
+    transform: scale(1.08);
+}
+
+mat-drawer button {
+    width: 200px;
+    background: #ea7166;
+    color: #304a77;
+}
+
+mat-drawer button:hover {
+    width: 150px;
+    background: #304a77;
+    color: #ea7166;
+    margin-left: 20px;
+}
+
+mat-drawer {
+    width: 250px;
+    overflow: auto;
+    align-items: center;
+}
+
+.username1:hover {
+    animation: flash 1s infinite alternate;
+}
+
+@-webkit-keyframes bounce {
+    from {
+        transform: translateY(0px);
+    }
+    to {
+        transform: translateY(-15px);
+    }
+}
+
+@keyframes flash {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }

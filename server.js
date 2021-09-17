@@ -153,16 +153,18 @@ app.post("/api/addingbooks", AuthCheck, (req, res, next) => {
 app.post("/api/addingFavbooks", AuthCheck, (req, res, next) => {
     const book1 = req.body[0];
     const user1 = req.body[1];
-    console.log(user1);
+    // console.log(user1);
     console.log(book1);
 
     var x = false;
-    for (var i = 0; i < user1.books.length; i++) {
+
+    for (var i = 0; i < user1.favorites_list.length; i++) {
         if (user1.favorites_list[i].Title === book1.Title) {
             x = true;
             console.log("found");
         }
     }
+
     if (x === false) {
         book1.Stock = 1;
         user1.favorites_list.push(book1);

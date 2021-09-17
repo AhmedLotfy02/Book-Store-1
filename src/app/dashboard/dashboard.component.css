@@ -7,22 +7,23 @@
 body {}
 
 .title {
-    font-size: 30px;
+    font-size: 34px;
     font-family: "Righteous", cursive;
-    color: royalblue;
+    /* color: #86c232; */
+    color: #ea7166;
 }
 
 .author {
     font-size: 20px;
     font-family: "Righteous", cursive;
-    color: rgb(204, 85, 85);
+    color: #86c232;
     font-weight: 500;
 }
 
 .price {
-    font-size: 20px;
+    font-size: 15px;
     font-family: "Righteous", cursive;
-    color: #25283d;
+    color: #86c232;
 }
 
 #card1 {
@@ -44,10 +45,35 @@ body {}
     display: grid;
     flex-direction: row;
     justify-content: space-between;
+    margin-left: 30px;
 }
 
 .confused {
     font-family: "Lobster", cursive;
     font-size: 30px;
     color: indianred;
+}
+
+.maincontainer {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 10px 30px;
+    align-items: center;
+}
+
+.author-tinfor {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+mat-card {
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    /* background: #222629; */
+    background: #25395c;
+    width: 400px;
 }

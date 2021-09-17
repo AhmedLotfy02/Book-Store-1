@@ -50,22 +50,23 @@ a {
 body {}
 
 .title {
-    font-size: 30px;
+    font-size: 34px;
     font-family: "Righteous", cursive;
-    color: royalblue;
+    /* color: #86c232; */
+    color: #ea7166;
 }
 
 .author {
     font-size: 20px;
     font-family: "Righteous", cursive;
-    color: rgb(204, 85, 85);
+    color: #86c232;
     font-weight: 500;
 }
 
 .price {
-    font-size: 20px;
+    font-size: 15px;
     font-family: "Righteous", cursive;
-    color: #25283d;
+    color: #86c232;
 }
 
 #card1 {
@@ -77,10 +78,63 @@ body {}
 }
 
 .stock {
-    color: white;
+    color: #86c232;
     font-size: 15px;
+    animation: rotate 3s infinite;
 }
 
 #imgpost {
     align-items: center;
+}
+
+.maincontainer {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 10px 30px;
+    align-items: center;
+    /* edits*/
+}
+
+mat-card {
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    /* background: #222629; */
+    background: #25395c;
+    width: 400px;
+    height: 515px;
+    overflow: hidden;
+}
+
+mat-card:hover {
+    height: max-content;
+}
+
+mat-card img {
+    align-items: center;
+    cursor: pointer;
+}
+
+.author-tinfor {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+mat-card button {
+    border-radius: 15px;
+    /* background: brown;
+    color: white; */
+    background: #ea7166;
+    color: #25395c;
+}
+
+mat-card button:hover {
+    /* background: linear-gradient(#84ceeb, #8860d0);
+    color: whitesmoke; */
+    background: #25395c;
+    color: #ea7166;
+    transform: scale(1.07);
 }

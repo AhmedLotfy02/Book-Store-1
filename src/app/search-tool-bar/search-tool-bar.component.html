@@ -1,21 +1,33 @@
-<mat-toolbar color="primary" class="animate__animated animate__fadeIn">
-    <button mat-mini-fab color="black" aria-label="Example icon button with a menu icon" (click)="drawer.toggle()">
+<mat-toolbar class="animate__animated animate__fadeInDown">
+    <button mat-mini-fab color="black" id="btn1" aria-label="Example icon button with a menu icon" (click)="drawer.toggle()">
     <mat-icon>menu</mat-icon>
   </button>
     <form (submit)="onSearch(postForm)" #postForm="ngForm">
         <span class="spacer1"></span>
 
-        <mat-form-field floatLabel="never">
+        <!-- <mat-form-field floatLabel="never">
             <input matInput type="search" name="search" required [ngModel]="book?.Title" placeholder="Search" minlength="3" #search="ngModel" />
-        </mat-form-field>
+        </mat-form-field> -->
+        <div class="searching">
+            <input type="search" name="search" required [ngModel]="book?.Title" placeholder="Search" />
+            <button class="b1" type="submit">
+        <span class="material-icons">search</span>
+      </button>
+        </div>
         <span class="spacer1"></span>
 
-        <button class="b1" type="submit" mat-raised-button>Search</button>
+        <!-- <button class="b1" type="submit" mat-raised-button>Search</button> -->
     </form>
-    <span class="head animate__animated animate__fadeInDown" (click)="gohome()">AL Book-Store</span
-  >
+    <!-- <span class="head kclass animate__animated animate__fadeInDown" (click)="gohome()">
+    AL BooK-Store
+  </span> -->
 
-  <span class="spacer"></span>
+    <span class="nameofweb kclass animate__animated animate__fadeInDown" (click)="gohome()">
+    <span>AL Boo</span>
+    <span>K</span>
+    <span>-Store</span>
+    </span>
+    <span class="spacer"></span>
 
     <ul>
         <li>
@@ -24,10 +36,10 @@
           <mat-icon id="acc">account_circle</mat-icon>
         </button> -->
                 <img src="{{ user.image }}" (click)="profile()" class="imgformat animate__animated animate__fadeInDown" width="50" height="50" />
-                <span class="animate__animated animate__fadeInDown" (click)="profile()">{{ user.username }}</span
+                <span class="username1 animate__animated animate__fadeInDown" (click)="profile()">{{ user.username }}</span
         >
         <span class="spacer99"></span>
-                <button mat-button (click)="logout()">Log Out</button>
+                <button class="btn2" mat-button (click)="logout()">Log Out</button>
             </div>
             <div *ngIf="!isAuthenticated">
                 <a mat-button routerLink="/" routerLinkActive="primary">Login</a>
@@ -35,7 +47,6 @@
         </li>
     </ul>
 </mat-toolbar>
-
 <mat-drawer-container class="example-container" autosize>
 </mat-drawer-container>
 <div class="example-sidenav-content"></div>

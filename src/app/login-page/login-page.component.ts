@@ -13,6 +13,7 @@ export class LoginPageComponent implements OnInit {
   DarkState = false;
   Login = false;
   KeepLogin = false;
+  on = false;
   isAuthenticated = false;
   private authListenerSubs!: Subscription;
   ToggleDark() {
@@ -37,6 +38,20 @@ export class LoginPageComponent implements OnInit {
   logout() {
     this.authService.logout();
   }
+
+  toggleLight(indicator: boolean) {
+    if (indicator) {
+      document.getElementById('img2')!.style.display = 'block';
+      document.getElementById('img1')!.style.display = 'none';
+      document.getElementById('all')!.style.background = 'transparent';
+    } else {
+      document.getElementById('img1')!.style.display = 'block';
+      document.getElementById('img2')!.style.display = 'none';
+      document.getElementById('all')!.style.background =
+        "url('https://images.unsplash.com/photo-1475274047050-1d0c0975c63e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8&w=1000&q=80')";
+    }
+  }
+
   constructor(
     public service: OverallService,
     private router: Router,

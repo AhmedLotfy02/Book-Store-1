@@ -1,8 +1,9 @@
 <body>
     <app-search-tool-bar></app-search-tool-bar>
-    <mat-grid-list cols="3" rowHeight="580px" [gutterSize]="'9px'">
-        <mat-grid-tile *ngFor="let book of books">
-            <mat-card id="card1" class="animate__animated animate__pulse" *ngIf="book.Stock !== 0">
+
+    <!-- <mat-grid-list cols="3" rowHeight="580px" [gutterSize]="'9px'">
+        <mat-grid-tile *ngFor="let book of books"> -->
+    <!-- <mat-card id="card1" class="animate__animated animate__pulse" *ngIf="book.Stock !== 0">
                 <section class="innergrid">
                     <img id="imgpost" src="{{ book.Cover }}" width="200" height="250" />
                     <span class="title">Title: {{ book.Title }}</span>
@@ -17,8 +18,33 @@
             Add To my Favorites
           </button>
                 </section>
+            </mat-card> -->
+    <div class="maincontainer">
+        <div *ngFor="let book of books">
+            <mat-card class="animate__animated animate__pulse" *ngIf="book.Stock !== 0">
+                <img src="{{ book.Cover }}" width="370" height="400" />
+                <div class="author-tinfor">
+                    <span class="title">Title: {{ book.Title }}</span>
+                    <span class="author">Author: {{ book.Author }}</span>
+                </div>
+                <div class="author-tinfor">
+                    <span class="price">Price: {{ book.Price }} EGP</span>
+                    <span class="stock">Stock: {{ book.Stock }}</span>
+                </div>
+                <div class="author-tinfor">
+                    <button mat-raised-button color="accent" (click)="addToCart(book)" *ngIf="isAuthenticated">
+            Add To Cart
+          </button>
+                    <button mat-raised-button color="primary" *ngIf="isAuthenticated" (click)="addToFavList(book)">
+            Add To my Favorites
+          </button>
+                </div>
             </mat-card>
-        </mat-grid-tile>
-    </mat-grid-list>
+        </div>
+    </div>
+
+    <!-- </mat-grid-tile>
+    </mat-grid-list> -->
     <br />
+    <app-footer></app-footer>
 </body>

@@ -26,6 +26,10 @@ ul {
     margin: 0;
 }
 
+#all {
+    background: transparent;
+}
+
 a {
     text-decoration: none;
     color: white;
@@ -60,4 +64,14 @@ a {
     font-family: "Lobster", cursive;
     font-size: 30px;
     color: indianred;
+}
+
+#img1 {
+    display: none;
+    cursor: pointer;
+}
+
+#img2 {
+    display: block;
+    cursor: pointer;
 }

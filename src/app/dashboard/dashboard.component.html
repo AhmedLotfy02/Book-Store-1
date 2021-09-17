@@ -6,7 +6,7 @@
     CheckOut
   </button>
 </mat-card>
-<mat-grid-list cols="3" rowHeight="580px" [gutterSize]="'9px'">
+<!-- <mat-grid-list cols="3" rowHeight="580px" [gutterSize]="'9px'">
     <mat-grid-tile *ngFor="let book of books">
         <mat-card id="card1" class="animate__animated animate__pulse">
             <section class="innergrid">
@@ -19,4 +19,19 @@
             </section>
         </mat-card>
     </mat-grid-tile>
-</mat-grid-list>
+</mat-grid-list> -->
+<div class="maincontainer">
+    <div *ngFor="let book of books">
+        <mat-card class="animate__animated animate__pulse" *ngIf="book.Stock !== 0">
+            <img src="{{ book.Cover }}" width="370" height="400" />
+            <div class="author-tinfor">
+                <span class="title">Title: {{ book.Title }}</span>
+                <span class="author">Author: {{ book.Author }}</span>
+            </div>
+            <div class="author-tinfor">
+                <span class="price">Price: {{ book.Price }} EGP</span>
+                <span class="stock">Stock: {{ book.Stock }}</span>
+            </div>
+        </mat-card>
+    </div>
+</div>

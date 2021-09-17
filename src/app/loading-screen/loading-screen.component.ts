@@ -8,7 +8,7 @@ import { AuthService } from '../auth/auth.service';
 })
 export class LoadingScreenComponent implements OnInit {
   constructor(private authService: AuthService) {}
-
+  on = false;
   ngOnInit(): void {}
   sent() {
     this.authService.testmail();
