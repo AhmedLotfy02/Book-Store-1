@@ -18,8 +18,9 @@
     </mat-toolbar>
     <div class="grider">
         <div>
-            <img src="https://static.wixstatic.com/media/2cd43b_31844ce00cf04315a0e69681e3f97740~mv2.png/v1/fill/w_256,h_256,q_90/2cd43b_31844ce00cf04315a0e69681e3f97740~mv2.png" id="img1" class="animate__animated animate__fadeIn" width="300" height="290" *ngIf="!DarkState"
-                (click)="toggleLight(true)" />
+            <!-- <img src="https://static.wixstatic.com/media/2cd43b_31844ce00cf04315a0e69681e3f97740~mv2.png/v1/fill/w_256,h_256,q_90/2cd43b_31844ce00cf04315a0e69681e3f97740~mv2.png" id="img1" class="animate__animated animate__fadeIn" width="300" height="290" *ngIf="!DarkState"
+                (click)="toggleLight(true)" /> -->
+            <img src="https://res.cloudinary.com/smmcpan2/image/upload/v1624462614/bulb.png" id="img1" class="animate__animated animate__fadeIn" width="250" height="340" *ngIf="!DarkState" (click)="toggleLight(true)" />
             <img src="https://contentgrid.thdstatic.com/hdus/en_US/DTCCOMNEW/fetch/NexGen/ContentPage/standard-light-bulb.png" id="img2" class="animate__animated animate__fadeIn" width="300" height="290" *ngIf="!DarkState" (click)="toggleLight(false)" />
             <p class="click">Click on the Bulb</p>
         </div>

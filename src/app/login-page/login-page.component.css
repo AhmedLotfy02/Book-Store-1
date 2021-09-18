@@ -68,6 +68,8 @@ a {
 
 #img1 {
     display: none;
+    margin-left: 15px;
+    margin-top: -20px;
     cursor: pointer;
 }
 

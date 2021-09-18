@@ -29,7 +29,7 @@ export class LoginPageComponent implements OnInit {
       form.value.email === 'admin@gmail.com' &&
       form.value.password === 'admin'
     ) {
-      this.router.navigate(['/admin']);
+      this.router.navigate(['/admin/options']);
     } else {
       this.authService.login(form.value.email, form.value.password);
     }
