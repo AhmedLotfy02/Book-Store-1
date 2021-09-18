@@ -55,3 +55,25 @@ form button {
     top: 100px;
     left: 200px;
 }
+
+.alertsel {
+    color: red;
+    font-size: 15px;
+    margin-left: 150px;
+    animation: flash 2s infinite;
+}
+
+@keyframes flash {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    75% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}

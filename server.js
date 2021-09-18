@@ -212,6 +212,10 @@ app.post("/createuserByAdmin", (req, res, next) => {
         const user = new UserTest({
             email: req.body.email,
             password: hash,
+            image: req.body.image,
+            username: req.body.username,
+            mobile: req.body.mobile,
+            gover: req.body.gover,
             books: [],
             favorites_list: [],
         });

@@ -14,6 +14,9 @@ export class CreateUserComponent implements OnInit {
   creationerror = false;
   private creationlistener!: Subscription;
   private creationerrorlistener!: Subscription;
+  selected = ' ';
+  selectionAlert = false;
+
   ngOnInit(): void {
     this.created = this.authService.isCreated;
     this.creationerror = this.authService.creationerror;
@@ -31,15 +34,20 @@ export class CreateUserComponent implements OnInit {
   create(form: NgForm) {
     if (form.invalid) {
       return;
+    } else if (this.selected === ' ') {
+      this.selectionAlert = true;
+      return;
     }
     // }
-    // console.log(form.value);
-    // this.authService.createUserByAdmin(
-    //   form.value.email,
-    //   form.value.pass,
-    //   form.value.username,
-    //   form.value.image,
-
-    // );
+    console.log(form.value);
+    console.log(this.selected);
+    this.authService.createUserByAdmin(
+      form.value.email,
+      form.value.pass,
+      form.value.username,
+      form.value.image,
+      form.value.mobile,
+      this.selected
+    );
   }
 }

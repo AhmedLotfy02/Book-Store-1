@@ -19,6 +19,10 @@ export class MainStoreComponent implements OnInit {
   open2 = true;
   books: any;
   closeResult = '';
+  items = Array(150)
+    .fill(0)
+    .map((x, i) => ({ id: i + 1, name: `Item ${i + 1}` }));
+  pageOfItems!: Array<any>;
 
   isAuthenticated = false;
   private authListenerSubs!: Subscription;
@@ -86,5 +90,10 @@ export class MainStoreComponent implements OnInit {
     } else {
       return `with: ${reason}`;
     }
+  }
+
+  onChangePage(pageOfItems: Array<any>) {
+    // update current page of items
+    this.pageOfItems = pageOfItems;
   }
 }

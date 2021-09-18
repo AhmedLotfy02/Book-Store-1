@@ -47,7 +47,9 @@ import { FooterComponent } from './footer/footer.component';
 import { CartSnackbarComponent } from './snack-bars/cart-snackbar/cart-snackbar.component';
 import { FavSnackbarComponent } from './snack-bars/fav-snackbar/fav-snackbar.component';
 import { SignUpSuccessfullyComponent } from './sign-up-successfully/sign-up-successfully.component';
-import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { JwPaginationModule } from 'jw-angular-pagination';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -92,11 +94,11 @@ import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MatIconModule,
     MatGridListModule,
     ReactiveFormsModule,
-
     NgbModule,
     MatProgressSpinnerModule,
     MatSnackBarModule,
     MatSelectModule,
+    JwPaginationModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
