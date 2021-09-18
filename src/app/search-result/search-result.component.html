@@ -17,7 +17,7 @@
             </section>
         </mat-card>
     </div>-->
-    <div class="maincontainer">
+    <div class="maincontainer" *ngIf="book.Stock !== null">
         <mat-card class="animate__animated animate__pulse" *ngIf="book.Stock !== 0">
             <img src="{{ book.Cover }}" width="370" height="400" (click)="open(content)" />
             <div class="author-tinfor">
