@@ -47,6 +47,8 @@
                     </mat-form-field>
 
                     <br />
+                    <p class="forget" (click)="forget()">Forget your Username?</p>
+
                     <button type="submit" mat-raised-button color="primary">Login</button>
                 </form>
                 <br /><br />
@@ -102,6 +104,8 @@
                     <mat-error *ngIf="passwordInput.invalid">Please enter password</mat-error>
                 </mat-form-field>
                 <br />
+                <p class="forget" (click)="forget()">Forget your Username?</p>
+
                 <button class="b1" type="submit" mat-raised-button color="accent">
           Login
         </button>

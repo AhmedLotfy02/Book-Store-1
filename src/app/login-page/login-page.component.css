@@ -116,3 +116,16 @@ a {
         opacity: 0;
     }
 }
+
+.forget {
+    cursor: pointer;
+    position: relative;
+    left: -130px;
+    margin-top: -15px;
+    color: indianred;
+    font-size: 15px;
+}
+
+.forget:hover {
+    animation: flash 1s infinite;
+}

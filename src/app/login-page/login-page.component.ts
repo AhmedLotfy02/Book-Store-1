@@ -40,7 +40,9 @@ export class LoginPageComponent implements OnInit {
   logout() {
     this.authService.logout();
   }
-
+  forget() {
+    this.router.navigate(['/login/forget']);
+  }
   toggleLight(indicator: boolean) {
     if (indicator) {
       document.getElementById('img2')!.style.display = 'block';

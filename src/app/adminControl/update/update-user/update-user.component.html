@@ -29,6 +29,57 @@
                     </mat-form-field>
                 </div>
             </div>
+            <div class="userinfo">
+                <div class="email">
+                    <p>Username</p>
+                    <mat-form-field>
+                        <input matInput required type="text" name="username" ngModel #username="ngModel" />
+                        <mat-error *ngIf="username.invalid">Please enter a username</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="pass">
+                    <p>Image</p>
+                    <mat-form-field>
+                        <input matInput required type="text" name="image" ngModel #image="ngModel" />
+                        <mat-error *ngIf="image.invalid">Please enter an image</mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="userinfo">
+                <div class="email">
+                    <p>Mobile Phone</p>
+                    <mat-form-field>
+                        <input matInput required type="number" name="mobile" ngModel #mobile="ngModel" />
+                        <mat-error *ngIf="mobile.invalid">Please enter a mobile phone</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="pass">
+                    <p>Government</p>
+                    <mat-form-field>
+                        <mat-select [(value)]="selected">
+                            <mat-option value="Alexandria">Alexandria</mat-option>
+                            <mat-option value="Aswan ">Aswan</mat-option>
+                            <mat-option value="Asyut">Asyut</mat-option>
+                            <mat-option value="Beni Suef">Beni Suef</mat-option>
+                            <mat-option value="Cairo">Cairo</mat-option>
+                            <mat-option value="Dakahlia">Dakahlia</mat-option>
+                            <mat-option value="Damietta">Damietta</mat-option>
+                            <mat-option value="Faiyum">Faiyum</mat-option>
+                            <mat-option value="Giza">Giza</mat-option>
+                            <mat-option value="Ismailia">Ismailia</mat-option>
+                            <mat-option value="Kafr El Sheikh">Kafr El Sheikh</mat-option>
+                            <mat-option value="Luxor">Luxor</mat-option>
+                            <mat-option value="Matruh">Matruh</mat-option>
+                            <mat-option value="Monufia">Monufia</mat-option>
+                            <mat-option value="Port Said">Port Said</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+            <p class="alertsel" *ngIf="selectionAlert">
+                Please choose user's government
+            </p>
+
             <button type="submit" mat-raised-button>Update</button>
         </form>
 

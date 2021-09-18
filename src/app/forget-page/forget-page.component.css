@@ -1,0 +1,64 @@
+@import url("https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Fjalla+One&display=swap");
+.forgrow {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+button {
+    background: purple;
+    color: white;
+}
+
+button:hover {
+    background: rgb(255, 255, 255);
+    color: purple;
+    transform: scale(1.07);
+}
+
+mat-card {
+    width: 800px;
+    position: absolute;
+    top: 25%;
+    left: 25%;
+}
+
+.forgcol {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-left: 30px;
+}
+
+.header {
+    font-size: 23px;
+    color: purple;
+    font-family: "Architects Daughter", cursive;
+    animation: flash 2s infinite;
+}
+
+@keyframes flash {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    75% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.fail {
+    font-size: 17px;
+}
+
+.warn {
+    color: red;
+    animation: flash 2s infinite;
+    margin-top: 5px;
+}

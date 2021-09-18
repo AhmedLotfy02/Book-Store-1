@@ -34,6 +34,7 @@ export class AuthService {
   }>();
   private checkoutListener = new Subject<string>();
   private loginListener = new Subject<boolean>();
+  private emailListener = new Subject<boolean>();
   price = '0';
   getToken() {
     return this.token;
@@ -43,6 +44,9 @@ export class AuthService {
   }
   getUser() {
     return this.user;
+  }
+  getEmailListener() {
+    return this.emailListener.asObservable();
   }
   getloginListener() {
     return this.loginListener.asObservable();
@@ -142,6 +146,21 @@ export class AuthService {
         this.testData.next(data);
       }
     );
+  }
+  forget(email: string) {
+    this.http
+      .post('http://localhost:3000/testemail', { email: email })
+      .subscribe(
+        (response) => {
+          this.emailListener.next(true);
+          console.log(response);
+        },
+        (error) => {
+          this.emailListener.next(false);
+
+          console.log(error);
+        }
+      );
   }
   createUserByAdmin(
     email: string,
@@ -372,11 +391,6 @@ export class AuthService {
         }
       );
   }
-  test() {
-    this.http.get('http://localhost:3000/testtoken').subscribe((response) => {
-      console.log(response);
-    });
-  }
 
   addBooksToUser(book: BOOK) {
     this.http
@@ -400,13 +414,7 @@ export class AuthService {
       });
   }
 
-  testmail() {
-    this.http
-      .post('http://localhost:3000/testemail', 'hi')
-      .subscribe((response) => {
-        console.log(response);
-      });
-  }
+  testmail() {}
 
   changePassword(password: string, currentpass: string) {
     console.log(password);

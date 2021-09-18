@@ -49,6 +49,7 @@ import { FavSnackbarComponent } from './snack-bars/fav-snackbar/fav-snackbar.com
 import { SignUpSuccessfullyComponent } from './sign-up-successfully/sign-up-successfully.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { JwPaginationModule } from 'jw-angular-pagination';
+import { ForgetPageComponent } from './forget-page/forget-page.component';
 
 @NgModule({
   declarations: [
@@ -78,6 +79,7 @@ import { JwPaginationModule } from 'jw-angular-pagination';
     CartSnackbarComponent,
     FavSnackbarComponent,
     SignUpSuccessfullyComponent,
+    ForgetPageComponent,
   ],
   imports: [
     BrowserModule,

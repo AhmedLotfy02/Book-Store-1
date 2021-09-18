@@ -14,6 +14,8 @@ export class UpdateUserComponent implements OnInit {
   updatedlistener!: Subscription;
   updatedErrorlistener!: Subscription;
   error = false;
+  selectionAlert = false;
+  selected = ' ';
   ngOnInit(): void {
     this.updated = this.authService.isUpdated;
     this.updatedlistener = this.authService

@@ -23,6 +23,7 @@ import { DeleteUserComponent } from './adminControl/delete/delete-user/delete-us
 import { UpdateBookComponent } from './adminControl/update/update-book/update-book.component';
 import { DeleteBookComponent } from './adminControl/delete/delete-book/delete-book.component';
 import { SignUpSuccessfullyComponent } from './sign-up-successfully/sign-up-successfully.component';
+import { ForgetPageComponent } from './forget-page/forget-page.component';
 
 const routes: Routes = [
   { path: '', component: LoginPageComponent },
@@ -47,6 +48,7 @@ const routes: Routes = [
     path: 'signup/signupSuccessfully',
     component: SignUpSuccessfullyComponent,
   },
+  { path: 'login/forget', component: ForgetPageComponent },
   {
     path: 'searchresult',
     component: SearchResultComponent,

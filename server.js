@@ -196,7 +196,7 @@ app.post("/api/getuser", (req, res, next) => {
 // app.post("/api/getcurrentUser", (req, res, next) => {});
 
 const userSchema = new mongoose.Schema({
-    email: { type: String, required: true },
+    email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     username: { type: String, required: true, unique: true },
     image: { type: String, required: true },
@@ -264,7 +264,15 @@ app.post("/signuptest", (req, res, next) => {
 });
 app.post("/updateUserByAdmin", (req, res, next) => {
     bcrypt.hash(req.body.password, 10).then(function(hash) {
-        UserTest.findOneAndUpdate({ email: req.body.email }, { $set: { password: hash } }, { new: true },
+        UserTest.findOneAndUpdate({ username: req.body.username }, {
+                $set: {
+                    password: hash,
+                    image: req.body.image,
+                    email: req.body.email,
+                    mobile: req.body.mobile,
+                    gover: req.body.gover,
+                },
+            }, { new: true },
             (err, doc) => {
                 if (doc) {
                     res.status(200).json({
@@ -369,12 +377,6 @@ app.post("/logintest", (req, res, next) => {
         });
 });
 
-app.get("/testtoken", AuthCheck, (req, res, next) => {
-    console.log("intokentest");
-    res.status(200).json({
-        message: "Auth Done",
-    });
-});
 app.post("/changepassword", (req, res, next) => {
     console.log(req.body);
     console.log(req.body.user._id);
@@ -412,30 +414,47 @@ app.post("/changepassword", (req, res, next) => {
         });
 });
 app.post("/testemail", (req, res, next) => {
-    let transporter = nodemailer.createTransport({
-        host: "smtp.gmail.com",
-        port: 465,
-        secure: true,
-        auth: {
-            user: "ahmadlotfygamersfield@gmail.com",
-            pass: "Allahakbar4444",
-        },
-    });
+    let fetchedUser;
+    UserTest.findOne({ email: req.body.email }, function(err, doc) {
+        var username = doc.username;
+        var stringofHtml = " <div>Your username is " + username + "</div>";
+        if (err) {
+            return res.status(500).json({
+                message: "account not found",
+                error: error,
+            });
+        } else {
+            let transporter = nodemailer.createTransport({
+                host: "smtp.gmail.com",
+                port: 465,
+                secure: true,
+                auth: {
+                    user: "ahmadlotfygamersfield@gmail.com",
+                    pass: "Allahakbar4444",
+                },
+            });
+            console.log(req.body.email);
 
-    let mailOptions = {
-        from: '"ahmed Lotfy" <ahmadlotfygamersfield@gmail.com>',
-        to: "sarahmohamedahmedlotfy2@gmail.com",
-        subject: "hi sara if this email has reached you that means that it worked!!! ✔",
-        html: "<body><p>Have a Good Day الحمدلله        </p></body>",
-    };
+            let mailOptions = {
+                from: '"Al Book-Store" <ahmadlotfygamersfield@gmail.com>',
+                to: req.body.email,
+                subject: "Account Details ✔",
+                html: stringofHtml,
+            };
 
-    transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-            return console.log(error);
+            transporter.sendMail(mailOptions, (error, info) => {
+                if (error) {
+                    return res.status(500).json({
+                        message: "account not found",
+                        error: error,
+                    });
+                }
+
+                console.log("Message %s sent: %s", info.messageId, info.response);
+                res.status(201).json({
+                    message: "email sent",
+                });
+            });
         }
-        console.log("Message %s sent: %s", info.messageId, info.response);
-    });
-    res.status(201).json({
-        message: "email sent",
     });
 });
