@@ -25,13 +25,11 @@ export class LoginPageComponent implements OnInit {
     if (form.invalid) {
       return;
     }
-    if (
-      form.value.email === 'admin@gmail.com' &&
-      form.value.password === 'admin'
-    ) {
+    console.log(form.value);
+    if (form.value.username === 'admin' && form.value.password === 'admin') {
       this.router.navigate(['/admin/options']);
     } else {
-      this.authService.login(form.value.email, form.value.password);
+      this.authService.login(form.value.username, form.value.password);
     }
   }
   gotoStore() {

@@ -345,7 +345,7 @@ app.post("/deleteBookByAdmin", (req, res, next) => {
 });
 app.post("/logintest", (req, res, next) => {
     let fetchedUser;
-    UserTest.findOne({ email: req.body.email })
+    UserTest.findOne({ username: req.body.username })
         .then((user) => {
             if (!user) {
                 return res.status(401).json({

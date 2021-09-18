@@ -37,8 +37,8 @@
                 <span class="mat-body-2">Please Enter Your Username and Password</span>
                 <form (submit)="onlogging(postForm)" #postForm="ngForm">
                     <mat-form-field>
-                        <input matInput type="text" name="email" ngModel #emailInput="ngModel" email required placeholder="Email" />
-                        <mat-error *ngIf="emailInput.invalid">Please enter a vaild email</mat-error>
+                        <input matInput type="text" name="username" ngModel #usernameInput="ngModel" required placeholder="Username" />
+                        <mat-error *ngIf="usernameInput.invalid">Please enter a vaild username</mat-error>
                     </mat-form-field>
                     <br />
                     <mat-form-field>
@@ -53,7 +53,7 @@
                 </form>
                 <br /><br />
                 <p class="warn" *ngIf="wronginput">
-                    Wrong email or password.. Try Again
+                    Wrong username or password.. Try Again
                 </p>
             </div>
         </mat-card>
@@ -95,8 +95,8 @@
             <span class="mat-body-2">Please Enter Your Username and Password</span>
             <form (submit)="onlogging(postForm)" #postForm="ngForm">
                 <mat-form-field>
-                    <input matInput type="text" name="email" ngModel #emailInput="ngModel" email required placeholder="Email" />
-                    <mat-error *ngIf="emailInput.invalid">Please enter a vaild email</mat-error>
+                    <input matInput type="text" name="username" ngModel #usernameInput="ngModel" required placeholder="Username" />
+                    <mat-error *ngIf="usernameInput.invalid">Please enter a vaild username</mat-error>
                 </mat-form-field>
                 <br />
                 <mat-form-field>
@@ -111,7 +111,9 @@
         </button>
             </form>
             <br /><br />
-            <p class="warn" *ngIf="wronginput">Wrong email or password.. Try Again</p>
+            <p class="warn" *ngIf="wronginput">
+                Wrong username or password.. Try Again
+            </p>
         </mat-card>
     </div>
 </body>

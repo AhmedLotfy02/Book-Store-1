@@ -345,11 +345,11 @@ export class AuthService {
         }
       );
   }
-  login(email: string, password: string) {
+  login(username: string, password: string) {
     const authData: AuthData = {
-      email: email,
+      email: '',
       password: password,
-      username: '',
+      username: username,
       image: '',
       mobile: 0,
       gover: ' ',
