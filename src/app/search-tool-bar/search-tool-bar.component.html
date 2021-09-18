@@ -42,20 +42,21 @@
                 <button class="btn2" mat-button (click)="logout()">Log Out</button>
             </div>
             <div *ngIf="!isAuthenticated">
-                <a mat-button routerLink="/" routerLinkActive="primary">Login</a>
-            </div>
-        </li>
-    </ul>
+                <a class="btn2" mat-button routerLink="/" routerLinkActive="primary">Login</a
+        >
+      </div>
+    </li>
+  </ul>
 </mat-toolbar>
 <mat-drawer-container class="example-container" autosize>
 </mat-drawer-container>
 <div class="example-sidenav-content"></div>
 <mat-drawer #drawer class="example-sidenav" mode="side">
-    <div class="sider">
-        <button mat-button color="accent" (click)="godashboard()">DashBoard</button>
-        <br />
-        <button mat-button color="accent" (click)="gotoFav()">My Favorites</button>
-        <br />
-        <button mat-button color="accent" (click)="profile()">My Profile</button>
-    </div>
+  <div class="sider">
+    <button mat-button color="accent" (click)="godashboard()">DashBoard</button>
+    <br />
+    <button mat-button color="accent" (click)="gotoFav()">My Favorites</button>
+    <br />
+    <button mat-button color="accent" (click)="profile()">My Profile</button>
+  </div>
 </mat-drawer>

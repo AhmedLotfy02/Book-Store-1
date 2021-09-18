@@ -191,6 +191,7 @@ ng-template {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    background: #25395c;
 }
 
 .popcol3 {
@@ -219,4 +220,17 @@ ng-template {
     background: #25395c;
     color: #ea7166;
     transform: scale(1.07);
+}
+
+.close {
+    cursor: pointer;
+    color: #25395c;
+}
+
+hr {
+    color: #ea7166;
+}
+
+.modal-header {
+    background: #ea7166;
 }
