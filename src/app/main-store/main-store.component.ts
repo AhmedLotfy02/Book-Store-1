@@ -7,6 +7,7 @@ import { BOOK } from '../Book-Model';
 import { OverallService } from '../overall.service';
 import { CartSnackbarComponent } from '../snack-bars/cart-snackbar/cart-snackbar.component';
 import { FavSnackbarComponent } from '../snack-bars/fav-snackbar/fav-snackbar.component';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-main-store',
@@ -15,15 +16,17 @@ import { FavSnackbarComponent } from '../snack-bars/fav-snackbar/fav-snackbar.co
 })
 export class MainStoreComponent implements OnInit {
   showFiller = false;
-  open = true;
+  open2 = true;
   books: any;
+  closeResult = '';
 
   isAuthenticated = false;
   private authListenerSubs!: Subscription;
   constructor(
     private service: OverallService,
     private _snackBar: MatSnackBar,
-    private authService: AuthService
+    private authService: AuthService,
+    private modalService: NgbModal
   ) {
     this.service.getBooks().subscribe((bos) => {
       this.books = bos;
@@ -63,5 +66,25 @@ export class MainStoreComponent implements OnInit {
       .subscribe((isauthenticated) => {
         this.isAuthenticated = isauthenticated;
       });
+  }
+  open(content: any) {
+    this.modalService.open(content, { size: 'xl' }).result.then(
+      (result) => {
+        this.closeResult = `Closed with: ${result}`;
+      },
+      (reason) => {
+        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      }
+    );
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
   }
 }

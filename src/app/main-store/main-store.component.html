@@ -22,13 +22,13 @@
     <div class="maincontainer">
         <div *ngFor="let book of books">
             <mat-card class="animate__animated animate__pulse" *ngIf="book.Stock !== 0">
-                <img src="{{ book.Cover }}" width="370" height="400" />
+                <img src="{{ book.Cover }}" width="370" height="400" (click)="open(content)" />
                 <div class="author-tinfor">
                     <span class="title">Title: {{ book.Title }}</span>
                     <span class="author">Author: {{ book.Author }}</span>
                 </div>
                 <div class="author-tinfor">
-                    <span class="price">Price: {{ book.Price }} EGP</span>
+                    <span class="price">Price: {{ book.Price }} USD</span>
                     <span class="stock">Stock: {{ book.Stock }}</span>
                 </div>
                 <div class="author-tinfor">
@@ -40,9 +40,46 @@
           </button>
                 </div>
             </mat-card>
+
+            <ng-template #content let-modal>
+                <div class="modal-header">
+                    <p class="close material-icons" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                        close
+                    </p>
+
+                    <hr />
+                </div>
+                <div class="poprow">
+                    <div class="inpopupform">
+                        <img src="{{ book.Cover }}" width="300" height="300" />
+                        <div class="popcol2">
+                            <div class="popcol">
+                                <span class="title">Title: {{ book.Title }}</span>
+
+                                <span class="author">Author: {{ book.Author }}</span>
+                            </div>
+                            <button mat-raised-button (click)="addToCart(book)" *ngIf="isAuthenticated">
+                Add To Cart
+              </button>
+                        </div>
+                    </div>
+                    <div class="popcol4">
+                        <div class="popcol popcol3">
+                            <span class="price">Price: {{ book.Price }} USD</span>
+                            <span class="stock">Stock: {{ book.Stock }}</span>
+                        </div>
+                        <button mat-raised-button color="primary" *ngIf="isAuthenticated" (click)="addToFavList(book)">
+              Add To my Favorites
+            </button>
+                    </div>
+                </div>
+            </ng-template>
         </div>
     </div>
 
+    <!--modal starts-->
+
+    <!--modal ends-->
     <!-- </mat-grid-tile>
     </mat-grid-list> -->
     <br /><br /><br /><br /><br />

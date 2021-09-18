@@ -27,7 +27,6 @@ import { MainStoreComponent } from './main-store/main-store.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { SearchToolBarComponent } from './search-tool-bar/search-tool-bar.component';
 import { SearchResultComponent } from './search-result/search-result.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AdminPanelComponent } from './adminControl/create/create-book/admin-panel/admin-panel.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthInterceptor } from './auth/auth-interceptor';
@@ -48,6 +47,7 @@ import { FooterComponent } from './footer/footer.component';
 import { CartSnackbarComponent } from './snack-bars/cart-snackbar/cart-snackbar.component';
 import { FavSnackbarComponent } from './snack-bars/fav-snackbar/fav-snackbar.component';
 import { SignUpSuccessfullyComponent } from './sign-up-successfully/sign-up-successfully.component';
+import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,7 +57,6 @@ import { SignUpSuccessfullyComponent } from './sign-up-successfully/sign-up-succ
     SearchToolBarComponent,
     SearchResultComponent,
     AdminPanelComponent,
-
     DashboardComponent,
     FavoriteListComponent,
     CheckOutComponent,
@@ -93,6 +92,7 @@ import { SignUpSuccessfullyComponent } from './sign-up-successfully/sign-up-succ
     MatIconModule,
     MatGridListModule,
     ReactiveFormsModule,
+
     NgbModule,
     MatProgressSpinnerModule,
     MatSnackBarModule,

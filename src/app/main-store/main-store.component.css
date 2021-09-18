@@ -54,6 +54,7 @@ body {}
     font-family: "Righteous", cursive;
     /* color: #86c232; */
     color: #ea7166;
+    overflow: hidden;
 }
 
 .author {
@@ -61,6 +62,7 @@ body {}
     font-family: "Righteous", cursive;
     color: #86c232;
     font-weight: 500;
+    overflow: hidden;
 }
 
 .price {
@@ -132,6 +134,86 @@ mat-card button {
 }
 
 mat-card button:hover {
+    /* background: linear-gradient(#84ceeb, #8860d0);
+    color: whitesmoke; */
+    background: #25395c;
+    color: #ea7166;
+    transform: scale(1.07);
+}
+
+.inpopupform {
+    display: flex;
+    flex-direction: row;
+    padding: 15px;
+}
+
+ng-template {
+    background: #25395c;
+}
+
+.popcol {
+    margin-left: 20px;
+    width: max-content;
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    gap: 10px;
+}
+
+.popcol .title {
+    font-size: 20px;
+}
+
+.popcol2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.popcol2 button {
+    margin-left: 8px;
+    border-radius: 15px;
+    /* background: brown;
+    color: white; */
+    background: #ea7166;
+    color: #25395c;
+}
+
+.popcol2 button:hover {
+    /* background: linear-gradient(#84ceeb, #8860d0);
+    color: whitesmoke; */
+    background: #25395c;
+    color: #ea7166;
+    transform: scale(1.07);
+}
+
+.poprow {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.popcol3 {
+    padding: 10px;
+}
+
+.popcol4 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.popcol4 button {
+    margin-bottom: 10px;
+    margin-right: 10px;
+    border-radius: 15px;
+    /* background: brown;
+    color: white; */
+    background: #ea7166;
+    color: #25395c;
+}
+
+.popcol4 button:hover {
     /* background: linear-gradient(#84ceeb, #8860d0);
     color: whitesmoke; */
     background: #25395c;
