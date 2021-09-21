@@ -50,7 +50,7 @@ a {
 body {}
 
 .title {
-    font-size: 34px;
+    font-size: 24px;
     font-family: "Righteous", cursive;
     /* color: #86c232; */
     color: #ea7166;
@@ -106,7 +106,7 @@ mat-card {
     /* background: #222629; */
     background: #25395c;
     width: 400px;
-    height: 515px;
+    height: 500px;
     overflow: hidden;
 }
 

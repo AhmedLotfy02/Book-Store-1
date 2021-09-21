@@ -109,26 +109,27 @@ export class AuthService {
       this.authStatusListener.next(true);
     }
   }
+
   createUser(
     email: string,
     password: string,
     username: string,
-    image: string,
+    image: File,
     mobile: number,
     gover: string
   ) {
-    const authData: AuthData = {
-      email: email,
-      password: password,
-      username: username,
-      image: image,
-      mobile: mobile,
-      gover: gover,
-      books: [],
-      favorites_list: [],
-    };
-    this.http.post('http://localhost:3000/signuptest', authData).subscribe(
+    const data = new FormData();
+    data.append('email', email);
+    data.append('password', password);
+    data.append('username', username);
+    data.append('mobile', mobile.toString());
+    data.append('gover', gover);
+    data.append('image', image, email);
+    console.log('data is ' + data);
+
+    this.http.post('http://localhost:3000/signuptest', data).subscribe(
       (response) => {
+        console.log(response);
         const data: signData = {
           isauthenticated: true,
           failed: false,
@@ -166,24 +167,22 @@ export class AuthService {
     email: string,
     password: string,
     username: string,
-    image: string,
+    image: File,
     mobile: number,
     gover: string
   ) {
-    const authData: AuthData = {
-      email: email,
-      password: password,
-      username: username,
-      image: image,
-      mobile: mobile,
-      gover: gover,
-      books: [],
-      favorites_list: [],
-    };
+    const data = new FormData();
+    data.append('email', email);
+    data.append('password', password);
+    data.append('username', username);
+    data.append('mobile', mobile.toString());
+    data.append('gover', gover);
+    data.append('image', image, email);
+
     this.http
       .post<{ message: string }>(
         'http://localhost:3000/createuserByAdmin',
-        authData
+        data
       )
       .subscribe(
         (response) => {
@@ -209,58 +208,61 @@ export class AuthService {
     email: string,
     newpassword: string,
     username: string,
-    image: string,
+    image: File,
     mobile: number,
     gover: string
   ) {
-    const authData: AuthData = {
-      email: email,
-      password: newpassword,
-      username: username,
-      image: image,
-      mobile: mobile,
-      gover: gover,
-      books: [],
-      favorites_list: [],
-    };
-    this.http
-      .post('http://localhost:3000/updateUserByAdmin', authData)
-      .subscribe(
-        (response) => {
-          this.isUpdated = true;
-          this.updationerror = false;
+    const data = new FormData();
+    data.append('email', email);
+    data.append('username', username);
+    data.append('password', newpassword);
+    data.append('gover', gover);
+    data.append('mobile', mobile.toString());
+    data.append('image', image, email);
 
-          this.updationListener.next(true);
-          this.updationError.next(false);
-          console.log(response);
-        },
-        (error) => {
-          this.isUpdated = false;
+    this.http.post('http://localhost:3000/updateUserByAdmin', data).subscribe(
+      (response) => {
+        this.isUpdated = true;
+        this.updationerror = false;
 
-          this.updationerror = true;
-          this.updationListener.next(false);
+        this.updationListener.next(true);
+        this.updationError.next(false);
+        console.log(response);
+      },
+      (error) => {
+        this.isUpdated = false;
 
-          this.updationError.next(true);
-          console.log(error);
-        }
-      );
+        this.updationerror = true;
+        this.updationListener.next(false);
+
+        this.updationError.next(true);
+        console.log(error);
+      }
+    );
   }
   updateBookByAdmin(
     author: string,
     title: string,
-    image: string,
+    image: File,
     price: number,
     stock: number
   ) {
-    const book: BOOK = {
-      Title: title,
-      Author: author,
-      Cover: image,
-      Price: price,
-      Stock: stock,
-    };
-    console.log(book);
-    this.http.post('http://localhost:3000/updateBookByAdmin', book).subscribe(
+    const data = new FormData();
+    data.append('author', author);
+    data.append('title', title);
+    data.append('price', price.toString());
+    data.append('stock', stock.toString());
+    data.append('image', image, title);
+
+    // const book: BOOK = {
+    //   Title: title,
+    //   Author: author,
+    //   Cover: image,
+    //   Price: price,
+    //   Stock: stock,
+    // };
+    console.log(data);
+    this.http.post('http://localhost:3000/updateBookByAdmin', data).subscribe(
       (response) => {
         this.isUpdated = true;
         this.updationerror = false;

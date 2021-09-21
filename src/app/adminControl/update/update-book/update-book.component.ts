@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  NgForm,
+  Validators,
+} from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
 
@@ -13,10 +19,40 @@ export class UpdateBookComponent implements OnInit {
   updatedlistener!: Subscription;
   updatedErrorlistener!: Subscription;
   error = false;
-
-  constructor(private authService: AuthService) {}
-
+  form!: FormGroup;
+  imagePreview!: string;
+  constructor(private authService: AuthService, private _fb: FormBuilder) {}
+  onImagePicked(event: Event) {
+    const file = (event.target as HTMLInputElement).files![0];
+    this.form.patchValue({ image: file });
+    this.form.get('image')?.updateValueAndValidity();
+    console.log(file);
+    console.log(this.form);
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.imagePreview = reader.result as string;
+    };
+    reader.readAsDataURL(file);
+  }
   ngOnInit(): void {
+    this.form = this._fb.group({
+      title: new FormControl(null, {
+        validators: [Validators.required],
+      }),
+      author: new FormControl(null, {
+        validators: Validators.compose([Validators.required]),
+      }),
+      price: new FormControl(null, {
+        validators: [Validators.required],
+      }),
+      image: new FormControl(null, {
+        validators: [Validators.required],
+        // asyncValidators: [mimeType],
+      }),
+      stock: new FormControl(null, {
+        validators: Validators.compose([Validators.required]),
+      }),
+    });
     this.updated = this.authService.isUpdated;
     this.updatedlistener = this.authService
       .getUpdationListener()
@@ -30,16 +66,17 @@ export class UpdateBookComponent implements OnInit {
       });
     this.error = this.authService.updationerror;
   }
-  update(form: NgForm) {
-    if (form.invalid) {
+  update() {
+    if (this.form.invalid) {
       return;
     }
+    console.log(this.form.value);
     this.authService.updateBookByAdmin(
-      form.value.author,
-      form.value.title,
-      form.value.image,
-      form.value.price,
-      form.value.stock
+      this.form.value.author,
+      this.form.value.title,
+      this.form.value.image,
+      this.form.value.price,
+      this.form.value.stock
     );
   }
 }

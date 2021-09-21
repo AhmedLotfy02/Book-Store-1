@@ -13,6 +13,12 @@ input {
     height: 500px;
 }
 
+.outergrid {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
 ul {
     list-style: none;
     padding: 0;
@@ -78,9 +84,34 @@ form {
     display: flex;
     flex-direction: column;
     padding: 3px;
+    margin-left: 30px;
 }
 
 .alert {
     font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
     color: red;
+}
+
+.image-preview img {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+}
+
+.image-preview2 img {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+}
+
+input[type="file"] {
+    visibility: hidden;
+}
+
+.b3 {
+    background: royalblue;
+    color: white;
+    position: relative;
+    top: 100px;
+    right: 140px;
 }

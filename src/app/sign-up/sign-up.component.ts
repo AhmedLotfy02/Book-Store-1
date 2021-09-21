@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  NgForm,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
@@ -18,26 +24,28 @@ export class SignUpComponent implements OnInit {
   selectionAlert = false;
   isAuthenticated = false;
   startingSnack = false;
+  form!: FormGroup;
+  imagePreview!: string;
   private authListenerSubs!: Subscription;
   ToggleDark() {
     this.DarkState = !this.DarkState;
   }
-  onSignup(form: NgForm) {
-    if (form.invalid) {
+  onSignup() {
+    if (this.form.invalid || this.form.value.mobile < 10) {
       return;
     } else if (this.selected === ' ') {
       this.selectionAlert = true;
       return;
     }
-    console.log(form.value);
+    console.log(this.form.value);
 
     console.log(this.selected);
     this.authService.createUser(
-      form.value.email,
-      form.value.password,
-      form.value.username,
-      form.value.image,
-      form.value.mobile,
+      this.form.value.email,
+      this.form.value.password,
+      this.form.value.username,
+      this.form.value.image,
+      this.form.value.mobile,
       this.selected
     );
   }
@@ -51,15 +59,52 @@ export class SignUpComponent implements OnInit {
   logout() {
     this.authService.logout();
   }
+  onImagePicked(event: Event) {
+    const file = (event.target as HTMLInputElement).files![0];
+    this.form.patchValue({ image: file });
+    this.form.get('image')?.updateValueAndValidity();
+    console.log(file);
+    console.log(this.form);
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.imagePreview = reader.result as string;
+    };
+    reader.readAsDataURL(file);
+  }
 
   constructor(
     private service: OverallService,
     private authService: AuthService,
     private router: Router,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private _fb: FormBuilder
   ) {}
 
   ngOnInit(): void {
+    this.form = this._fb.group({
+      email: new FormControl(null, {
+        validators: Validators.compose([Validators.required, Validators.email]),
+      }),
+      password: new FormControl(null, {
+        validators: Validators.compose([
+          Validators.required,
+          Validators.minLength(6),
+        ]),
+      }),
+      username: new FormControl(null, {
+        validators: [Validators.required],
+      }),
+      image: new FormControl(null, {
+        validators: [Validators.required],
+        // asyncValidators: [mimeType],
+      }),
+      mobile: new FormControl(null, {
+        validators: Validators.compose([
+          Validators.required,
+          Validators.minLength(6),
+        ]),
+      }),
+    });
     this.authListenerSubs = this.authService.getTestData().subscribe((data) => {
       this.startingSnack = data.failed;
       if (this.startingSnack) {

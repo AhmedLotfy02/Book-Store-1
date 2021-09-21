@@ -20,16 +20,11 @@
         <div>
             <!-- <img src="https://static.wixstatic.com/media/2cd43b_31844ce00cf04315a0e69681e3f97740~mv2.png/v1/fill/w_256,h_256,q_90/2cd43b_31844ce00cf04315a0e69681e3f97740~mv2.png" id="img1" class="animate__animated animate__fadeIn" width="300" height="290" *ngIf="!DarkState"
                 (click)="toggleLight(true)" /> -->
-            <img src="https://res.cloudinary.com/smmcpan2/image/upload/v1624462614/bulb.png" id="img1" class="animate__animated animate__fadeIn" width="250" height="340" *ngIf="!DarkState" (click)="toggleLight(true)" />
-            <img src="https://contentgrid.thdstatic.com/hdus/en_US/DTCCOMNEW/fetch/NexGen/ContentPage/standard-light-bulb.png" id="img2" class="animate__animated animate__fadeIn" width="300" height="290" *ngIf="!DarkState" (click)="toggleLight(false)" />
+            <img src="http://localhost:3000/images/bulbon.png" id="img1" class="animate__animated animate__fadeIn" width="250" height="340" *ngIf="!DarkState" (click)="toggleLight(true)" />
+            <img src="http://localhost:3000/images/standard-light-bulb.webp" id="img2" class="animate__animated animate__fadeIn" width="300" height="290" *ngIf="!DarkState" (click)="toggleLight(false)" />
             <p class="click">Click on the Bulb</p>
         </div>
         <mat-card class="animate__animated animate__fadeInRight" *ngIf="!DarkState">
-            <!-- <img src="https://contentgrid.thdstatic.com/hdus/en_US/DTCCOMNEW/fetch/NexGen/ContentPage/standard-light-bulb.png" width="300" height="290" *ngIf="!DarkState" /> -->
-
-            <!-- <img src="https://thumbs.dreamstime.com/b/vector-light-bulb-white-file-eps-format-34983265.jpg" width="300" height="290" *ngIf="DarkState" /> -->
-            <!-- <img src="https://previews.123rf.com/images/ericmilos/ericmilos0912/ericmilos091200136/6109526-3d-render-of-light-bulb-on-white.jpg" width="300" height="300" *ngIf="!DarkState" /> -->
-
             <div class="loginStyle">Login</div>
             <div>
                 <br />
@@ -61,7 +56,7 @@
 </body>
 
 <body style="
-    background: url('https://images.unsplash.com/photo-1475274047050-1d0c0975c63e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8&w=1000&q=80');
+    background-image: url('http://localhost:3000/images/photo-1475274047050-1d0c0975c63e.jpg');
   " class="all" *ngIf="DarkState && !isAuthenticated">
     <mat-toolbar color="accent" class="animate__animated animate__fadeInDown">
         <span class="head">AL Book-Store</span>
@@ -84,9 +79,8 @@
         <!-- <img src="https://thumbs.dreamstime.com/b/vector-light-bulb-white-file-eps-format-34983265.jpg" width="300" height="290" *ngIf="DarkState" /> -->
         <!-- <img src="https://pngimg.com/uploads/bulb/small/bulb_PNG1244.png" width="250" height="260" *ngIf="DarkState" /> -->
 
-        <img src="https://www.freeiconspng.com/uploads/natural-energy-source-the-sun-transparent-photos-3.png" id="img1" class="animate__animated animate__fadeIn" width="300" height="290" *ngIf="DarkState" (click)="toggleLight(true)" />
-        <img src="https://pngimg.com/uploads/moon/small/moon_PNG52.png" id="img2" class="animate__animated animate__fadeIn" width="300" height="290" *ngIf="DarkState" (click)="toggleLight(false)" />
-
+        <img src="http://localhost:3000/images/natural-energy-source-the-sun-transparent-photos-3.png" id="img1" class="animate__animated animate__fadeIn" width="300" height="290" *ngIf="DarkState" (click)="toggleLight(true)" />
+        <img src="http://localhost:3000/images/moon_PNG52.png" id="img2" class="animate__animated animate__fadeIn" width="300" height="290" *ngIf="DarkState" (click)="toggleLight(false)" />
         <mat-card class="animate__animated animate__fadeInRight" *ngIf="DarkState">
             <div class="loginStyle">Login</div>
 
@@ -121,7 +115,7 @@
 <body *ngIf="isAuthenticated">
     <mat-card class="mat-card1">
         <div class="confused">You Are Already Logged In!!</div>
-        <img src="https://thumbs.dreamstime.com/z/geek-boy-confused-cartoon-illustration-geeky-little-44146685.jpg" width="300" height="400" />
+        <img src="http://localhost:3000/images/geek-boy-confused-cartoon-illustration-geeky-little-44146685.jpg" width="300" height="400" />
         <br />
         <button class="b1" mat-raised-button color="accent" (click)="gotoStore()">
       Go to Store

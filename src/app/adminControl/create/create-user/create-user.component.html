@@ -12,20 +12,20 @@
             <p>User Informations</p>
             <hr />
         </div>
-        <form (submit)="create(createform)" #createform="ngForm">
+        <form [formGroup]="form" (submit)="create()">
             <div class="userinfo">
                 <div class="email">
                     <p>Email</p>
                     <mat-form-field>
-                        <input matInput required type="text" name="email" ngModel #email="ngModel" email />
-                        <mat-error *ngIf="email.invalid">Please enter email</mat-error>
+                        <input matInput type="text" formControlName="email" />
+                        <mat-error *ngIf="form.get('email')!.invalid">Please enter email</mat-error>
                     </mat-form-field>
                 </div>
                 <div class="pass">
                     <p>Password</p>
                     <mat-form-field>
-                        <input matInput required type="text" name="pass" ngModel #password="ngModel" />
-                        <mat-error *ngIf="password.invalid">Please enter password</mat-error>
+                        <input matInput type="text" formControlName="password" />
+                        <mat-error *ngIf="form.get('password')!.invalid">Please enter password</mat-error>
                     </mat-form-field>
                 </div>
             </div>
@@ -33,24 +33,8 @@
                 <div class="email">
                     <p>Username</p>
                     <mat-form-field>
-                        <input matInput required type="text" name="username" ngModel #username="ngModel" />
-                        <mat-error *ngIf="username.invalid">Please enter a username</mat-error>
-                    </mat-form-field>
-                </div>
-                <div class="pass">
-                    <p>Image</p>
-                    <mat-form-field>
-                        <input matInput required type="text" name="image" ngModel #image="ngModel" />
-                        <mat-error *ngIf="image.invalid">Please enter an image</mat-error>
-                    </mat-form-field>
-                </div>
-            </div>
-            <div class="userinfo">
-                <div class="email">
-                    <p>Mobile Phone</p>
-                    <mat-form-field>
-                        <input matInput required type="number" name="mobile" ngModel #mobile="ngModel" />
-                        <mat-error *ngIf="mobile.invalid">Please enter a mobile phone</mat-error>
+                        <input matInput type="text" formControlName="username" />
+                        <mat-error *ngIf="form.get('username')!.invalid">Please enter a username</mat-error>
                     </mat-form-field>
                 </div>
                 <div class="pass">
@@ -74,6 +58,33 @@
                             <mat-option value="Port Said">Port Said</mat-option>
                         </mat-select>
                     </mat-form-field>
+                </div>
+            </div>
+            <div class="userinfo">
+                <div class="email mobile">
+                    <p>Mobile Phone</p>
+                    <mat-form-field>
+                        <input matInput type="number" formControlName="mobile" />
+                        <mat-error *ngIf="form.get('mobile')!.invalid">Please enter a mobile phone</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="pass">
+                    <div>
+                        <!-- image starts -->
+                        <div class="image-preview2" *ngIf="!imagePreview">
+                            <img src="http://localhost:3000/images/Profile_avatar_placeholder_large.png" />
+                        </div>
+                        <div class="image-preview" *ngIf="imagePreview !== '' && imagePreview">
+                            <img [src]="imagePreview" />
+                        </div>
+
+                        <button class="b3" mat-mini-fab color="primary" type="button" (click)="filePicker.click()" aria-label="Example icon button with a menu icon">
+                <mat-icon>library_add</mat-icon>
+              </button>
+                        <input type="file" #filePicker (change)="onImagePicked($event)" />
+
+                        <!--image ends-->
+                    </div>
                 </div>
             </div>
             <p class="alertsel" *ngIf="selectionAlert">

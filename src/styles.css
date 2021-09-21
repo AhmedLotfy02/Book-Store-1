@@ -8,11 +8,5 @@ body {
 body {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
-    /* background: url("https://bashooka.com/wp-content/uploads/2018/04/scg-canvas-background-animation-24.jpg"); */
-    /* background: url("https://wallpaperaccess.com/full/967428.jpg"); */
-    /* background-color: #c1c8e4; */
-    /* background: url("https://wallpaperaccess.com/full/148432.jpg"); */
-    /* background: url("https://images.unsplash.com/photo-1535418126925-0bfb3a0ee0d7?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80"); */
-    /* background: #ffffff; */
-    background: url("https://images.squarespace-cdn.com/content/v1/58b84b75d482e9fd767bbf74/1490967502941-5B58KPBE62GRXPW3PLLR/city-night-street-lights-hd-wallpaper.jpg?format=2500w");
+    background: url("http://localhost:3000/images/city-night-street-lights-hd-wallpaper.jpg");
 }

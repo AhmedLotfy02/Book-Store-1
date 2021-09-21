@@ -8,6 +8,9 @@ app.use(express.static("public"));
 const { body, validationResult } = require("express-validator");
 const cors = require("cors");
 app.use(cors());
+const path = require("path");
+
+app.use("/images", express.static(path.join("backend/images")));
 const mongoose = require("mongoose");
 const { title } = require("process");
 mongoose.connect("mongodb://localhost/DataBase3", {
@@ -21,7 +24,27 @@ const uniqueValidator = require("mongoose-unique-validator");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
-
+const multer = require("multer");
+const MIME_TYPE_MAP = {
+    "image/png": "png",
+    "image/jpeg": "jpg",
+    "image/jpg": "jpg",
+};
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        const isValid = MIME_TYPE_MAP[file.mimetype];
+        let error = new Error("Invalid mime type");
+        if (isValid) {
+            error = null;
+        }
+        cb(error, "backend/images");
+    },
+    filename: (req, file, cb) => {
+        const name = file.originalname.toLowerCase().split(" ").join("-");
+        const ext = MIME_TYPE_MAP[file.mimetype];
+        cb(null, name + "-" + Date.now() + "." + ext);
+    },
+});
 const AuthCheck = require("../Book-Store-1/middleware/auth-check");
 db.on("error", function(err) {
     console.log(err);
@@ -78,17 +101,41 @@ app.get("/api/books", function(req, res) {
     });
 });
 
-app.post("/add", function(req, res) {
-    console.log(req.body);
-    const NewBook = new Book({
-        Title: req.body.Title,
-        Author: req.body.Author,
-        Cover: req.body.Cover,
-        Price: req.body.Price,
-        Stock: req.body.Stock,
-    });
-    NewBook.save();
-});
+app.post(
+    "/addBook",
+    multer({ storage: storage }).single("image"),
+    function(req, res) {
+        const url = req.protocol + "://" + req.get("host");
+
+        console.log(req.body);
+        const NewBook = new Book({
+            Title: req.body.Title,
+            Author: req.body.Author,
+            Cover: url + "/images/" + req.file.filename,
+            Price: req.body.Price,
+            Stock: req.body.Stock,
+        });
+        NewBook.save()
+            .then((result) => {
+                if (result) {
+                    res.status(201).json({
+                        message: "Book Created",
+                        book: result,
+                    });
+                } else {
+                    res.status(500).json({
+                        message: "an error occured",
+                    });
+                }
+            })
+            .catch((err) => {
+                res.status(500).json({
+                    message: "an error occured",
+                    error: err,
+                });
+            });
+    }
+);
 
 app.get("/api/search/:title", AuthCheck, (req, res, next) => {
     Book.findOne({ Title: req.params.title }, function(err, doc) {
@@ -207,112 +254,138 @@ const userSchema = new mongoose.Schema({
 });
 userSchema.plugin(uniqueValidator);
 const UserTest = mongoose.model("UserTest", userSchema);
-app.post("/createuserByAdmin", (req, res, next) => {
-    bcrypt.hash(req.body.password, 10).then(function(hash) {
-        const user = new UserTest({
-            email: req.body.email,
-            password: hash,
-            image: req.body.image,
-            username: req.body.username,
-            mobile: req.body.mobile,
-            gover: req.body.gover,
-            books: [],
-            favorites_list: [],
-        });
-        user
-            .save()
-            .then((result) => {
-                res.status(201).json({
-                    message: "user created",
-                    result: result,
-                });
-            })
-            .catch((err) => {
-                res.status(500).json({
-                    message: "error found",
-                    error: err,
-                });
+app.post(
+    "/createuserByAdmin",
+    multer({ storage: storage }).single("image"),
+    (req, res, next) => {
+        console.log(req.body);
+        const url = req.protocol + "://" + req.get("host");
+
+        bcrypt.hash(req.body.password, 10).then(function(hash) {
+            const user = new UserTest({
+                email: req.body.email,
+                password: hash,
+                image: url + "/images/" + req.file.filename,
+                username: req.body.username,
+                mobile: req.body.mobile,
+                gover: req.body.gover,
+                books: [],
+                favorites_list: [],
             });
-    });
-});
-app.post("/signuptest", (req, res, next) => {
-    bcrypt.hash(req.body.password, 10).then(function(hash) {
-        const user = new UserTest({
-            email: req.body.email,
-            password: hash,
-            username: req.body.username,
-            image: req.body.image,
-            mobile: req.body.mobile,
-            gover: req.body.gover,
-            books: [],
-            favorites_list: [],
+            user
+                .save()
+                .then((result) => {
+                    res.status(201).json({
+                        message: "user created",
+                        result: result,
+                    });
+                })
+                .catch((err) => {
+                    res.status(500).json({
+                        message: "error found",
+                        error: err,
+                    });
+                });
         });
-        user
-            .save()
-            .then((result) => {
-                res.status(201).json({
-                    message: "user created",
-                    result: result,
-                });
-            })
-            .catch((err) => {
-                res.status(500).json({
-                    error: err,
-                });
+    }
+);
+
+app.post(
+    "/signuptest",
+    multer({ storage: storage }).single("image"),
+    (req, res, next) => {
+        const url = req.protocol + "://" + req.get("host");
+
+        bcrypt.hash(req.body.password, 10).then(function(hash) {
+            const user = new UserTest({
+                email: req.body.email,
+                password: hash,
+                username: req.body.username,
+                image: url + "/images/" + req.file.filename,
+                mobile: req.body.mobile,
+                gover: req.body.gover,
+                books: [],
+                favorites_list: [],
             });
-    });
-});
-app.post("/updateUserByAdmin", (req, res, next) => {
-    bcrypt.hash(req.body.password, 10).then(function(hash) {
-        UserTest.findOneAndUpdate({ username: req.body.username }, {
+            user
+                .save()
+                .then((result) => {
+                    res.status(201).json({
+                        message: "user created",
+                        result: result,
+                    });
+                })
+                .catch((err) => {
+                    res.status(500).json({
+                        error: err,
+                    });
+                });
+        });
+    }
+);
+app.post(
+    "/updateUserByAdmin",
+    multer({ storage: storage }).single("image"),
+    (req, res, next) => {
+        const url = req.protocol + "://" + req.get("host");
+
+        bcrypt.hash(req.body.password, 10).then(function(hash) {
+            UserTest.findOneAndUpdate({ username: req.body.username }, {
+                    $set: {
+                        password: hash,
+                        image: url + "/images/" + req.file.filename,
+                        email: req.body.email,
+                        mobile: req.body.mobile,
+                        gover: req.body.gover,
+                    },
+                }, { new: true },
+                (err, doc) => {
+                    if (doc) {
+                        res.status(200).json({
+                            message: "User Updated",
+                            newUser: doc,
+                        });
+                    } else {
+                        res.status(501).json({
+                            error: err,
+                        });
+                        console.log("error happened in updating user");
+                    }
+                }
+            );
+        });
+    }
+);
+app.post(
+    "/updateBookByAdmin",
+    multer({ storage: storage }).single("image"),
+    (req, res, next) => {
+        const url = req.protocol + "://" + req.get("host");
+
+        Book.findOneAndUpdate({ Title: req.body.title }, {
                 $set: {
-                    password: hash,
-                    image: req.body.image,
-                    email: req.body.email,
-                    mobile: req.body.mobile,
-                    gover: req.body.gover,
+                    Author: req.body.author,
+                    Price: req.body.price,
+                    Cover: url + "/images/" + req.file.filename,
+                    Stock: req.body.stock,
                 },
             }, { new: true },
             (err, doc) => {
                 if (doc) {
                     res.status(200).json({
-                        message: "User Updated",
-                        newUser: doc,
+                        message: "Book Updated",
+                        updatedBook: doc,
                     });
                 } else {
                     res.status(501).json({
                         error: err,
                     });
-                    console.log("error happened in updating user");
+                    console.log("error happened in updating book");
                 }
             }
         );
-    });
-});
-app.post("/updateBookByAdmin", (req, res, next) => {
-    Book.findOneAndUpdate({ Title: req.body.Title }, {
-            $set: {
-                Author: req.body.Author,
-                Price: req.body.Price,
-                Cover: req.body.Cover,
-                Stock: req.body.Stock,
-            },
-        }, { new: true },
-        (err, doc) => {
-            if (doc) {
-                res.status(200).json({
-                    message: "Book Updated",
-                    updatedBook: doc,
-                });
-            } else {
-                res.status(501).json({
-                    error: err,
-                });
-                console.log("error happened in updating book");
-            }
-        }
-    );
-});
+    }
+);
 app.post("/deleteuserByAdmin", (req, res, next) => {
     UserTest.findOneAndDelete({ email: req.body.email }, (err, doc) => {
         if (doc) {
@@ -353,7 +426,8 @@ app.post("/logintest", (req, res, next) => {
                 });
             }
             fetchedUser = user;
-            return bcrypt.compare(req.body.password, user.password);
+
+            return bcrypt.compareSync(req.body.password, fetchedUser.password);
         })
         .then((result) => {
             if (!result) {
