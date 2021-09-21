@@ -1,7 +1,6 @@
 # Al-Book-Store
- <img src="https://i.ibb.co/bF19KYt/Al-Book-Store-logos-transparent.png" width="1000" height="800" alt="Al-Book-Store-logos-transparent" border="0">
+ <img src="https://i.ibb.co/bF19KYt/Al-Book-Store-logos-transparent.png"  alt="Al-Book-Store-logos-transparent" border="0">
  
-<!-- <img src="https://i.ibb.co/25CRgVH/01.jpg" width="1000" height="600" alt="logo" border="0"> -->
 
 
 
