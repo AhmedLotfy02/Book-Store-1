@@ -19,6 +19,7 @@
     </ul> 
   </li>  
     <li><a href="#structure">File Structure</a></li>
+     <li><a href="#video">Demo Video</a></li>
   <li><a href="#screenshots">Screenshots</a> </li>
   <li><a href="#contributors">Contributors</a></li>
   
@@ -111,6 +112,8 @@ AL Book-Store
 ├── .tsconfig.spec.json
 ├── middleware
 │   ├── auth-check.js
+├── backend
+│   ├── images
 ├── src
 │   ├── environments
 │   ├── assets
@@ -161,6 +164,192 @@ AL Book-Store
 </div>
 
 <h2 href="#screenshots">ScreenShots</h2>
+<br>
+<br>
+
+<ol>
+  <li>
+  <strong><em>Login Page </em></strong><br>
+    <ul>
+      <li> Validations
+        <ul>
+          <li>Username and password must be entered</li>
+          <li>Username and password must be existed by signing up or admin added them before</li>
+        </ul>
+      </li>
+      <li>
+        Forget your username sending you email to your email contains username you signed up with it
+      </li>
+    </ul>
+    <br>
+<img src="https://i.ibb.co/nzhk49L/01.jpg" width="1000" height="500"  alt="Login Page" border="0">
+    <br>
+    <img src="https://i.ibb.co/x3J75Mr/02.jpg" width="1000" height="500" alt="Login Page" border="0">
+    <br>
+    <img src="https://i.ibb.co/p0ZMWjh/03.jpg" alt="Login Page" width="1000" height="500" border="0">
+    <br>
+    <img src="https://i.ibb.co/JtPc3Jg/04.jpg" alt="Login Page" width="1000" height="500" border="0">
+    <br>
+  </li>
+  <li>
+      <strong><em>Forget Username Page </em></strong><br>
+    <ul>
+      <li>Validations:
+        <ul>
+        <li>Entering invalid email or email which isn't signed up before will cause a warn</li>
+        </ul>
+      </li>
+      <li>By entering email that is signed up before, you will receive an email contains your username, this is done by NodeMailer</li>
+    </ul>
+      <br>
+  <img src="https://i.ibb.co/xh0XGQP/15.jpg"  width="1000" height="600" alt="15" border="0" />
+    <br>
+  </li>
+  <li>
+   <strong><em>SignUp Page </em></strong>
+    <ul>  
+      <li>
+      Validations:
+        <ul><li>
+          All validations done using reactive form approach 
+          </li>
+        <li>Entering email or username that is already exist will cause error warn as they are unique values in database</li>
+        </ul>
+      </li>
+      <li>
+      Password is hashed at backend by bcrypt library and stored in database
+      </li>
+    </ul>
+    <br>
+  <img src="https://i.ibb.co/WcwC4Nw/05.jpg" alt="05" border="0">
+    <br><img src="https://i.ibb.co/3dSXDJ6/06.jpg" alt="06" border="0"><br>
+  </li>
+  <li>
+     <strong><em>Store</em></strong>
+    <br>
+    <img src="https://i.ibb.co/b7mdLWW/07.jpg" alt="07" border="0">
+    <br>
+    <ul>
+      <li> Book Examples
+       <img src="https://i.ibb.co/fnXpZJr/08.jpg" alt="08" border="0">
+      </li>
+      <li> Footer
+      <img src="https://i.ibb.co/h80MZ7Q/09.jpg" alt="09" border="0">
+      </li>
+      <li> Nav Bar
+        <img src="https://i.ibb.co/D8xTwfB/26.jpg" alt="26" border="0" />
+      </li>
+    </ul>
+    <br>
+  </li>
+  <li>  
+  Profile Page
+    <br>
+    <img src="https://i.ibb.co/fqV518T/10.jpg" alt="10" border="0">
+    <ul>
+      <li> Change password
+      <img src="https://i.ibb.co/PQfLsgH/27.jpg" alt="27" border="0">
+      </li>
+    </ul>
+    <br>
+  </li>
+  <li>
+    Dashboard Page
+    <ul>
+      <li>Calculates the total price</li>
+    </ul>
+    <img src="https://i.ibb.co/GvBHKhX/11.jpg" alt="11" border="0">
+  </li>
+  <li>
+  Checkout
+    <ul>
+      <li>Using Paypal Sandbox you can pay by paypal or debit card
+        <ul>
+          <li><img src="https://i.ibb.co/DVjpQgt/12.jpg" alt="12" border="0"></li>
+          <li><img src="https://i.ibb.co/xD8K1jv/13.jpg" alt="13" border="0"></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+  Favorites List
+    <ul>
+      <li>Contains books you have chosen before to go to favorite list</li>
+      <img src="https://i.ibb.co/FDvnHWH/14.jpg" alt="14" border="0">
+    </ul>
+  </li>
+  <li>
+  Admin Panel (who ownes the website)
+    <ul>
+      Admin can create,update,delete books or users
+      <li>
+      interface
+        <img src="https://i.ibb.co/kSjYRGS/16.jpg" alt="16" border="0"> 
+        <ul>
+          <li>
+          Common interface 
+           <img src="https://i.ibb.co/VggzmcC/17.jpg" alt="17" border="0">
+          </li>
+          <li>
+            Create Book
+                <ul>
+              <li>Reponse message will be displayed either book is created or an error occured</li>
+            </ul>
+            <img src="https://i.ibb.co/BjBSN5f/18.jpg" alt="18" border="0">
+          </li>
+          <li> Create User
+            <ul>
+              <li>Validations: Entering an existing username or email will cause warning</li>
+              <li>Reponse message will be displayed either user is created or an error occured</li>
+            </ul>
+          <img src="https://i.ibb.co/t47cgzY/19.jpg" alt="19" border="0">
+          </li>
+          <li> Update User
+              <ul>
+              <li>Reponse message will be displayed either user is updated or an error occured</li>
+            </ul>
+           <img src="https://i.ibb.co/bdb43wN/20.jpg" alt="20" border="0">
+          </li>
+          <li> Update Book
+              <ul>
+              <li>Reponse message will be displayed either book is updated or an error occured</li>
+            </ul>
+          <img src="https://i.ibb.co/Z28wbdG/21.jpg" alt="21" border="0">
+          </li>
+          <li> Delete Book 
+              <ul>
+              <li>Reponse message will be displayed either book is deleted or an error occured</li>
+            </ul>
+          <img src="https://i.ibb.co/3R6NSqL/22.jpg" alt="22" border="0">
+          </li>
+          <li> Delete User  
+              <ul>
+              <li>Reponse message will be displayed either user is deleted or an error occured</li>
+            </ul>
+            <img src="https://i.ibb.co/SxHZwJ3/23.jpg" alt="23" border="0">      
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    When you are logging in and wants to return to login page or signup this message will appear as you are authenticated
+  <img src="https://i.ibb.co/b3tB0VG/24.jpg" alt="24" border="0">
+  </li>
+  <li>
+  Search 
+    <ul>
+      <li> Book not found message
+        <img src="https://i.ibb.co/JFNFTFq/25.jpg" alt="25" border="0">
+      </li>
+    </ul>
+  </li>
+</ol>
+
+
+<h2 href="#video">Demo Video</h2>
+<p>https://youtu.be/sZgJEthHZXk</p>
+
 
 <h2 href="#contributors">Contributors</h2>
 <table>
