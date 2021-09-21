@@ -182,13 +182,13 @@ AL Book-Store
       </li>
     </ul>
     <br>
-<img src="https://i.ibb.co/nzhk49L/01.jpg" width="1000" height="500"  alt="Login Page" border="0">
+<img src="https://i.ibb.co/nzhk49L/01.jpg"  alt="Login Page" border="0">
     <br>
-    <img src="https://i.ibb.co/x3J75Mr/02.jpg" width="1000" height="500" alt="Login Page" border="0">
+    <img src="https://i.ibb.co/x3J75Mr/02.jpg"  alt="Login Page" border="0">
     <br>
-    <img src="https://i.ibb.co/p0ZMWjh/03.jpg" alt="Login Page" width="1000" height="500" border="0">
+    <img src="https://i.ibb.co/p0ZMWjh/03.jpg" alt="Login Page"  border="0">
     <br>
-    <img src="https://i.ibb.co/JtPc3Jg/04.jpg" alt="Login Page" width="1000" height="500" border="0">
+    <img src="https://i.ibb.co/JtPc3Jg/04.jpg" alt="Login Page"  border="0">
     <br>
   </li>
   <li>
@@ -202,7 +202,7 @@ AL Book-Store
       <li>By entering email that is signed up before, you will receive an email contains your username, this is done by NodeMailer</li>
     </ul>
       <br>
-  <img src="https://i.ibb.co/xh0XGQP/15.jpg"  width="1000" height="600" alt="15" border="0" />
+  <img src="https://i.ibb.co/xh0XGQP/15.jpg"   alt="15" border="0" />
     <br>
   </li>
   <li>
