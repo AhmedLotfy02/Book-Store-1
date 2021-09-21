@@ -76,5 +76,5 @@ input[type="file"] {
 }
 
 ::ng-deep input.mat-input-element {
-    color: purple;
+    color: black;
 }
